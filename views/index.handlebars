@@ -1,2 +1,52 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="container main-box">
+		  
+    <!--logo-->
+    <img class="logo" src="../public/assets/images/logo.png" alt="Day Tripper Logo">
+    <!--slogan-->
+    <p><span id="slogan">Library of Stuff.<em>Together is Better.</em></span></p>
+    
+    <!-- Trigger/Open The Modal -->
+    <button id="login-button">Log In</button>
+
+    <!-- The Modal -->
+    <div id="login-modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="login-modal-content">
+
+            <!--login-->
+            <form action="#">
+
+                <div class="container">
+                    <!--head-->
+                    <h1>Login</h1>
+                    <p>Please login to access your account.</p>
+                    <hr>
+
+                    <!--username-->
+                    <label for="uname"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="uname" required>
+
+                    <!--password-->
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required>
+
+                    <!--button-->
+                    <button type="submit">Login</button>
+
+                </div>
+
+                <!--login options-->
+                <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" class="cancelbtn">Cancel</button>
+                    <span class="psw">Forgot <a href="#">password?</a></span>
+                </div>
+
+            <!--end form-->
+            </form>
+        </div>
+
+    </div>
+</div>
+
+
