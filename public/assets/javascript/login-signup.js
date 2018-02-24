@@ -4,9 +4,9 @@ var loginModal = $("#login-modal");
 var signupModal = $("#signup-modal");
 
 // login button variable
-var loginBtn = $("#login-modal-button");
+var loginBtn = $("#login-button");
 // signup button variable
-var signupBtn = $("#signup-modal-button");
+var signupBtn = $("#signUp-button");
 
 // close login variable
 var loginClose = $("#login-close")
