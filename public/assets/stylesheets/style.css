@@ -1,14 +1,45 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+@charset "UTF-8";
+/* CSS Document */
+/*
+========================================
+CUSTOM STYLES
+========================================
+*/
+* {
+    box-sizing: border-box;
 }
-
+html {
+  height: 100%;
+}
+body {
+    background-image: url();
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+ 	background-size: 100%;
+  	min-height: 100%;
+	width: 100%;
+	position: absolute;
+	height: auto;
+	color: #605d5d;
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
+    text-shadow: 1px 1px #e3dfdf;
+}
+/*
+========================================
+TYPOGRAPHY
+========================================
+*/
 a {
   color: #00B7FF;
 }
 .logo {
     max-width: 350px;
 }
+/*
+========================================
+FORMS
+========================================
+*/
 user-form {
     border: 1px solid #ccc;
 }
@@ -41,7 +72,6 @@ user-form {
     font-size: 28px;
     font-weight: bold;
 }
-
 .close:hover,
 .close:focus {
     color: black;
