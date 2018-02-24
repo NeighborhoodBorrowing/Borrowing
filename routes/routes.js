@@ -6,4 +6,9 @@ module.exports = function(app) {
       res.json(result);
     });
   });
+
+  app.get("/", function(req, res) {
+    res.render("index");
+  });
+
 };
