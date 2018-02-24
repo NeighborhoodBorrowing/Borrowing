@@ -1,25 +1,40 @@
-// Get the modal
-var modal = document.getElementById('login-modal');
+// login modal variable
+var loginModal = $("#login-modal");
+// signup modal variable
+var signupModal = $("#signup-modal");
 
-// Get the button that opens the modal
-var btn = document.getElementById("login-button");
+// login button variable
+var loginBtn = $("#login-modal-button");
+// signup button variable
+var signupBtn = $("#signup-modal-button");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+// close login variable
+var loginClose = $("#login-close")
+// close signup variable
+var signupClose = $("#signup-close")
 
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-    modal.style.display = "block";
-}
+//hide login modal on load
+loginModal.hide();
+//hide signup modal on load
+signupModal.hide();
 
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-    modal.style.display = "none";
-}
+// when the user clicks on the button, open login modal, close signup modal 
+loginBtn.on("click", function() {
+    loginModal.show();
+    signupModal.hide();
+});
+// when the user clicks on the button, open signup modal, close login modal
+signupBtn.on("click", function() {
+    signupModal.show();
+    loginModal.hide();
+});
 
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
+// when the user clicks on <span> (x), close login modal
+loginClose.on("click", function() {
+   loginModal.hide();
+});
+// when the user clicks on <span> (x), close signup modal
+signupClose.on("click", function() {
+   signupModal.hide();
+});
+
