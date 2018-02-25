@@ -3,23 +3,23 @@
     <!--logo-->
     <img class="logo" src="assets/images/logo.png" alt="Borrowed Logo">
     <br>
-                                                                      
+
     <!--slogan-->
     <img class="slogan" src="assets/images/slogan.png" alt="Borrowed Slogan">
     <br>
-    
+
 
     <!-- Trigger/Open The Modal -->
     <button id="login-button">Log In</button>
     <button id="signUp-button">Sign Up</button>
 
-    
+
     <!-- login modal -->
     <div id="login-modal">
 
         <!-- login modal content -->
         <div class="login-modal-content">
-            
+
         <!--close modal-->
         <span id="login-close">&times;</span>
 
@@ -60,10 +60,10 @@
 
         <!-- signup modal content -->
     <div class="signup-modal-content">
-            
+
         <!--close modal-->
         <span id="signup-close">&times;</span>
-        
+
         <!--signup form-->
         <form action="#" class="user-form">
             <div class="container">
@@ -72,7 +72,12 @@
                 <p>Please fill in this form to create an account.</p>
                 <hr>
 
-                <!--email-->
+                <label for="firstName"><b>First Name</b></label>
+                <input type="text" placeholder="First Name" name="firstName" required>
+
+                <label for="lastName"><b>Last Name</b></label>
+                <input type="text" placeholder="Last Name" name="lastName" required>
+
                 <label for="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required>
 
@@ -84,11 +89,14 @@
                 <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
 
+                <label for="zipCode"><b>Zip Code</b></label>
+                <input type="text" placeholder="Enter zipCode" name="zipCode" required>
+
                 <!--terms-->
                 <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms &amp; Privacy</a>.</p>
                 <!--login button options-->
                 <button type="button" class="cancelbtn">Cancel</button>
-                <button type="submit" class="signupbtn">Sign Up</button>
+                <button type="submit" class="signupbtn" id="signupSubmitBtn">Sign Up</button>
             </div>
              <!--end form-->
         </form>
