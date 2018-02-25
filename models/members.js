@@ -16,6 +16,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    rating: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      default: 0
+    },
+    zipCode: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      default: 0
+    }
   });
+
+  Members.associate = function(models){
+    models.Members.hasMany(models.MemberItems, {foreignKey: "ownerId"});
+    models.Members.hasMany(models.BorrowedItems, {foreignKey: "borrowerId"});
+  }
+
   return Members;
 };
