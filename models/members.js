@@ -10,7 +10,8 @@ module.exports = function(sequelize, DataTypes) {
     },
     email: {
         type: DataTypes.STRING,
-        allowNull: false
+        allowNull: false,
+        unique : true
     },
     password: {
       type: DataTypes.STRING,
@@ -22,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
       default: 0
     },
     zipCode: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       allowNull: false,
       default: 0
     }

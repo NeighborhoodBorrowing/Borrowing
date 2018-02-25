@@ -41,3 +41,38 @@ signupClose.on("click", function() {
 
 
 /******* Sign Up Form Submission Logic  *************/
+$("#signupSubmitBtn").click(function(event){
+  event.preventDefault();
+  var firstName = $("#firstName").val();
+  var lastName = $("#lastName").val();
+  var email = $("#email").val();
+  var psw = $("#psw").val();
+  var pswRepeat = $("#psw-repeat").val();
+  var zipCode = $("#zipCode").val();
+  var validInput = validName(firstName) && validName(lastName) && (psw === pswRepeat) && (zipCode.length===5);
+  if(validInput){
+    alert("Your form has been submitted.");
+    var newMember = {
+      firstName:firstName,
+      lastName:lastName,
+      email:email,
+      password:psw,
+      zipCode:zipCode
+    };
+    $.post("/api/signup", newMember)
+      .then(function(err, result){
+        if(err){
+          alert("Unable to sign up. This email address may be in use already.")
+        } else {
+          alert("You've been added!");
+        }
+      });
+  } else { //form has some invalid fields
+    alert("Please fill out the form correctly");
+  }
+
+});
+
+function validName(name){
+  return name!=null && name.trim()!="";
+}
