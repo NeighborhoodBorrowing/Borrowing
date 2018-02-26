@@ -12,13 +12,13 @@ html {
   height: 100%;
 }
 body {
-    background-image: url();
+    background-color: #4d4d4d;
+    background-image: url("../images/background.png");
     background-repeat: no-repeat;
-    background-attachment: fixed;
  	background-size: 100%;
-  	min-height: 100%;
-	width: 100%;
+	min-width: 100%;
 	position: absolute;
+    bottom: 0;
 	height: auto;
 	color: #605d5d;
     font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -34,14 +34,45 @@ a {
 }
 /*
 ========================================
+GRID
+========================================
+*/
+.header-bar {
+  	height: auto;
+	width: 100%;
+	position:  absolute;
+    top: -41em;
+/*    left: 2em;*/
+    margin: 0 0 2em 0;
+}
+.header-subrow {
+    position: relative;
+    top: -1em;
+}
+button {
+    position: relative;
+    margin: .5em auto;
+    width: 90%;
+    height: 2em;
+}
+.search-bar {
+    width: 90%;
+    height: 3em;
+    margin: .5em auto;
+}
+/*
+========================================
 IMAGES
 ========================================
 */
+.inline {
+    display: inline;
+}
 .logo {
-    max-width: 350px;
+    width: 90%;
 }
 .slogan {
-    max-width: 450px;
+    width: 90%;
 }
 /*
 ========================================
@@ -86,3 +117,11 @@ user-form {
     text-decoration: none;
     cursor: pointer;
 }
+/*
+========================================
+MEDIA QUERIES
+========================================
+*/
+@media screen and (max-width: 991px) {
+  
+}   
