@@ -1,10 +1,13 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.post("/api/members", function(req, res) {
-    db.Members.create(req.body).then(function(result) {
-      res.json(result);
-    });
+  app.post("/api/signup", function(req, res) {
+    db.Members.create(req.body)
+              .then(function(result) {
+                res.json(result);
+              }).catch(function(err){
+                throw err;
+              });
   });
 
   app.get("/", function(req, res) {
