@@ -6,12 +6,15 @@ var loginBtn = $("#login-button");
 var signupBtn = $("#signup-button");
 //close login/signup modal
 var logSignClose = $("#login-signup-close");
+//landing page item display box
+var landingDisplay = $("#landing-display");
 
 //hide login/signup on load
 logSignModal.hide();
 
 // when the user clicks on login button, open modal
 loginBtn.on("click", function() {
+    landingDisplay.hide();
     
     target = $(this).attr('href');
 
@@ -24,6 +27,7 @@ loginBtn.on("click", function() {
 
 // when the user clicks on signup, open modal
 signupBtn.on("click", function() {
+    landingDisplay.hide();
     
     target = $(this).attr('href');
     
@@ -37,9 +41,10 @@ signupBtn.on("click", function() {
 // when the user clicks on <span> (x), close login/signup modal
 logSignClose.on("click", function() {
    logSignModal.hide();
+    landingDisplay.show();
 });
 
-
+//form highlights
 $('.form').find('input, textarea').on('keyup blur focus', function (e) {
   
   var $this = $(this),
@@ -68,7 +73,7 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
     }
 
 });
-
+//button functionality in form
 $('.tab a').on('click', function (e) {
   
   e.preventDefault();

@@ -10,31 +10,36 @@
         <title>Borrowed</title>
 
         <!--stylesheets-->
-       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-       <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
       
-       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-
+        <!--javascript-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <!--end head-->
     </head>
+    <!--body-->
     <body>
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!--logo and slogan-->
                     <div class="header-bar">
                         <div class="row">
-                            <!--logo-->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <img class="logo inline" src="assets/images/logo-slogan.png" alt="Borrowed Logo">
                             </div>
                         </div>
                         <div class="row header-subrow">
+                            
                             <!--spacer-->
                             <div class="col-lg-3 col-md-3 col-sm-0 col-xs-0"></div>
+                            
                             <!--search bar-->
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                 <input type="text" class="search-bar" placeholder="What do you need?">
                             </div>
+                            
                             <!-- login/make account -->
                             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                                 <div class="row">
@@ -58,6 +63,7 @@
                 <div class="row" >
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="form" >
+                            
                             <!-- login/signup headrow -->
                             <ul class="tab-group">
                                 <li class="tab active"><a href="#signup">Sign Up</a></li>
@@ -66,13 +72,16 @@
                             
                             <!-- login/signup content -->
                             <div class="tab-content">
+                                
                                 <!-- signup -->
                                 <div id="signup">   
                                     <h1>Sign Up for Free</h1>
+                                    
                                     <!-- form -->
                                     <form action="/signup" method="post">
 
                                         <div class="top-row">
+                                            
                                             <!-- first name -->
                                             <div class="field-wrap">
                                                 <label>
@@ -80,6 +89,7 @@
                                                 </label>
                                                 <input type="text" name="firstName" id="firstName" required>
                                             </div>
+                                            
                                             <!-- last name -->
                                             <div class="field-wrap">
                                                 <label>
@@ -127,15 +137,19 @@
                                         <!-- submit -->
                                         <button type="submit" class="button button-block" id="signupSubmitBtn">Get Started</button>  
                                         
-                                    </form>
+                                    </form><!-- /form -->
 
-                                </div>
-
-                                <div id="login">   
+                                </div><!-- /signup div -->
+                                
+                                <!-- login -->
+                                <div id="login"> 
+                                    <!-- login title -->
                                     <h1>Welcome Back!</h1>
-
+                                    
+                                    <!-- login form -->
                                     <form action="/login" method="post">
-
+                                        
+                                        <!-- email -->
                                         <div class="field-wrap">
                                             <label>
                                                 Email Address<span class="req">*</span>
@@ -143,31 +157,38 @@
                                             <input type="email"required autocomplete="off"/>
                                         </div>
 
+                                        <!-- password -->
                                         <div class="field-wrap">
                                             <label>
                                                 Password<span class="req">*</span>
                                             </label>
                                             <input type="password"required autocomplete="off"/>
                                         </div>
-
+                                        
+                                        <!-- forgot password -->
                                         <p class="forgot"><a href="#" class="light-link">Forgot Password?</a></p>
-
+                                        
+                                        <!-- login -->
                                         <button class="button button-block">Log In</button>
                                         
-                                    </form>
+                                    </form><!-- /form -->
 
-                                </div>
+                                </div><!-- /login div -->
+                                
                                 <!--close modal-->
                                 <span id="login-signup-close" class="button modal-close">&times; Exit</span>
                                     
                             </div><!-- tab-content -->
-
                         </div> <!-- /form -->
                     </div><!-- /column -->
                 </div><!-- /row -->
             </div><!-- /modal -->
         
-            {{{ content }}}
+            
+            
+            {{{ body }}}
+            
+            
             
         </div>
     </body>
