@@ -1,40 +1,86 @@
-// login modal variable
-var loginModal = $("#login-modal");
-// signup modal variable
-var signupModal = $("#signup-modal");
-
+// login/signup modal variable
+var logSignModal = $("#login-signup-modal");
 // login button variable
 var loginBtn = $("#login-button");
 // signup button variable
-var signupBtn = $("#signUp-button");
+var signupBtn = $("#signup-button");
+//close login/signup modal
+var logSignClose = $("#login-signup-close");
 
-// close login variable
-var loginClose = $("#login-close")
-// close signup variable
-var signupClose = $("#signup-close")
+//hide login/signup on load
+logSignModal.hide();
 
-//hide login modal on load
-loginModal.hide();
-//hide signup modal on load
-signupModal.hide();
-
-// when the user clicks on the button, open login modal, close signup modal 
+// when the user clicks on login button, open modal
 loginBtn.on("click", function() {
-    loginModal.show();
-    signupModal.hide();
-});
-// when the user clicks on the button, open signup modal, close login modal
-signupBtn.on("click", function() {
-    signupModal.show();
-    loginModal.hide();
+    
+    target = $(this).attr('href');
+
+    $('.tab a').parent().addClass('active');
+    $('.tab a').parent().siblings().removeClass('active');
+    $('.tab-content > div').not(target).hide();
+    
+    logSignModal.show();
 });
 
-// when the user clicks on <span> (x), close login modal
-loginClose.on("click", function() {
-   loginModal.hide();
+// when the user clicks on signup, open modal
+signupBtn.on("click", function() {
+    
+    target = $(this).attr('href');
+    
+    $('.tab a').parent().addClass('active');
+    $('.tab a').parent().siblings().removeClass('active');
+    $('.tab-content > div').not(target).hide();
+    
+    logSignModal.show();
 });
-// when the user clicks on <span> (x), close signup modal
-signupClose.on("click", function() {
-   signupModal.hide();
+
+// when the user clicks on <span> (x), close login/signup modal
+logSignClose.on("click", function() {
+   logSignModal.hide();
+});
+
+
+$('.form').find('input, textarea').on('keyup blur focus', function (e) {
+  
+  var $this = $(this),
+      label = $this.prev('label');
+
+	  if (e.type === 'keyup') {
+			if ($this.val() === '') {
+          label.removeClass('active highlight');
+        } else {
+          label.addClass('active highlight');
+        }
+    } else if (e.type === 'blur') {
+    	if( $this.val() === '' ) {
+    		label.removeClass('active highlight'); 
+			} else {
+		    label.removeClass('highlight');   
+			}   
+    } else if (e.type === 'focus') {
+      
+      if( $this.val() === '' ) {
+    		label.removeClass('highlight'); 
+			} 
+      else if( $this.val() !== '' ) {
+		    label.addClass('highlight');
+			}
+    }
+
+});
+
+$('.tab a').on('click', function (e) {
+  
+  e.preventDefault();
+  
+  $(this).parent().addClass('active');
+  $(this).parent().siblings().removeClass('active');
+  
+  target = $(this).attr('href');
+
+  $('.tab-content > div').not(target).hide();
+  
+  $(target).fadeIn(600);
+  
 });
 
