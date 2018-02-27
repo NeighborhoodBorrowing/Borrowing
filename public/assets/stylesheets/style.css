@@ -111,7 +111,6 @@ button {
     border-radius:0;
     padding:15px 0;
     font-size:2rem;
-    font-weight:$bold;
     text-transform:uppercase;
     letter-spacing:.1em;
     background:#a3a3a3;
@@ -131,13 +130,14 @@ button {
 .modal-close {
     height: 2.2em;
     width: 5em;
-    font-size: 22px;
+    font-size: 18px;
+    font-family: Impact, Charcoal, sans-serif;
     position: absolute;
+    background-color: rgba(163, 163, 163, .7);
     text-align: center;
-    vertical-align: baseline;
-    padding: .3em;
+    padding: .4em .2em .2em .2em;
     margin: .5em auto;
-    bottom: -.4em;
+    bottom: -.5em;
 }
 /*
 ========================================
@@ -166,11 +166,10 @@ LOGIN/SIGNUP
     padding: 40px;
     max-width:600px;
     position: relative;
-    border-radius: .25;
+    border-radius: 15px;
     margin: 2em auto;
     vertical-align: middle;
     background-color: rgb(227, 223, 223);
-    background-color: rgba(227, 223, 223, .3);
 }
 .tab-group {
   list-style:none;
