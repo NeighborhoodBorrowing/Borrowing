@@ -1,11 +1,8 @@
 module.exports = function(sequelize, DataTypes) {
-  var MemberItems = sequelize.define("MemberItems", {
+  var MemberItems = sequelize.define("MemberItems",
+  {
     //will have an id by default
     name: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    category: {
       type: DataTypes.STRING,
       allowNull: false
     },
@@ -13,11 +10,22 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.TEXT,
       allowNull: false
     },
+    picture:{
+      type: DataTypes.STRING,
+      allowNull:true
+    },
     value: {
         type: DataTypes.DECIMAL(10,2),
         allowNull: false
+    },
+    addedDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     }
-  });
+  }, {
+      timestamps:false
+    });
 
   MemberItems.associate = function (models) {
      models.MemberItems.belongsTo(models.Members, {
@@ -27,6 +35,15 @@ module.exports = function(sequelize, DataTypes) {
          allowNull: false
        }
      });
+
+
+    models.MemberItems.belongsTo(models.Categories, {
+      as: "category", //the word "id" will be added at the end of the name automatically
+      onDelete: "CASCADE",
+      foreignKey: {
+        allowNull: false
+      }
+    });
 
      models.MemberItems.hasMany(models.BorrowedItems, {foreignKey:"itemId"});
    };

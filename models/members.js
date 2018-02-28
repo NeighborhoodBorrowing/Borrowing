@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-  var Members = sequelize.define("Members", {
+  var Members = sequelize.define("Members",
+  {
     firstName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -20,14 +21,21 @@ module.exports = function(sequelize, DataTypes) {
     rating: {
       type: DataTypes.INTEGER,
       allowNull: true,
-      default: 0
+      defaultValue: 0
     },
     zipCode: {
       type: DataTypes.TEXT,
       allowNull: false,
-      default: 0
+      defaultValue: 0
+    },
+    joinDate: {
+      type: DataTypes.DATE,
+      allowNull: false,
+      defaultValue: sequelize.literal('CURRENT_TIMESTAMP')
     }
-  });
+  }, {
+      timestamps:false
+    });
 
   Members.associate = function(models){
     models.Members.hasMany(models.MemberItems, {foreignKey: "ownerId"});

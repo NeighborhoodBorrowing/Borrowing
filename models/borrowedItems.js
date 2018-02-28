@@ -1,5 +1,6 @@
 module.exports = function(sequelize, DataTypes) {
-  var BorrowedItems = sequelize.define("BorrowedItems", {
+  var BorrowedItems = sequelize.define("BorrowedItems",
+  {
     borrowedDate: {
       type: DataTypes.DATE,
       allowNull: false
@@ -12,6 +13,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     },
+  },{
+    timestamps:false
   });
 
   //id of the item borrowed
