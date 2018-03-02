@@ -1,0 +1,33 @@
+
+<div class="row" id="landing-display">
+    <!--Need to make categories collapse when small-->
+    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 panel">
+        <!--categories head-->
+        <h2>Categories</h2>
+        <p>Pick a category to browse items</p>
+        <!--categories-->
+        <ul>
+            <!--categories db loop-->
+            {{#each categories}}
+                <!--create line item with category name-->
+                <li>{{this.name}}</li>
+            <!--end category loop-->
+            {{/each}}
+        </ul>
+    </div>
+    
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 panel">
+        <!--recently listed items head-->
+        <h2>Recently listed items in your area:</h2>
+        <!--recently listed items-->
+        <ul>
+            <!--recently listed items loop-->
+            {{#each recentItems}}
+                <!--recently listed items name, photo-->
+                <li>{{this.itemName}}</li>
+                <li>{{this.photo_url}}</li>
+            <!--end recently listed items loop-->
+            {{/each}}
+        </ul>
+    </div>
+</div>
