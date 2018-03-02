@@ -11,6 +11,18 @@ module.exports = function(app) {
               });
   });
 
+  app.post("/api/login", function(req, res) {
+    db.Members.findOne(
+      {
+        where : {email:req.body.email , password:req.body.psw}
+      })
+        .then(function(result) {
+          console.log(result.rows);
+        }).catch(function(err){
+          throw err;
+        });
+  });
+
   //get all the categories in the DB
   app.get("/api/categories", function(req, res) {
     db.MemberItems.findAll({})
@@ -22,13 +34,17 @@ module.exports = function(app) {
   });
 
 
-
+/*** GET ROUTES TO DISPLAY PAGES*****/
   app.get("/", function(req, res) {
     res.render("index");
   });
 
   app.get("/signup", function(req, res) {
     res.render("signup");
+  });
+
+  app.get("/login", function(req, res) {
+    res.render("login");
   });
 
 };

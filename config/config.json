@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "testpass",
+    "password": "We.R0ck!",
     "database": "borrowing_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

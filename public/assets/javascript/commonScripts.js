@@ -55,7 +55,7 @@ $("#signupSubmitBtn").click(function(event){
     var newMember = {
       firstName:firstName,
       lastName:lastName,
-      email:email,
+      email:email.toLowerCase(),
       password:psw,
       zipCode:zipCode
     };
@@ -71,6 +71,29 @@ $("#signupSubmitBtn").click(function(event){
     alert("Please fill out the form correctly");
   }
 
+});
+
+
+/******* Login Form Submission Logic  *************/
+$("#loginSubmitBtn").click(function(event){
+  event.preventDefault();
+  var email = $("#email").val().toLowerCase();
+  var psw = $("#psw").val();
+  alert("Your form has been submitted.");
+  var loginInfo = {
+    email:email,
+    psw:psw
+  }
+
+  $.post("/api/login", loginInfo)
+    .then(function(err, result){
+      if(err){
+        alert("Unable to login up. Please check your credentials.")
+      } else {
+        alert("You've been logged in!");
+        //redirect to user homepage
+      }
+    });
 });
 
 function validName(name){
