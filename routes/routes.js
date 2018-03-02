@@ -25,22 +25,6 @@ module.exports = function(app, passport) {
         });
   });
 
-  // app.post('/api/login',
-  //   passport.authenticate('local', { successRedirect: '/memberp',
-  //                                    failureRedirect: '/login',
-  //                                    failureFlash: false })
-  // );
-
-  // app.post('/api/login',
-  //   passport.authenticate('local'),
-  //   function(req, res) {
-  //     // If this function gets called, authentication was successful.
-  //     // `req.user` contains the authenticated user.
-  //     console.log("LOGGED IN!")
-  //      res.render("memberp");
-  //      console.log("Success!");
-  //   });
-
  //http://toon.io/understanding-passportjs-authentication-flow/
   app.post('/api/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
@@ -79,14 +63,97 @@ module.exports = function(app, passport) {
   });
 
   app.get("/memberp", function(req, res) {
-    console.log(req.session.passport.user);
     if(req.session.passport != null){
-      res.render("memberp");
+      var userId = req.session.passport.user;
+      var userAndInfo = {user:null, items:null};
+      var user;
+      var items;
+      db.sequelize
+          .query(
+                  "Select firstName, lastName, email, rating, zipCode, joinDate from Members where id = ?;"
+                  , { replacements: [userId], type: db.sequelize.QueryTypes.SELECT}
+                )
+          .then(function(results){
+            if(results.length!=0){
+              user = {
+                id:userId,
+                firstName:results[0].firstName,
+                lastName:results[0].lastName,
+                email: results[0].email,
+                rating: results[0].rating,
+                zipCode: results[0].zipCode,
+                joinDate: results[0].joinDate
+              }
+              getUserItems(userId, function(items){
+                userAndInfo = {user:user, items:items};
+                console.log("USER AND ITEMS ",userAndInfo);
+                res.render('memberp', {userAndInfo:userAndInfo, helpers:{ json:function(context){return JSON.stringify(context); } }});
+              });
+
+            } //close if results!=0
+          });
     } else {
-      res.render("login");
+      res.render("login", {message: "Please Log In"});
     }
   });
 
+  function setBlankIfNull(value){
+    return value == null ? "" : value;
+  }
+
+  function getUserItems(userId, cb){
+    db.sequelize
+        .query(
+                " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
+                +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
+                +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
+                +" M.firstName as borrowerFirstName, M.id as borrowerId "
+                +" from  memberItems as MI  "
+                +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
+                +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
+                +" LEFT OUTER JOIN categories as C on MI.categoryId = C.id "
+                +" WHERE MI.ownerId = ? ORDER BY BI.borrowedStatus;"
+                , { replacements: [userId], type: db.sequelize.QueryTypes.SELECT}
+              ).then (function(results){
+                console.log("RESULTS ",results);
+                var userItems = [];
+                for(i=0; i<results.length; i++){
+                  userItems.push({
+                        id: results[i].MIid,
+                        name: results[i].name,
+                        description: results[i].description,
+                        picture:setBlankIfNull(results[i].picture),
+                        value: results[i].value,
+                        categoryId: results[i].categoryId,
+                        categoryname: results[i].categoryname,
+                        borrowedStatus: results[i].borrowedStatus,
+                        borrowedStatusText : getBorrowedStatusText(results[i].borrowedStatus),
+                        borrowedDate: setBlankIfNull(results[i].borrowedDate),
+                        dueDate: setBlankIfNull(results[i].dueDate),
+                        borrowerFirstName: setBlankIfNull(results[i].borrowerFirstName),
+                        borrowerId: setBlankIfNull(results[i].borrowerId)
+                    });
+                } // close for loop
+                cb(userItems);
+            }); //close then
+}//close function
+
+
+function getBorrowedStatusText(status){
+  var text = "";
+  if(status === -1){
+    text = "Pending Approval";
+  } else if (status === 0){
+    text = "Denied";
+  } else if (status === 1){
+    text = "Approved";
+  } else if (status === 2){
+    text = "Borrowed";
+  } else if (status === 3){
+    text = "Returned";
+  }
+  return text;
+}
   app.get("/", function(req, res) {
     res.render("index");
   });

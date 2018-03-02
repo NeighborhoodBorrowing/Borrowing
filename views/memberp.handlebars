@@ -14,7 +14,80 @@ items member requested to borrow
 items currently being borrowed
 items past due to return
 items member has borrowed in the past
-
-
-
 -->
+
+<div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="myProfile" style="background:white;">
+      <p>
+        The user's information is  below <br>
+      <b>First Name:</b>{{userAndInfo.user.firstName}}
+      <b>Last Name:</b>{{userAndInfo.user.lastName}}
+      <b>Email:</b>{{userAndInfo.user.email}}
+      <b>Rating:</b>  {{userAndInfo.user.rating}}
+      <b>Zipcode:</b>{{userAndInfo.user.zipCode}}
+      <b>JoinDate:</b>{{userAndInfo.user.joinDate}}
+    </p>
+
+    </div>
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="myItems" style="background:white;">
+      <p>
+        The user's items should be below <br>
+        <ul>
+          {{#each userAndInfo.items}}
+          	<li>
+               <p>Name: {{name}}</p>
+               <p>description: {{description}}</p>
+
+               {{#if picture}}
+                  <p>picture:<img src='{{picture}}'></p>
+               {{/if}}
+
+               <p>value: ${{value}} USD</p>
+               <p>categoryId: {{categoryId}}</p>
+               <p>categoryname: {{categoryname}}</p>
+               {{#if borrowedStatus}} <!-- only display if the item has been borrowed before-->
+                   <p>borrowedStatus: {{borrowedStatus}}</p>
+                   <p>borrowedStatusText: {{ borrowedStatusText}}</p>
+                   <!-- Pending Approval is -1 -->
+
+                   {{#ifEqual borrowedStatus -1}}
+                      <button>Approve</button>
+                   {{/ifEqual}}
+
+                   <!--
+                   var text = "";
+                   if(status === -1){
+                     text = "Pending Approval";
+                   } else if (status === 0){
+                     text = "Denied";
+                   } else if (status === 1){
+                     text = "Approved";
+                   } else if (status === 2){
+                     text = "Borrowed";
+                   } else if (status === 3){
+                     text = "Returned";
+                   }
+                   return text;
+                 }
+                   -->
+
+
+
+                   <p>borrowedDate: {{ borrowedDate}}</p>
+                   <p>dueDate: {{ dueDate}}</p>
+                   <p>borrowerFirstName: {{ borrowerFirstName}}</p>
+                   <p>borrowerId: {{ borrowerId}}</p>
+               {{/if}}
+          	</li>
+          {{/each}}
+        </ul>
+
+      </p>
+
+    </div>
+
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4" id="borrowedItems">
+
+    </div>
+
+</div>

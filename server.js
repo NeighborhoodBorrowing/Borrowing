@@ -9,6 +9,7 @@ var bodyParser = require("body-parser");
 var session = require("express-session");
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+var Handlebars = require('handlebars');
 
 
 // Sets up the Express App
@@ -30,6 +31,14 @@ var exphbs = require("express-handlebars");
 
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
+
+//** REGISTER HANDLEBARS HELPERS BELOW **/
+Handlebars.registerHelper('ifEqual',function(v1, v2, options) {
+          if(v1 === v2) {
+            return options.fn(this);
+          }
+          return options.inverse(this);
+        });
 
 // parse application/json
 app.use(bodyParser.json());

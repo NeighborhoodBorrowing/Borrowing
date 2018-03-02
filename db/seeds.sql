@@ -58,6 +58,7 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 
 ("Compact DVD Player", "Craig Compact DVD/JPEG/CD-R/CD-RW/CD Player with Remote"
 , "https://images-na.ssl-images-amazon.com/images/I/61jIRy8PKLL._SL1000_.jpg"
-, 31.05, 801, (Select id from Members where email="jw@c.com"))
+, 31.05, 801, (Select id from Members where email="jw@c.com"));
 
-;
+INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
+VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,2);
