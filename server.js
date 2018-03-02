@@ -6,7 +6,9 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-
+var session = require("express-session");
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 
 
 // Sets up the Express App
@@ -34,12 +36,58 @@ app.use(bodyParser.json());
 
 // Static directory
 app.use(express.static("public"));
+app.use(session({ secret: "cats" }));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    db.sequelize
+        .query(
+                "Select * from Members where email = ? and password = ?;"
+                , { replacements: [username, password], type: db.sequelize.QueryTypes.SELECT}
+              )
+        .then(function(results){
+          if(results.length==0){
+            return done(null, false, { message: 'Incorrect Login Information.' });
+          } else {
+            return done(null, results[0]);
+          } //close else
+        });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  db.sequelize
+      .query(
+              "Select firstName, lastName, email, rating, zipCode, joinDate from Members where id = ?;"
+              , { replacements: [id], type: db.sequelize.QueryTypes.SELECT}
+            )
+      .then(function(results){
+        if(results.length==0){
+          return done(new Error("User Not Found"), null);
+        } else {
+          return done(null, results[0]);
+        } //close else
+      });
+});
+
+
+
+
+
+
 
 
 
 // Routes
 // =============================================================
-require("./routes/routes.js")(app);
+require("./routes/routes.js")(app, passport);
 
 // Syncing our sequelize models and then starting our Express app
 // =============================================================

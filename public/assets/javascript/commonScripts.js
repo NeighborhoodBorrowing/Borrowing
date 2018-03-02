@@ -51,9 +51,8 @@ $("#signupSubmitBtn").click(function(event){
   var psw = $("#psw").val();
   var pswRepeat = $("#psw-repeat").val();
   var zipCode = $("#zipCode").val();
-  var validInput = validName(firstName) && validName(lastName) && (psw === pswRepeat) && (zipCode.length===5);
+  var validInput = notNullOrEmpty(firstName) && notNullOrEmpty(lastName) && notNullOrEmpty(psw) && (psw === pswRepeat) && (zipCode.length===5);
   if(validInput){
-    alert("Your form has been submitted.");
     var newMember = {
       firstName:firstName,
       lastName:lastName,
@@ -63,12 +62,11 @@ $("#signupSubmitBtn").click(function(event){
     };
     console.log(firstName, lastName);
     $.post("/api/signup", newMember)
-      .then(function(err, result){
-        if(err){
-          alert("Unable to sign up. This email address may be in use already.");
-        } else {
-          alert("You've been added!");
-        }
+      .done(function(){
+        console.log("done");
+      })
+      .fail(function(){
+        alert("Unable to signup, email address is already in use");
       });
   } else { //form has some invalid fields
     alert("Please fill out the form correctly");
@@ -76,29 +74,32 @@ $("#signupSubmitBtn").click(function(event){
 });
 
 
-/******* Login Form Submission Logic  *************/
-// $("#loginSubmitBtn").click(function(event){
-//   console.log("starting script")
-//   event.preventDefault();
-//   var email = $("#email").val().toLowerCase();
-//   var psw = $("#psw").val();
-//   alert("Your form has been submitted.");
-//   var loginInfo = {
-//     email:email,
-//     psw:psw
-//   }
-//
-//   $.post("/api/login", loginInfo)
-//     .then(function(err, result){
-//       if(err){
-//         alert("Unable to login up. Please check your credentials.")
-//       } else {
-//         alert("You've been logged in!");
-//         //redirect to user homepage
-//       }
-//     });
-// });
+/******* LOGIN Submission Logic  *************/
+$("#loginSubmitBtn").click(function(event){
+  event.preventDefault();
 
-function validName(name){
+  var username = $("#username").val();
+  var password = $("#password").val();
+  var validInput = notNullOrEmpty(username) && notNullOrEmpty(password);
+  if(validInput){
+    var credentials = {
+      username:username.toLowerCase(),
+      password:password
+    };
+    $.post("/api/login", credentials)
+      .done(function(){
+        window.location = "/memberp";
+      })
+      .fail(function(err){
+        alert("Unable to login");
+        console.log(err);
+      });
+  } else { //form has some invalid fields
+    alert("Please fill out the form correctly");
+  }
+});
+
+
+function notNullOrEmpty(name){
   return name!=null && name.trim()!="";
 }
