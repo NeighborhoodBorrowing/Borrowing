@@ -1,11 +1,5 @@
-        <div class="container main-box">
 
-            <!--logo-->
-            <img class="logo" src="../public/assets/images/logo.png" alt="Day Tripper Logo">
-            <!--slogan-->
-            <p><span id="slogan">Library of Stuff.<em>Together is Better.</em></span></p>
-            <!--signup-->
-             <form action="#" class="user-form">
+             <form class="user-form" id="signupForm">
                 <div class="container">
                     <!--head-->
                     <h1>Sign Up</h1>
@@ -14,32 +8,30 @@
 
                     <!--email-->
                     <label for="firstName"><b>First Name</b></label>
-                    <input type="text" placeholder="First Name" name="firstName" required>
+                    <input type="text" placeholder="First Name" id="firstName" required>
 
                     <label for="lastName"><b>Last Name</b></label>
-                    <input type="text" placeholder="Last Name" name="lastName" required>
+                    <input type="text" placeholder="Last Name" id="lastName" required>
 
                     <label for="email"><b>Email</b></label>
-                    <input type="text" placeholder="Enter Email" name="email" required>
+                    <input type="text" placeholder="Enter Email" id="email" required>
 
                     <!--password-->
                     <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required>
+                    <input type="password" placeholder="Enter Password" id="psw" required>
 
                     <!--repeat password-->
                     <label for="psw-repeat"><b>Repeat Password</b></label>
-                    <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
+                    <input type="password" placeholder="Repeat Password" id="psw-repeat" required>
 
                     <label for="zipCode"><b>Zip Code</b></label>
-                    <input type="text" placeholder="Enter zipCode" name="zipCode" required>
+                    <input type="text" placeholder="Enter zipCode" id="zipCode" required>
 
                     <!--terms-->
                     <p>By creating an account you agree to our <a href="#" style="color:dodgerblue">Terms &amp; Privacy</a>.</p>
                     <!--login button options-->
                     <button type="button" class="cancelbtn">Cancel</button>
-                    <button type="submit" id="signupSubmitBtn" class="signupbtn">Sign Up</button>
+                    <button type="button" id="signupSubmitBtn" class="signupbtn">Sign Up</button>
                 </div>
              <!--end form-->
             </form>
-
-        </div>

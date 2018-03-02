@@ -41,8 +41,10 @@ signupClose.on("click", function() {
 
 
 /******* Sign Up Form Submission Logic  *************/
+// $(document.body).on("click", "#signupSubmitBtn", function() {
 $("#signupSubmitBtn").click(function(event){
   event.preventDefault();
+
   var firstName = $("#firstName").val();
   var lastName = $("#lastName").val();
   var email = $("#email").val();
@@ -59,10 +61,11 @@ $("#signupSubmitBtn").click(function(event){
       password:psw,
       zipCode:zipCode
     };
+    console.log(firstName, lastName);
     $.post("/api/signup", newMember)
       .then(function(err, result){
         if(err){
-          alert("Unable to sign up. This email address may be in use already.")
+          alert("Unable to sign up. This email address may be in use already.");
         } else {
           alert("You've been added!");
         }
@@ -70,31 +73,31 @@ $("#signupSubmitBtn").click(function(event){
   } else { //form has some invalid fields
     alert("Please fill out the form correctly");
   }
-
 });
 
 
 /******* Login Form Submission Logic  *************/
-$("#loginSubmitBtn").click(function(event){
-  event.preventDefault();
-  var email = $("#email").val().toLowerCase();
-  var psw = $("#psw").val();
-  alert("Your form has been submitted.");
-  var loginInfo = {
-    email:email,
-    psw:psw
-  }
-
-  $.post("/api/login", loginInfo)
-    .then(function(err, result){
-      if(err){
-        alert("Unable to login up. Please check your credentials.")
-      } else {
-        alert("You've been logged in!");
-        //redirect to user homepage
-      }
-    });
-});
+// $("#loginSubmitBtn").click(function(event){
+//   console.log("starting script")
+//   event.preventDefault();
+//   var email = $("#email").val().toLowerCase();
+//   var psw = $("#psw").val();
+//   alert("Your form has been submitted.");
+//   var loginInfo = {
+//     email:email,
+//     psw:psw
+//   }
+//
+//   $.post("/api/login", loginInfo)
+//     .then(function(err, result){
+//       if(err){
+//         alert("Unable to login up. Please check your credentials.")
+//       } else {
+//         alert("You've been logged in!");
+//         //redirect to user homepage
+//       }
+//     });
+// });
 
 function validName(name){
   return name!=null && name.trim()!="";

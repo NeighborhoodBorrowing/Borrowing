@@ -3,10 +3,13 @@ var db = require("../models");
 module.exports = function(app) {
   //submit the signup form
   app.post("/api/signup", function(req, res) {
+    console.log("posting information");
     db.Members.create(req.body)
               .then(function(result) {
+                console.log(result);
                 res.json(result);
               }).catch(function(err){
+                console.log(err);
                 throw err;
               });
   });
@@ -35,9 +38,7 @@ module.exports = function(app) {
 
 
 /*** GET ROUTES TO DISPLAY PAGES*****/
-  app.get("/", function(req, res) {
-    res.render("index");
-  });
+
 
   app.get("/signup", function(req, res) {
     res.render("signup");
@@ -45,6 +46,10 @@ module.exports = function(app) {
 
   app.get("/login", function(req, res) {
     res.render("login");
+  });
+
+  app.get("/", function(req, res) {
+    res.render("index");
   });
 
 };
