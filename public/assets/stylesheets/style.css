@@ -101,9 +101,14 @@ button {
     height: 2em;
 }
 .search-bar {
-    width: 90%;
+    width: 50%;
     height: 2em;
     margin: .5em;
+    display: inline;
+}
+#searchBtn {
+  width: 40%;
+  display: inline;;
 }
 .button {
     border:0;
