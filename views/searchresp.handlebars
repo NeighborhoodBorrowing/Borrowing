@@ -1,0 +1,21 @@
+<section id="search-items">
+    <div class="container wow fadeIn">
+        <div class="section-header">
+            <h3 class="section-title">Recently Listed</h3>
+            <p class="section-description">Items recently listed near you.</p>
+        </div>
+        <div class="row">
+            {{#each items}}
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                <div class="box">
+                    <ul>
+                        <li><h4 class="title"><a href="#">{{this.itemName}}</a></h4></li><!--insert link to item in href-->
+                        <li> <img src="' + {{this.photo_url}} + '" ></li>
+                        <li>{{ this.lenderName }} </li>
+                        <li><input type="submit" value="borrow-button"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
