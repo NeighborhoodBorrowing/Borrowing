@@ -107,15 +107,16 @@ $("#loginSubmitBtn").click(function(event){
 $(".approveBorrowRequest").click(function(event){
   event.preventDefault();
 
-  var borrowedItemsId = this.id.val().split[0];
-  var itemId = this.id.val().split[1];
+  console.log("this.id ", this.id);
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
 
   $.post("/api/approve", {borrowedItemsId:borrowedItemsId, itemId:itemId})
     .done(function(){
       window.location = "/memberp";
     })
     .fail(function(err){
-      alert("Unable to Update");
+      alert("Unable to approve request");
       console.log(err);
     });
 });
@@ -124,15 +125,15 @@ $(".approveBorrowRequest").click(function(event){
 $(".denyBorrowRequest").click(function(event){
   event.preventDefault();
   console.log("this.id ", this.id);
-  var borrowedItemsId = this.id.split[0];
-  var itemId = this.id.split[1];
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
 
   $.post("/api/deny", {borrowedItemsId:borrowedItemsId, itemId:itemId})
     .done(function(){
       window.location = "/memberp";
     })
     .fail(function(err){
-      alert("Unable to Update");
+      alert("Unable to deny request");
       console.log(err);
     });
 });
