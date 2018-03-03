@@ -53,8 +53,8 @@ items member has borrowed in the past
 
                    {{#ifEqual borrowedStatus -1}}
                    <!-- These class names are used in the javascript, please do not change them-->
-                      <button class="approveBorrowRequest" borrowedItemsId = '{{borrowedItemsId}}' itemid ='{{id}}'>Approve Request</button>
-                      <button class="denyBorrowRequest" borrowedItemsId = '{{borrowedItemsId}}' itemid ='{{id}}' >Deny Request</button>
+                      <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
+                      <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
                    {{/ifEqual}}
 
                    <!--

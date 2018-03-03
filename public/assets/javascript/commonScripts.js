@@ -106,7 +106,11 @@ $("#loginSubmitBtn").click(function(event){
 /******* Approve or Deny Borrowing Request Logic  *************/
 $(".approveBorrowRequest").click(function(event){
   event.preventDefault();
-  $.post("/api/approve", {borrowedItemsId:this.borrowedItemsId, itemId:this.itemid})
+
+  var borrowedItemsId = this.id.val().split[0];
+  var itemId = this.id.val().split[1];
+
+  $.post("/api/approve", {borrowedItemsId:borrowedItemsId, itemId:itemId})
     .done(function(){
       window.location = "/memberp";
     })
@@ -119,11 +123,11 @@ $(".approveBorrowRequest").click(function(event){
 /** DENY **/
 $(".denyBorrowRequest").click(function(event){
   event.preventDefault();
+  console.log("this.id ", this.id);
+  var borrowedItemsId = this.id.split[0];
+  var itemId = this.id.split[1];
 
-  var id = this.id;
-  console.log(id);
-
-  $.post("/api/deny", {id:id})
+  $.post("/api/deny", {borrowedItemsId:borrowedItemsId, itemId:itemId})
     .done(function(){
       window.location = "/memberp";
     })

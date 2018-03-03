@@ -1,14 +1,23 @@
 <!--
 
 item name
+description
 item photo link
-item condition
 item value? - external database
-length of borrow allowed
+category
+
 
 -->
 
-<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
-Name: <input type="text" name="fname">
-<input type="submit" value="Submit">
+<form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post" style="background-color:lightgrey;">
+    Name: <input type="text" name="it-name">
+    Description of Item: <input type="text" name="it-descr">
+    Link to Photo of Item: <input type="text" name="it-photo">
+    Item Value:   <input type="text" name="it-value">
+    Category: 
+        <select name="it-cat">
+            {{#each categories}}
+                  <option value="{{this.categoryName}}">{{this.categoryName}}</option>
+            {{/each}}
+         </select>
 </form>
