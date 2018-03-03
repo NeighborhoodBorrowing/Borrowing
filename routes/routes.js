@@ -9,7 +9,6 @@ module.exports = function(app, passport) {
                 , { replacements: [req.body.email], type: db.sequelize.QueryTypes.SELECT}
               )
         .then(function(results){
-          console.log(results);
           if(results.length!=0){
             res.status(400).send("Duplicate email");
             res.end();
@@ -43,7 +42,6 @@ module.exports = function(app, passport) {
   app.post("/api/approve", function(req, res) {
     //update this record to show the borrowing has been approved
     //if there is anyone else who wanted to borrow it, mark that as denied
-    console.log("BIID:", req.body.borrowedItemsId, "ITEMID", req.body.itemId);
     db.sequelize
         .query(
                 "UPDATE borroweditems SET borrowedStatus = 1 WHERE id = ?;" //1 = approved
@@ -75,13 +73,35 @@ module.exports = function(app, passport) {
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err); }
       if (!user) { return res.redirect('/login'); }
-      console.log("LOGGED IN");
       req.logIn(user, function(err) {
         if (err) {console.log("ERROR**************",err); return next(err); }
         res.status(200).send("Logged In");
         res.end();
       });
     })(req, res, next);
+  });
+
+  //add an item to be borrowed
+  app.post("/api/postit", function(req, res) {
+    if(req.session.passport == null){
+      res.render("login", {message: "Please Log In"});
+    } else {
+        var userId = req.session.passport.user;
+        var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId )"
+                          +" values (?,?,?,?,?,?);";
+        console.log(req.body.name, req.body.desc, req.body.photoLink, req.body.value,req.body.category, userId);
+        db.sequelize
+            .query(queryString
+                    , { replacements: [req.body.name, req.body.desc, req.body.photoLink
+                                      , parseFloat(req.body.value), req.body.category, userId]
+                        , type: db.sequelize.QueryTypes.INSERT
+                      }
+                  )
+            .then(function(results){
+                res.status(200).send("Added item");
+                res.end();
+            });
+      }//close else logged in
   });
 
 
@@ -130,7 +150,6 @@ module.exports = function(app, passport) {
               }
               getUserItems(userId, function(items){
                 userAndInfo = {user:user, items:items};
-                console.log("USER AND ITEMS ",userAndInfo);
                 res.render('memberp', {userAndInfo:userAndInfo, helpers:{ json:function(context){return JSON.stringify(context); } }});
               });
 
@@ -146,8 +165,33 @@ module.exports = function(app, passport) {
   });
 
   app.get("/postit", function(req, res) {
-    res.render("postit");
+    console.log("MESSAGE ", req.query.message);
+    var message = req.query.message==null ? "" : req.query.message;
+    if(req.session.passport != null){
+        if(req.session.categories == null){
+            getCategoriesToDisplay(function(categories){
+                req.session.categories = categories;
+                res.render("postit", {categories:req.session.categories, message:message});
+            });
+          } else {
+            res.render("postit", {categories:req.session.categories, message:message});
+          }
+    } else { // not logged in
+        res.render("login", {message: "Please Log In"});
+    }
   });
+
+  function getCategoriesToDisplay(cb){
+    db.sequelize
+        .query(
+                //0 = denied, -1 = Pending Approval
+                "SELECT categoryName, id, parentId FROM categories ORDER BY id ;"
+                , {type: db.sequelize.QueryTypes.SELECT}
+              )
+        .then(function(results){
+             cb(results);
+        });
+  }
 
   function setBlankIfNull(value){
     return value == null ? "" : value;
@@ -167,7 +211,6 @@ module.exports = function(app, passport) {
                 +" WHERE MI.ownerId = ? ORDER BY BI.borrowedStatus;"
                 , { replacements: [userId], type: db.sequelize.QueryTypes.SELECT}
               ).then (function(results){
-                console.log("RESULTS ",results);
                 var userItems = [];
                 for(i=0; i<results.length; i++){
                   userItems.push({
