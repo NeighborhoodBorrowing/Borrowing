@@ -34,6 +34,9 @@ h1 {
   font-weight:300;
   margin:0 0 40px;
 }
+h3 {
+    padding: .3em;
+}
 p {
     color: #4d4d4d;
 }
@@ -71,6 +74,9 @@ a:hover,
 #login-signup-close:hover {
     background:#ff9e04;
     color:#eee;
+}
+.centered {
+    text-align: center;
 }
 /*
 ========================================
@@ -143,6 +149,9 @@ button {
     padding: .4em .2em .2em .2em;
     margin: .5em auto;
     bottom: -.5em;
+}
+.container {
+    border-radius: .2em;
 }
 /*
 ========================================
