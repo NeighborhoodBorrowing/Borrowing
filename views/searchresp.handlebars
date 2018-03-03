@@ -6,16 +6,17 @@
         </div>
         <div class="row">
             {{#each items}}
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
-                <div class="box">
-                    <ul>
-                        <li><h4 class="title"><a href="#">{{this.itemName}}</a></h4></li><!--insert link to item in href-->
-                        <li> <img src="' + {{this.photo_url}} + '" ></li>
-                        <li>{{ this.lenderName }} </li>
-                        <li><input type="submit" value="borrow-button"></li>
-                    </ul>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="box">
+                        <ul>
+                            <li><h4 class="title"><a href="#">{{this.name}}</a></h4></li><!--insert link to item in href-->
+                            <li> <img src="' + {{this.picture}} + '" ></li>
+                            <li>{{ this.name }} </li>
+                            <li><input type="submit" value="borrow-button"></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
+            {{/each}}
         </div>
     </div>
 </section>
