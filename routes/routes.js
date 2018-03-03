@@ -29,27 +29,19 @@ module.exports = function(app, passport) {
   app.post("/api/approve", function(req, res) {
     //update this record to show the borrowing has been approved
     //if there is anyone else who wanted to borrow it, mark that as denied
-    db.sequelize
-        .query(
-                "Select * from Members where email = ?;"
-                , { replacements: [req.body.email], type: db.sequelize.QueryTypes.SELECT}
-              )
-        .then(function(results){
-          console.log(results);
-          if(results.length!=0){
-            res.status(400).send("Duplicate email");
-            res.end();
-          } else {
-            db.Members.create(req.body)
-                      .then(function(result) {
-                        res.json(result);
-                      }).catch(function(err){
-                        console.log(err);
-                        throw err;
-                      });
-          } //close else
-        });
+    console.log("BIID:", req.body.borrowedItemsId, "ITEMID", req.body.itemId);
+    // db.sequelize
+    //     .query(
+    //             "UPDATE borroweditems SET borrowedStatus = 2 WHERE id = ?;"
+    //             , { replacements: [], type: db.sequelize.QueryTypes.UPDATE}
+    //           )
+    //     .then(function(results){
+    //         denyAllBorrowRequestsForItem(req.body.id, function(){
+    //           //redirect back to the memberpage
+    //         });
+    //     });
   });
+
 
 
  //http://toon.io/understanding-passportjs-authentication-flow/
