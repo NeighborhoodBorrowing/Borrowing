@@ -25,32 +25,32 @@ module.exports = function(app, passport) {
         });
   });
 
-  module.exports = function(app, passport) {
-    //submit the signup form
-    app.post("/api/approve", function(req, res) {
-      //update this record to show the borrowing has been approved
-      //if there is anyone else who wanted to borrow it, mark that as denied
-      db.sequelize
-          .query(
-                  "Select * from Members where email = ?;"
-                  , { replacements: [req.body.email], type: db.sequelize.QueryTypes.SELECT}
-                )
-          .then(function(results){
-            console.log(results);
-            if(results.length!=0){
-              res.status(400).send("Duplicate email");
-              res.end();
-            } else {
-              db.Members.create(req.body)
-                        .then(function(result) {
-                          res.json(result);
-                        }).catch(function(err){
-                          console.log(err);
-                          throw err;
-                        });
-            } //close else
-          });
-    });
+  //submit the signup form
+  app.post("/api/approve", function(req, res) {
+    //update this record to show the borrowing has been approved
+    //if there is anyone else who wanted to borrow it, mark that as denied
+    db.sequelize
+        .query(
+                "Select * from Members where email = ?;"
+                , { replacements: [req.body.email], type: db.sequelize.QueryTypes.SELECT}
+              )
+        .then(function(results){
+          console.log(results);
+          if(results.length!=0){
+            res.status(400).send("Duplicate email");
+            res.end();
+          } else {
+            db.Members.create(req.body)
+                      .then(function(result) {
+                        res.json(result);
+                      }).catch(function(err){
+                        console.log(err);
+                        throw err;
+                      });
+          } //close else
+        });
+  });
+
 
  //http://toon.io/understanding-passportjs-authentication-flow/
   app.post('/api/login', function(req, res, next) {
@@ -184,5 +184,4 @@ function getBorrowedStatusText(status){
   app.get("/", function(req, res) {
     res.render("index");
   });
-
 };
