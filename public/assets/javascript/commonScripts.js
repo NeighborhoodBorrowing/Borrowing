@@ -124,7 +124,6 @@ $(".approveBorrowRequest").click(function(event){
 /** DENY **/
 $(".denyBorrowRequest").click(function(event){
   event.preventDefault();
-  console.log("this.id ", this.id);
   var borrowedItemsId = this.id.split(",")[0];
   var itemId = this.id.split(",")[1];
 
@@ -136,6 +135,41 @@ $(".denyBorrowRequest").click(function(event){
       alert("Unable to deny request");
       console.log(err);
     });
+});
+
+/** ADD ITEM **/
+$("#addItemSubmitBtn").click(function(event){
+  event.preventDefault();
+  console.log("adding item");
+  var name = $("#it-name").val();
+  var desc = $("#it-descr").val();
+  var photoLink = $("#it-photo").val();
+  var value = $("#it-value").val();
+  var category= $("#it-cat").val();
+  console.log(name, desc, photoLink, value, category);
+  var validInput = notNullOrEmpty(name) && notNullOrEmpty(value) && notNullOrEmpty(category) && !isNaN(value);
+  if(validInput){
+    var newItem = {
+      name:name,
+      desc:desc,
+      photoLink:photoLink,
+      value:value,
+      category:category
+    }
+    $.post("/api/postit", newItem)
+      .done(function(){
+        window.location = "/postit?message=Success";
+      })
+      .fail(function(err){
+        alert("Unable to add item");
+        console.log(err);
+      });
+
+  } else {
+    alert("form input is invalid");
+  }
+
+
 });
 
 

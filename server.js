@@ -39,6 +39,12 @@ Handlebars.registerHelper('ifEqual',function(v1, v2, options) {
           }
           return options.inverse(this);
         });
+Handlebars.registerHelper('ifNotEqual',function(v1, v2, options) {
+                  if(v1 !== v2) {
+                    return options.fn(this);
+                  }
+                  return options.inverse(this);
+                });
 
 // parse application/json
 app.use(bodyParser.json());
@@ -87,14 +93,6 @@ passport.deserializeUser(function(id, done) {
 });
 
 
-
-
-
-
-
-
-
-// Routes
 // =============================================================
 require("./routes/routes.js")(app, passport);
 
