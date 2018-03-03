@@ -25,6 +25,33 @@ module.exports = function(app, passport) {
         });
   });
 
+  module.exports = function(app, passport) {
+    //submit the signup form
+    app.post("/api/approve", function(req, res) {
+      //update this record to show the borrowing has been approved
+      //if there is anyone else who wanted to borrow it, mark that as denied
+      db.sequelize
+          .query(
+                  "Select * from Members where email = ?;"
+                  , { replacements: [req.body.email], type: db.sequelize.QueryTypes.SELECT}
+                )
+          .then(function(results){
+            console.log(results);
+            if(results.length!=0){
+              res.status(400).send("Duplicate email");
+              res.end();
+            } else {
+              db.Members.create(req.body)
+                        .then(function(result) {
+                          res.json(result);
+                        }).catch(function(err){
+                          console.log(err);
+                          throw err;
+                        });
+            } //close else
+          });
+    });
+
  //http://toon.io/understanding-passportjs-authentication-flow/
   app.post('/api/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
@@ -40,6 +67,9 @@ module.exports = function(app, passport) {
   });
 
 
+
+/*** GET ROUTES TO DISPLAY PAGES*****/
+
   //get all the categories in the DB
   app.get("/api/categories", function(req, res) {
     db.MemberItems.findAll({})
@@ -49,10 +79,6 @@ module.exports = function(app, passport) {
                 throw err;
               });
   });
-
-
-/*** GET ROUTES TO DISPLAY PAGES*****/
-
 
   app.get("/signup", function(req, res) {
     res.render("signup");
@@ -107,7 +133,7 @@ module.exports = function(app, passport) {
                 " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
                 +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
                 +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
-                +" M.firstName as borrowerFirstName, M.id as borrowerId "
+                +" M.firstName as borrowerFirstName, M.id as borrowerId, BI.id as borrowedItemsId "
                 +" from  memberItems as MI  "
                 +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
                 +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
@@ -131,7 +157,8 @@ module.exports = function(app, passport) {
                         borrowedDate: setBlankIfNull(results[i].borrowedDate),
                         dueDate: setBlankIfNull(results[i].dueDate),
                         borrowerFirstName: setBlankIfNull(results[i].borrowerFirstName),
-                        borrowerId: setBlankIfNull(results[i].borrowerId)
+                        borrowerId: setBlankIfNull(results[i].borrowerId),
+                        borrowedItemsId:setBlankIfNull(results[i].borrowedItemsId)
                     });
                 } // close for loop
                 cb(userItems);

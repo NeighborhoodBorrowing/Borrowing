@@ -39,19 +39,21 @@ items member has borrowed in the past
                <p>description: {{description}}</p>
 
                {{#if picture}}
-                  <p>picture:<img src='{{picture}}'></p>
+                  <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
                {{/if}}
 
                <p>value: ${{value}} USD</p>
                <p>categoryId: {{categoryId}}</p>
                <p>categoryname: {{categoryname}}</p>
-               {{#if borrowedStatus}} <!-- only display if the item has been borrowed before-->
+               {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
                    <p>borrowedStatus: {{borrowedStatus}}</p>
                    <p>borrowedStatusText: {{ borrowedStatusText}}</p>
                    <!-- Pending Approval is -1 -->
 
                    {{#ifEqual borrowedStatus -1}}
-                      <button>Approve</button>
+                   <!-- These class names are used in the javascript, please do not change them-->
+                      <button class="approveBorrowRequest" id= '{{borrowedItemsId}}'>Approve Request</button>
+                      <button class="denyBorrowRequest" id= '{{borrowedItemsId}}'>Deny Request</button>
                    {{/ifEqual}}
 
                    <!--

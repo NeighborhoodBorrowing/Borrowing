@@ -100,6 +100,41 @@ $("#loginSubmitBtn").click(function(event){
 });
 
 
+/******* Approve or Deny Borrowing Request Logic  *************/
+$(".approveBorrowRequest").click(function(event){
+  event.preventDefault();
+
+  var id = this.id;
+  console.log(id);
+
+    // $.post("/api/login", credentials)
+    //   .done(function(){
+    //     window.location = "/memberp";
+    //   })
+    //   .fail(function(err){
+    //     alert("Unable to login");
+    //     console.log(err);
+    //   });
+});
+
+/** DENY **/
+$(".denyBorrowRequest").click(function(event){
+  event.preventDefault();
+
+  var id = this.id;
+  console.log(id);
+
+  $.post("/api/approve", {id:id})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to Update");
+      console.log(err);
+    });
+});
+
+
 function notNullOrEmpty(name){
   return name!=null && name.trim()!="";
 }
