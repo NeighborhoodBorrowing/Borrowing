@@ -152,6 +152,19 @@ button {
 }
 .container {
     border-radius: .2em;
+    background-color: rgba(238, 238, 238, .8);
+    padding: 1em;
+    height: auto;
+    margin: .2em auto;
+}
+.main-container {
+    position: relative;
+    top: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+.wipe-background {
+    background: none;
 }
 /*
 ========================================

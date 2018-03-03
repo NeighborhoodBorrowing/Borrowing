@@ -17,16 +17,19 @@ items member has borrowed in the past
 -->
 
 <div class="row">
+    
+    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
  
-    <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container" id="myProfile" style="background:white;">
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container" id="myProfile">
         <h3 class="centered">Welcome back {{userAndInfo.user.firstName}}!<br></h3>
-        <p><b>Your Email:</b>{{userAndInfo.user.email}}</p>
+        <p><b>Your Email:</b> {{userAndInfo.user.email}}</p>
         <p><b>Your User Rating:</b>  {{userAndInfo.user.rating}}</p>
-        <p><b>Your Zipcode:</b>{{userAndInfo.user.zipCode}}</p>
-        <p><b>JoinDate:</b>{{userAndInfo.user.joinDate}}</p>
+        <p><b>Your Zipcode:</b> {{userAndInfo.user.zipCode}}</p>
+        <p><b>JoinDate:</b> {{userAndInfo.user.joinDate}}</p>
 
     </div>
 
+    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
     
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container" id="myProfile" style="background:white;">
         <h3>My Items:</h3>
@@ -36,53 +39,18 @@ items member has borrowed in the past
         <a class="div-clickable" id="all-it" href="#">All Items</a>
     </div>
     
+    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
+</div>
+
+<div class="row">
     <!--pending approval div-->
-     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 container" id="pend-app-div" style="background:white;">
-        The user's items pending approval should be below <br>
-        <ul>
-          {{#each userAndInfo.items}}
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="pend-app-div">
+         <h4 class="centered">Your Items Pending Approval</h4>
+         {{#each userAndInfo.items}}
             {{#ifEqual borrowedStatus -1}}
-          	<li>
-               <p>ItemId: {{id}}</p>
-               <p>Name: {{name}}</p>
-               <p>description: {{description}}</p>
-
-               {{#if picture}}
-                  <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
-               {{/if}}
-
-               <p>value: ${{value}} USD</p>
-               <p>categoryId: {{categoryId}}</p>
-               <p>categoryname: {{categoryname}}</p>
-               {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
-                   <p>borrowedStatus: {{borrowedStatus}}</p>
-                   <p>borrowedStatusText: {{ borrowedStatusText}}</p>
-                   <!-- Pending Approval is -1 -->
-
-                   {{#ifEqual borrowedStatus -1}}
-                   <!-- These class names are used in the javascript, please do not change them-->
-                      <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                      <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
-                   {{/ifEqual}}
-
-                   <p>borrowedDate: {{ borrowedDate}}</p>
-                   <p>dueDate: {{ dueDate}}</p>
-                   <p>borrowerFirstName: {{ borrowerFirstName}}</p>
-                   <p>borrowerId: {{ borrowerId}}</p>
-               {{/if}}
-          	</li>
-            {{/ifEqual}}
-          {{/each}}
-        </ul>
-
-    </div>
-    <!--item on lend div-->
-     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 container" id="on-lend-div" style="background:white;">
-        The user's items on lend should be below <br>
-        <ul>
-          {{#each userAndInfo.items}}
-                {{#ifEqual borrowedStatus 1}}
-                    <li>
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container">
                        <p>ItemId: {{id}}</p>
                        <p>Name: {{name}}</p>
                        <p>description: {{description}}</p>
@@ -110,91 +78,138 @@ items member has borrowed in the past
                            <p>borrowerFirstName: {{ borrowerFirstName}}</p>
                            <p>borrowerId: {{ borrowerId}}</p>
                        {{/if}}
-                    </li>
-                {{/ifEqual}}
-          {{/each}}
-        </ul>
-
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                </div>
+            {{/ifEqual}}
+        {{/each}}
+                
     </div>
+</div>
+<div class="row">
+    <!--item on lend div-->
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="on-lend-div">
+         <h4 class="centered">Your Items Currently on Lend</h4>
+        {{#each userAndInfo.items}}
+            {{#ifEqual borrowedStatus 1}}
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container">
+                       <p>ItemId: {{id}}</p>
+                       <p>Name: {{name}}</p>
+                       <p>description: {{description}}</p>
+
+                       {{#if picture}}
+                          <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
+                       {{/if}}
+
+                       <p>value: ${{value}} USD</p>
+                       <p>categoryId: {{categoryId}}</p>
+                       <p>categoryname: {{categoryname}}</p>
+                       {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
+                           <p>borrowedStatus: {{borrowedStatus}}</p>
+                           <p>borrowedStatusText: {{ borrowedStatusText}}</p>
+                           <!-- Pending Approval is -1 -->
+
+                           {{#ifEqual borrowedStatus -1}}
+                           <!-- These class names are used in the javascript, please do not change them-->
+                              <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
+                              <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                           {{/ifEqual}}
+
+                           <p>borrowedDate: {{ borrowedDate}}</p>
+                           <p>dueDate: {{ dueDate}}</p>
+                           <p>borrowerFirstName: {{ borrowerFirstName}}</p>
+                           <p>borrowerId: {{ borrowerId}}</p>
+                       {{/if}}
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                </div>
+            {{/ifEqual}}
+        {{/each}}
+    </div>
+</div>
+<div class="row">
     <!--item returned div-->
-     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 container" id="returned-div" style="background:white;">
-        The user's returned items should be below <br>
-        <ul>
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="returned-div">
+         <h4 class="centered">Your Returned Items</h4>
           {{#each userAndInfo.items}}
                 {{#ifEqual borrowedStatus 3}}
-                    <li>
-                       <p>ItemId: {{id}}</p>
-                       <p>Name: {{name}}</p>
-                       <p>description: {{description}}</p>
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                        <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container">
+                           <p>ItemId: {{id}}</p>
+                           <p>Name: {{name}}</p>
+                           <p>description: {{description}}</p>
 
-                       {{#if picture}}
-                          <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
-                       {{/if}}
+                           {{#if picture}}
+                              <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
+                           {{/if}}
 
-                       <p>value: ${{value}} USD</p>
-                       <p>categoryId: {{categoryId}}</p>
-                       <p>categoryname: {{categoryname}}</p>
-                       {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
-                           <p>borrowedStatus: {{borrowedStatus}}</p>
-                           <p>borrowedStatusText: {{ borrowedStatusText}}</p>
-                           <!-- Pending Approval is -1 -->
+                           <p>value: ${{value}} USD</p>
+                           <p>categoryId: {{categoryId}}</p>
+                           <p>categoryname: {{categoryname}}</p>
+                           {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
+                               <p>borrowedStatus: {{borrowedStatus}}</p>
+                               <p>borrowedStatusText: {{ borrowedStatusText}}</p>
+                               <!-- Pending Approval is -1 -->
 
-                           {{#ifEqual borrowedStatus -1}}
-                           <!-- These class names are used in the javascript, please do not change them-->
-                              <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                              <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
-                           {{/ifEqual}}
+                               {{#ifEqual borrowedStatus -1}}
+                               <!-- These class names are used in the javascript, please do not change them-->
+                                  <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
+                                  <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                               {{/ifEqual}}
 
-                           <p>borrowedDate: {{ borrowedDate}}</p>
-                           <p>dueDate: {{ dueDate}}</p>
-                           <p>borrowerFirstName: {{ borrowerFirstName}}</p>
-                           <p>borrowerId: {{ borrowerId}}</p>
-                       {{/if}}
-                    </li>
+                               <p>borrowedDate: {{ borrowedDate}}</p>
+                               <p>dueDate: {{ dueDate}}</p>
+                               <p>borrowerFirstName: {{ borrowerFirstName}}</p>
+                               <p>borrowerId: {{ borrowerId}}</p>
+                            </div>
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                        </div>
+                   {{/if}}
                 {{/ifEqual}}
           {{/each}}
-        </ul>
-
     </div>
+</div>
+<div class="row">
     <!--all items div-->
-     <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12 container" id="all-it-div" style="background:white;">
-        The user's returned items should be below <br>
-        <ul>
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="all-it-div">
+         <h4 class="centered">All Your Listed Items</h4>
           {{#each userAndInfo.items}}
-                    <li>
-                       <p>ItemId: {{id}}</p>
-                       <p>Name: {{name}}</p>
-                       <p>description: {{description}}</p>
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
+                   <p>ItemId: {{id}}</p>
+                   <p>Name: {{name}}</p>
+                   <p>description: {{description}}</p>
 
-                       {{#if picture}}
-                          <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
-                       {{/if}}
+                   {{#if picture}}
+                      <p>picture:<img style = "width:30px; height:30px;" src='{{picture}}'></p>
+                   {{/if}}
 
-                       <p>value: ${{value}} USD</p>
-                       <p>categoryId: {{categoryId}}</p>
-                       <p>categoryname: {{categoryname}}</p>
-                       {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
-                           <p>borrowedStatus: {{borrowedStatus}}</p>
-                           <p>borrowedStatusText: {{ borrowedStatusText}}</p>
-                           <!-- Pending Approval is -1 -->
+                   <p>value: ${{value}} USD</p>
+                   <p>categoryId: {{categoryId}}</p>
+                   <p>categoryname: {{categoryname}}</p>
+                   {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
+                       <p>borrowedStatus: {{borrowedStatus}}</p>
+                       <p>borrowedStatusText: {{ borrowedStatusText}}</p>
+                       <!-- Pending Approval is -1 -->
 
-                           {{#ifEqual borrowedStatus -1}}
-                           <!-- These class names are used in the javascript, please do not change them-->
-                              <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                              <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
-                           {{/ifEqual}}
+                       {{#ifEqual borrowedStatus -1}}
+                       <!-- These class names are used in the javascript, please do not change them-->
+                          <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
+                          <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                       {{/ifEqual}}
 
-                           <p>borrowedDate: {{ borrowedDate}}</p>
-                           <p>dueDate: {{ dueDate}}</p>
-                           <p>borrowerFirstName: {{ borrowerFirstName}}</p>
-                           <p>borrowerId: {{ borrowerId}}</p>
-                       {{/if}}
-                    </li>
-          {{/each}}
-        </ul>
-
+                       <p>borrowedDate: {{ borrowedDate}}</p>
+                       <p>dueDate: {{ dueDate}}</p>
+                       <p>borrowerFirstName: {{ borrowerFirstName}}</p>
+                       <p>borrowerId: {{ borrowerId}}</p>
+                   {{/if}}
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+            </div>
+        {{/each}}
     </div>
-
-
-
 </div>
