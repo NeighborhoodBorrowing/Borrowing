@@ -63,7 +63,7 @@ $("#signupSubmitBtn").click(function(event){
     console.log(firstName, lastName);
     $.post("/api/signup", newMember)
       .done(function(){
-        console.log("done");
+        loginFunction(email,psw);
       })
       .fail(function(){
         alert("Unable to signup, email address is already in use");
@@ -73,13 +73,7 @@ $("#signupSubmitBtn").click(function(event){
   }
 });
 
-
-/******* LOGIN Submission Logic  *************/
-$("#loginSubmitBtn").click(function(event){
-  event.preventDefault();
-
-  var username = $("#username").val();
-  var password = $("#password").val();
+function loginFunction(username, password){
   var validInput = notNullOrEmpty(username) && notNullOrEmpty(password);
   if(validInput){
     var credentials = {
@@ -97,24 +91,29 @@ $("#loginSubmitBtn").click(function(event){
   } else { //form has some invalid fields
     alert("Please fill out the form correctly");
   }
+
+}
+
+/******* LOGIN Submission Logic  *************/
+$("#loginSubmitBtn").click(function(event){
+  event.preventDefault();
+  var username = $("#username").val();
+  var password = $("#password").val();
+  loginFunction(username, password);
 });
 
 
 /******* Approve or Deny Borrowing Request Logic  *************/
 $(".approveBorrowRequest").click(function(event){
   event.preventDefault();
-
-  var id = this.id;
-  console.log(id);
-
-    // $.post("/api/login", credentials)
-    //   .done(function(){
-    //     window.location = "/memberp";
-    //   })
-    //   .fail(function(err){
-    //     alert("Unable to login");
-    //     console.log(err);
-    //   });
+  $.post("/api/approve", {borrowedItemsId:this.borrowedItemsId, itemId:this.itemid})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to Update");
+      console.log(err);
+    });
 });
 
 /** DENY **/
@@ -124,7 +123,7 @@ $(".denyBorrowRequest").click(function(event){
   var id = this.id;
   console.log(id);
 
-  $.post("/api/approve", {id:id})
+  $.post("/api/deny", {id:id})
     .done(function(){
       window.location = "/memberp";
     })
