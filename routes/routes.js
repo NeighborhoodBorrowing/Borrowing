@@ -38,7 +38,6 @@ module.exports = function(app, passport) {
               res.end();
             });
         });
-  });
 
   //APPROVE a request to Borrow
   app.post("/api/approve", function(req, res) {
