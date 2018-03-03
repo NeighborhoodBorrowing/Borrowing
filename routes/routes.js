@@ -25,23 +25,50 @@ module.exports = function(app, passport) {
         });
   });
 
-  //submit the signup form
+  //DENY a request to borrow
+  app.post("/api/deny", function(req, res) {
+    //update this record to show the borrowing has denied
+    db.sequelize
+        .query(
+                "UPDATE borroweditems SET borrowedStatus = 0 WHERE id = ?;" //0 = denied
+                , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
+              )
+        .then(function(results){
+              res.status(200).send("Update successful");
+              res.end();
+            });
+        });
+  });
+
+  //APPROVE a request to Borrow
   app.post("/api/approve", function(req, res) {
     //update this record to show the borrowing has been approved
     //if there is anyone else who wanted to borrow it, mark that as denied
     console.log("BIID:", req.body.borrowedItemsId, "ITEMID", req.body.itemId);
-    // db.sequelize
-    //     .query(
-    //             "UPDATE borroweditems SET borrowedStatus = 2 WHERE id = ?;"
-    //             , { replacements: [], type: db.sequelize.QueryTypes.UPDATE}
-    //           )
-    //     .then(function(results){
-    //         denyAllBorrowRequestsForItem(req.body.id, function(){
-    //           //redirect back to the memberpage
-    //         });
-    //     });
+    db.sequelize
+        .query(
+                "UPDATE borroweditems SET borrowedStatus = 1 WHERE id = ?;" //1 = approved
+                , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
+              )
+        .then(function(results){
+            denyAllBorrowRequestsForItem(req.body.itemId, function(){
+              res.status(200).send("Update successful");
+              res.end();
+            });
+        });
   });
 
+  function denyAllBorrowRequestsForItem(id, cb){
+    db.sequelize
+        .query(
+                //0 = denied, -1 = Pending Approval
+                "UPDATE borroweditems SET borrowedStatus = 0 WHERE itemId = ? AND borrowedStatus = -1 ;"
+                , { replacements: [id], type: db.sequelize.QueryTypes.UPDATE}
+              )
+        .then(function(results){
+             cb();
+        });
+  }
 
 
  //http://toon.io/understanding-passportjs-authentication-flow/
@@ -115,6 +142,14 @@ module.exports = function(app, passport) {
     }
   });
 
+  app.get("/", function(req, res) {
+    res.render("index");
+  });
+
+  app.get("/postit", function(req, res) {
+    res.render("postit");
+  });
+
   function setBlankIfNull(value){
     return value == null ? "" : value;
   }
@@ -160,24 +195,12 @@ module.exports = function(app, passport) {
 
 function getBorrowedStatusText(status){
   var text = "";
-  if(status === -1){
-    text = "Pending Approval";
-  } else if (status === 0){
-    text = "Denied";
-  } else if (status === 1){
-    text = "Approved";
-  } else if (status === 2){
-    text = "Borrowed";
-  } else if (status === 3){
-    text = "Returned";
-  }
+  if(status === -1){ text = "Pending Approval";}
+  else if (status === 0){ text = "Denied";}
+  else if (status === 1){ text = "Approved"; }
+  else if (status === 2){ text = "Borrowed"; }
+  else if (status === 3){ text = "Returned"; }
   return text;
 }
-  app.get("/", function(req, res) {
-    res.render("index");
-  });
 
-  app.get("/postit", function(req, res) {
-    res.render("postit");
-  });
 };

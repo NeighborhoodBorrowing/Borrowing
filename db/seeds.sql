@@ -62,3 +62,6 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 
 INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
 VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,2);
+
+INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
+VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,3);
