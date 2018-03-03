@@ -176,4 +176,8 @@ function getBorrowedStatusText(status){
   app.get("/", function(req, res) {
     res.render("index");
   });
+
+  app.get("/postit", function(req, res) {
+    res.render("postit");
+  });
 };
