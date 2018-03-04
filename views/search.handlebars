@@ -1,6 +1,7 @@
 <div class = "row">
     <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container">
+        <p class="error-mess">{{message}}</p> <!-- error message if login fails -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
                 <input id="keyword" name="keyword" placeholder="keyword" type="text" class="input" required>
@@ -35,5 +36,69 @@
     <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
 </div>
 
-<div class = "row" id="Search Results"> <!-- search results -->
+
+    <!--all items div-->
+<div class="row" id="searchResults">
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="search-resp-div">
+         <h4 class="centered">Search Results</h4>
+          {{#each searchResult}}
+            <div class="row">
+                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
+                    
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                            <p class="item-name">{{name}}</p>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <p class="item-descr centered">About This Item: 
+                                       <br> 
+                                       <span class="reset-color">{{description}}</span>
+                                    </p>
+                                    <p class="item-descr centered">Replacement Value: 
+                                       <br>
+                                       <span class="reset-color">${{value}} USD</span>
+                                    </p>
+                                    <p class="item-descr centered">Category: 
+                                       <br>
+                                       <span class="reset-color">{{categoryname}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        {{#if picture}}
+                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                <img class="item-photo" src='{{picture}}'>
+                            </div>
+                        {{/if}}
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                            
+                                <hr>
+
+                               <!-- These class names are used in the javascript, please do not change them-->
+                                  <button class="borrowRequest" id = '{{id}}'>Request to Borrow</button>
+                             
+                            
+                                <p class="left item-descr">Lender: 
+                                   <span class="reset-color">{{ lenderFirstName}}</span>
+                                </p>
+                            
+                                <p class="left item-descr">Due By: 
+                                   <span class="reset-color">{{ dueDate}}</span>
+                                </p>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+            </div>
+        {{/each}}
+    </div>
 </div>
+
+    
+    

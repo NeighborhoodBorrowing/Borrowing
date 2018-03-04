@@ -204,3 +204,18 @@ $("#searchSubmitBtn").click(function(event){
 function notNullOrEmpty(name){
   return name!=null && name.trim()!="";
 }
+
+
+/** SEARCH LOGIC **/
+//search button var
+var searchBtn = $("#searchSubmitBtn");
+//search results var
+var searchResDiv = $("#searchResults");
+
+//on load, hide search results div
+searchResDiv.hide();
+
+//on search button click, show search results
+searchBtn.on("click", function() {
+   searchResDiv.show(); 
+});
