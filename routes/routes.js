@@ -105,8 +105,53 @@ module.exports = function(app, passport) {
   });
 
 
-
 /*** GET ROUTES TO DISPLAY PAGES*****/
+  //search for items
+  app.get("/api/search", function(req, res) {
+    if(req.session.passport == null){
+      res.render("login", {message: "Please Log In"});
+    } else {
+        var userId = req.session.passport.user;
+        var zipcode = req.query.zipcode;
+        var keyword = req.query.keyword;
+        var category = req.query.category;
+
+        console.log(zipcode, keyword , category);
+        var queryString = "SELECT MI.id as MIid, MI.name, MI.description, MI.picture, "
+                          + " MI.value, MI.categoryId, c.categoryname "
+                          + " FROM memberitems as MI JOIN categories as C ON C.id = MI.categoryID "
+                          +" JOIN members as M ON M.id = MI.ownerId "
+                          +"LEFT OUTER JOIN borroweditems as BI ON BI.itemId = MI.id "
+                          + "WHERE BI.borrowedStatus NOT IN (1,2) ";
+        var replacements = [];
+        if(isNotNullOrEmpty(zipcode)){
+          queryString += " AND M.zipCode=? ";
+          replacements.push(zipcode);
+        }
+
+        if(isNotNullOrEmpty(category)){
+          queryString += " AND MI.categoryId=? ";
+          replacements.push(category);
+        }
+
+
+        if(isNotNullOrEmpty(keyword)){
+          queryString += " AND MI.name LIKE ? ";
+          replacements.push("%"+keyword+"%");
+        }
+
+        queryString+= ";";
+        console.log("QUERY" , queryString);
+
+        db.sequelize
+            .query(queryString, { replacements:replacements, type: db.sequelize.QueryTypes.SELECT})
+            .then(function(results){
+              console.log(results);
+                res.status(200).send("Added item");
+                res.end();
+            });
+      }//close else logged in
+  });
 
   //get all the categories in the DB
   app.get("/api/categories", function(req, res) {
@@ -164,8 +209,22 @@ module.exports = function(app, passport) {
     res.render("index");
   });
 
+  app.get("/search", function(req, res) {
+    if(req.session.passport != null){
+        if(req.session.categories == null){
+            getCategoriesToDisplay(function(categories){
+                req.session.categories = categories;
+                res.render("search", {categories:req.session.categories});
+            });
+          } else {
+            res.render("search", {categories:req.session.categories});
+          }
+    } else { // not logged in
+        res.render("login", {message: "Please Log In"});
+    }
+  });
+
   app.get("/postit", function(req, res) {
-    console.log("MESSAGE ", req.query.message);
     var message = req.query.message==null ? "" : req.query.message;
     if(req.session.passport != null){
         if(req.session.categories == null){
@@ -243,6 +302,13 @@ function getBorrowedStatusText(status){
   else if (status === 2){ text = "Borrowed"; }
   else if (status === 3){ text = "Returned"; }
   return text;
+}
+
+function isNotNullOrEmpty(val){
+  if(val==null) {return false;}
+  else if(val === undefined){return false;}
+  else if (val.trim() === "") { return false;}
+  else {return true;}
 }
 
 };

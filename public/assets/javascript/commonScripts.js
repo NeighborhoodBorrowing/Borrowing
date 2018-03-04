@@ -164,12 +164,40 @@ $("#addItemSubmitBtn").click(function(event){
         alert("Unable to add item");
         console.log(err);
       });
-
   } else {
     alert("form input is invalid");
   }
+});
 
 
+/** ADD ITEM **/
+$("#searchSubmitBtn").click(function(event){
+  event.preventDefault();
+  console.log("adding item");
+  var keyword = $("#keyword").val()== null ? "" : $("#keyword").val();
+  var zipcode = $("#zipcode").val()== null ? "" : $("#zipcode").val();
+  var category= $("#category").val()== null ? "" : $("#category").val();
+  console.log(keyword, zipcode, category);
+  //as long as one input is provided, search can be done
+  var validInput = notNullOrEmpty(keyword) || notNullOrEmpty(zipcode) || notNullOrEmpty(category);
+  if(validInput){
+    var data = {
+      keyword: keyword == null ? "" : keyword,
+      zipcode: zipcode == null ? "" : zipcode,
+      category: category == null ? "" : category
+    }
+    var urlString = "/api/search";
+    $.get(urlString, data)
+      .done(function(){
+
+      })
+      .fail(function(err){
+        alert("Unable to complete search");
+        console.log(err);
+      });
+  } else {
+    alert("Please enter valid search criteria");
+  }
 });
 
 
