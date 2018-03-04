@@ -199,7 +199,11 @@ button {
     margin: 1em auto;
 }
 #searchSubmitBtn,
-#addItemSubmitBtn {
+#addItemSubmitBtn,
+#loginSubmitBtn,
+#signupSubmitBtn {
+    width: 5em;
+    height: auto;
     position: relative;
     margin: 1em auto;
 }
