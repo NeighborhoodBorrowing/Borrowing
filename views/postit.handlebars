@@ -1,23 +1,56 @@
-<div class="container">
-    <p style="background:lightgrey; color:red; font-size:25px">{{message}}</p> <!-- info message if needed -->
-    
-    <form name="myForm" style="background-color:lightgrey;">
-        Name: <input type="text" id="it-name" required>
-        Description of Item: <input type="text" id="it-descr" >
-        Link to Photo of Item: <input type="text" id="it-photo" >
-        Item Value:   <input type="text" id="it-value" required>
-        Category:
-            <select id="it-cat" required>
-              <option disabled selected value> -- select a category -- </option>
-                {{#each categories}}
-                      {{#ifEqual this.parentId 0}}
-                        <optgroup label="{{this.categoryName}}">
-                      {{/ifEqual}}
-                      {{#ifNotEqual this.parentId 0}}
-                        <option value="{{this.id}}">{{this.categoryName}}</option>
-                      {{/ifNotEqual}}
-                {{/each}}
-             </select>
-         <button type="button" id="addItemSubmitBtn">Add Item</button>
-    </form>
+
+
+
+<div class = "row">
+    <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container">
+        <h2 class="centered">Add an Item for Others to Borrow</h2>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
+                <input id="it-name" name="it-name" placeholder="Item Name" type="text" class="input" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
+                <input id="it-descr" name="it-descr" placeholder="Item Description" type="text" class="input" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
+                <input id="it-photo" name="it-photo" placeholder="Item Photo Url" type="text" class="input" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
+                <input id="it-value" name="it-value" placeholder="Item Value for Replacement" type="text" class="input" required>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-0 col-xs-0 ">
+                <select id="it-cat" required>
+                      <option disabled selected value> -- select a category -- </option>
+                        {{#each categories}}
+                              {{#ifEqual this.parentId 0}}
+                                <optgroup label="{{this.categoryName}}"></optgroup>
+                              {{/ifEqual}}
+                              {{#ifNotEqual this.parentId 0}}
+                                <option value="{{this.id}}">{{this.categoryName}}</option>
+                              {{/ifNotEqual}}
+                        {{/each}}
+                </select>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-0 col-xs-0 "></div>
+        </div>
+        <div class="row">
+            <button type="button" id="addItemSubmitBtn"><a href="#">Add Item</a></button>
+        </div>
+
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
 </div>
+
+<div class = "row" id="Search Results"> <!-- search results -->
+</div>
+
+
+  
