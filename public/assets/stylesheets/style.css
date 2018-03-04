@@ -207,6 +207,13 @@ button {
     position: relative;
     margin: 1em auto;
 }
+#addItemSubmitBtn {
+    width: 9em;
+}
+#addItemSubmitBtn,
+#searchSubmitBtn {
+    height: 3em;
+}
 /*
 ========================================
 IMAGES
