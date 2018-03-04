@@ -1,12 +1,16 @@
 <div class = "row">
+    <!--spacer-->
     <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
+    <!--main search form container-->
     <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container">
         <p class="error-mess">{{message}}</p> <!-- error message if login fails -->
+        <!--search keyword-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
                 <input id="keyword" name="keyword" placeholder="keyword" type="text" class="input" required>
             </div>
         </div>
+        <!--category-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <select id="category">
@@ -22,43 +26,53 @@
                 </select>
             </div>
         </div>
+        <!--zip code-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
                 <input id="zipcode" name="zipcodeSearch" placeholder="Zip Code" type="text" class="input" required>
             </div>
         </div>
+        <!--search button-->
         <div class="row">
                 <button type="button" id="searchSubmitBtn"><a href="#">Search</a></button>
         </div>
 
 
-    </div>
+    </div><!--end main search form div-->
+    
+    <!--spacer-->
     <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
 </div>
 
 
-    <!--all items div-->
+    <!--search response div-->
 <div class="row" id="searchResults">
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="search-resp-div">
          <h4 class="centered">Search Results</h4>
-          {{#each searchResult}}
+          {{#each searchResult}}<!--for each search result-->
             <div class="row">
+                <!--spacer-->
                 <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                <!--main item container-->
                 <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
-                    
+                    <!--item name-->
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                             <p class="item-name">{{name}}</p>
+                            <!--subrow-->
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <!--about item-->
                                     <p class="item-descr centered">About This Item: 
                                        <br> 
                                        <span class="reset-color">{{description}}</span>
                                     </p>
+                                    <!--replacement value-->
                                     <p class="item-descr centered">Replacement Value: 
                                        <br>
                                        <span class="reset-color">${{value}} USD</span>
                                     </p>
+                                    <!--category-->
                                     <p class="item-descr centered">Category: 
                                        <br>
                                        <span class="reset-color">{{categoryname}}</span>
@@ -66,13 +80,13 @@
                                 </div>
                             </div>
                         </div>
-                        
+                        <!--item photo-->
                         {{#if picture}}
                             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
                                 <img class="item-photo" src='{{picture}}'>
                             </div>
                         {{/if}}
-                    </div>
+                    </div><!--end main item row-->
                     
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -80,13 +94,14 @@
                                 <hr>
 
                                <!-- These class names are used in the javascript, please do not change them-->
-                                  <button class="borrowRequest" id = '{{id}}'>Request to Borrow</button>
+                            <!--request to borrow button-->
+                                <button class="borrowRequest" id = '{{id}}'>Request to Borrow</button>
                              
-                            
+                            <!--lender-->
                                 <p class="left item-descr">Lender: 
                                    <span class="reset-color">{{ lenderFirstName}}</span>
                                 </p>
-                            
+                            <!--due date-->
                                 <p class="left item-descr">Due By: 
                                    <span class="reset-color">{{ dueDate}}</span>
                                 </p>
@@ -94,6 +109,7 @@
                     </div>
                     
                 </div>
+                <!--spacer-->
                 <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
             </div>
         {{/each}}
