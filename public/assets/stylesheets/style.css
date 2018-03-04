@@ -33,7 +33,8 @@ h1,
 h1,
 h3,
 h4,
-h5 {
+h5,
+p {
     padding: .2em;
 }
 h1 {
@@ -102,6 +103,9 @@ a:hover,
 }
 .reset-color {
    color: rgb(77, 77, 77); 
+}
+.secondary-color {
+   color: #00B7FF; 
 }
 .centered {
     text-align: center;
