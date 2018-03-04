@@ -1,6 +1,10 @@
 <div class = "row">
-  <input type="text" placeholder="keyword" id="keyword">
-  <select id="category">
+    <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
+    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 container">
+        <div class="group">
+            <input id="keyword" name="lastname" placeholder="keyword" type="text" class="input" required>
+        </div>
+        <select id="category">
             <option disabled selected value> -- select a category -- </option>
               {{#each categories}}
                     {{#ifEqual this.parentId 0}}
@@ -10,11 +14,15 @@
                       <option value="{{this.id}}">{{this.categoryName}}</option>
                     {{/ifNotEqual}}
               {{/each}}
-   </select>
-   <input type="text" placeholder="zipcode" id="zipcode">
-   <button type="button" id="searchSubmitBtn">Search</button>
+        </select>
+        <div class="group">
+            <input id="zipcode" name="lastname" placeholder="Zip Code" type="text" class="input" required>
+        </div>
+        <button type="button" id="searchSubmitBtn"><a href="#">Search</a></button>
 
 
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
 </div>
 
 <div class = "row" id="Search Results"> <!-- search results -->

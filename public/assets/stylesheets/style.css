@@ -198,6 +198,10 @@ button {
     width: 45%;
     margin: 1em auto;
 }
+#searchSubmitBtn {
+    position: relative;
+    margin: 1em auto;
+}
 /*
 ========================================
 IMAGES
