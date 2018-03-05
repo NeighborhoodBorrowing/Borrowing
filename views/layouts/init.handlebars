@@ -1,9 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
+
     <head>
         <!--meta-->
-         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
+
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <!--title-->
@@ -12,7 +12,8 @@
         <!--stylesheets-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
-      
+        <link rel="stylesheet" type="text/css" href="assets/stylesheets/style_index.css">
+
         <!--javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -21,26 +22,37 @@
     <!--body-->
     <body>
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <!--logo and slogan-->
-                    <div class="header-bar">
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <img class="logo inline" src="assets/images/logo-slogan.png" alt="Borrowed Logo">
-                            </div>
-                        </div>
-                    </div><!-- /header box -->
-                </div><!-- /column -->
-            </div><!-- /row -->
-        
-            
-            
-            {{{ body }}}
-            
-            
-            
+        <div class="header-bar">
+        <div class="navbar-logo">Borrowed</div>
+
+        <header>
+            <div class="header">
+                <nav class="navigation">
+                <div class="navbar-right">
+                    <a href="/memberp.handlebars">Sign Up</a>
+                    <a href="/memberp.handlebars">Log In</a>
+                    <a href="#">Contact</a>
+                </div>
+                </nav>
+            </div>
+        </header>
+        <div class="video-container">
+            <video autoplay muted loop id="myVideo">
+                <source src="https://d2fa3j67sd1nwo.cloudfront.net/video/homepage.7053d1c36d03.mp4" type="video/mp4">
+            </video>
         </div>
+        <div class="text">
+        <h7>Borrowing stuff is</h7>
+        <h7>
+        <span class="word purple">easy.</span>
+        <span class="word belize">wonderful.</span>
+        <span class="word pomegranate">fun.</span>
+        <span class="word green">fast.</span>
+        <span class="word red">free.</span>
+        </h7>
+
+        </div>
+
     </body>
 
     <!--javascript-->
@@ -50,4 +62,38 @@
         crossorigin="anonymous">
     </script>
     <script src="assets/javascript/login-signup.js"></script>
-</html>
+    <script src="assets/javascript/commonScripts.js"></script>
+    <script src="assets/javascript/index.js"></script>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+             <!--logo and slogan-->
+                    <div class="header-bar">
+                        <div class="row">
+                            <!--logo-->
+                            <div class="col-lg-5 col-md-10 col-sm-12 col-xs-12">
+                                <img class="logo inline" src="assets/images/logo-slogan.png" alt="Borrowed Logo">
+                            </div>
+                            <!--spacer-->
+                            <!--search button-->
+                            <button class="inline" id="searchBarBtn"><a href="/search">Search</a></button>
+                            <!--post item button-->
+                            <button class="inline" id="postItemBarBtn"><a href="/postit">Post an Item</a></button>
+
+                            <!-- my account button -->
+                            <button id="memberp-button" class="nav-button"><a href="/memberp">My Account</a></button>
+                        </div><!-- /header subrow -->
+                    </div><!-- /header box -->
+                </div><!-- /column -->
+            </div><!-- /row -->
+
+
+

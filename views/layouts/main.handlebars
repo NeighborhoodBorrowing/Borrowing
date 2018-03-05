@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <!--meta-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
-
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <!--title-->
@@ -12,7 +12,6 @@
         <!--stylesheets-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
-        <link rel="stylesheet" type="text/css" href="assets/stylesheets/style_index.css">
 
         <!--javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -21,39 +20,51 @@
     </head>
     <!--body-->
     <body>
-        <div class="container">
-                    <div class="header-bar">
-                          <div class="navbar-logo">Borrowed</div>
+        <div class="main-container">
+                        
+                    <nav class="navbar navbar-expand-lg navbar-light bg-light " role="navigation" >
+                                <a href="/" style="text-decoration:none;"><h1 class="navbar-logo">Borrowed</h1></a>
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse " id="navbarExpandContent">
+                                    <ul class="navbar-nav mr-auto">
+                                        <a class="nav-link" href="/search">
+                                            <li class="nav-item active">
+                                                Search
+                                            </li>
+                                        </a>
+                                        <a class="nav-link" href="/postit">
+                                            <li class="nav-item active">
+                                                Post an Item
+                                            </li>
+                                        </a>
+                                        <a class="nav-link" href="/login">
+                                            <li class="nav-item active">
+                                                Login
+                                            </li>
+                                        </a>
+                                        <a class="nav-link" href="/signup">
+                                            <li class="nav-item active">
+                                                Sign Up
+                                            </li>
+                                        </a>
+                                    </ul>
+                                </div>
 
-                              <header>
-                                <div class="header">
-                                  <nav class="navigation">
-                                         <div class="navbar-right">
+                    </nav>
+                    
+                    
+                    
+                    
+                   
 
-                                       <a href="/memberp.handlebars">Sign Up</a>
-                                       <a href="/memberp.handlebars">Log In</a>
-                                       <a href="#">Contact</a>
-                                     </div>
-                                   </nav>
-                                 </div>
-                              </header>
-                              <div class="video-container">
-                                  <video autoplay muted loop id="myVideo">
-                                  <source src="https://d2fa3j67sd1nwo.cloudfront.net/video/homepage.7053d1c36d03.mp4" type="video/mp4">
-                                </video>
-                              </div>
-                                <div class="text">
-                                  <h7>Borrowing stuff is</h7>
-                                    <h7>
-                                      <span class="word purple">easy.</span>
-                                      <span class="word belize">wonderful.</span>
-                                      <span class="word pomegranate">fun.</span>
-                                      <span class="word green">fast.</span>
-                                      <span class="word red">free.</span>
-                                    </h7>
+                {{{ body }}}
 
-                                  </div>
 
+            <!--footer-->
+            <!-- add about us and other page nav links -->
+        </div>
     </body>
 
     <!--javascript-->
@@ -64,4 +75,6 @@
     </script>
     <script src="assets/javascript/login-signup.js"></script>
     <script src="assets/javascript/commonScripts.js"></script>
+    <script src="assets/javascript/memberp-js.js"></script>
     <script src="assets/javascript/index.js"></script>
+</html>
