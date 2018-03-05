@@ -146,21 +146,10 @@ module.exports = function(app, passport) {
         db.sequelize
             .query(queryString, { replacements:replacements, type: db.sequelize.QueryTypes.SELECT})
             .then(function(results){
-              console.log(results);
-                res.status(200).send("Added item");
-                res.end();
+              // req.session.categories
+              res.render("search", {categories:{categoryName:"name", parentId:1, id:2}, results:results});
             });
       }//close else logged in
-  });
-
-  //get all the categories in the DB
-  app.get("/api/categories", function(req, res) {
-    db.MemberItems.findAll({})
-              .then(function(result) {
-                res.json(result);
-              }).catch(function(err){
-                throw err;
-              });
   });
 
   app.get("/signup", function(req, res) {
