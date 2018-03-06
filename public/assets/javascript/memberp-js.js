@@ -108,6 +108,10 @@ $(".navbar-toggler").on("click", function() {
     if (text.hasClass('vertTranslateBig')) {
         text.removeClass('vertTranslateBig');
     } else {
-       text.addClass('vertTranslateBig');
+        text.addClass('vertTranslateBig');
     };
 });
+
+
+
+
