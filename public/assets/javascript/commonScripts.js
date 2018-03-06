@@ -189,7 +189,7 @@ $("#searchSubmitBtn").click(function(event){
     var urlString = "/api/search";
     $.get(urlString, data)
       .done(function(){
-
+        
       })
       .fail(function(err){
         alert("Unable to complete search");
@@ -217,5 +217,5 @@ searchResDiv.hide();
 
 //on search button click, show search results
 searchBtn.on("click", function() {
-   searchResDiv.show(); 
+   searchResDiv.show();
 });
