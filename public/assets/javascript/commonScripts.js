@@ -1,12 +1,3 @@
-/******* Hide/Show Password Logic  *************/
-function passHideShow () {
-    var password = $(".password");
-    if (password.attr("type") === "password") {
-        password.attr("type", "text");
-    } else {
-        password.attr("type", "password");
-    };
-};
 $(".toggle-password").click(function() {
 
   $(this).toggleClass("fa-eye fa-eye-slash");
@@ -143,17 +134,19 @@ $("#addItemSubmitBtn").click(function(event){
   }
 });
 
-
+/** SEARCH **/
 function getHeaderForSearchResults(additionalMessage){
   return "<div class='row'>"
                     +"<div class='col-lg-1 col-md-1 col-sm-0 col-xs-0 '></div>"
                     +"<div class='col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont'>"
                     +"<h4 class='centered'>Search Results</h4>"
+                    + "<hr>"
                     +additionalMessage
                     +"</div><div class='col-lg-1 col-md-1 col-sm-0 col-xs-0 '></div>";
+                   
 
 }
-/** ADD ITEM **/
+/** search on submit **/
 $("#searchSubmitBtn").click(function(event){
   event.preventDefault();
   var keyword = $("#keyword").val()== null ? "" : $("#keyword").val();

@@ -259,7 +259,10 @@ GRID
 .inline {
     display: inline;
 }
-
+select {
+    padding: .4em;
+    margin: .5em auto;
+}
 /*
 ========================================
 IMAGES
