@@ -200,6 +200,7 @@ GRID
     position: relative;
     top: 1em;
     margin: 0 auto 5em auto;
+    padding: 1.5em;
 }
 .main-item-cont {
      background-color: rgba(238, 238, 238, .8);
@@ -208,7 +209,7 @@ GRID
     display: inline-block;
     position: relative;
     width: 90%;
-    margin: .5em auto;
+    margin: .5em auto 2em auto;
 }
 .wipe-background {
     background: none;
