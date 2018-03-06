@@ -105,6 +105,10 @@ items member has borrowed in the past
                             {{#if picture}}
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--remove item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ''>Remove Item</button>
+                                    </div>
                                 </div>
                             {{/if}}
                         </div>
@@ -202,6 +206,10 @@ items member has borrowed in the past
                             {{#if picture}}
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--remove item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ''>Remove Item</button>
+                                    </div>
                                 </div>
                             {{/if}}
                         </div>
@@ -244,8 +252,10 @@ items member has borrowed in the past
                                 
                                 <div class="row">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                        <button class="approveBorrowRequest" id = ''>Recall Item</button>
-                                        <button class="approveBorrowRequest" id = ''>Mark Item Returned</button>
+                                        <!--recall item-->
+                                        <button class="recallItem" id = ''>Recall Item</button>
+                                        <!--mark item returned-->
+                                        <button class="markReturned" id = ''>Mark Item Returned</button>
                                 </div>
                                {{/if}}
                             </div>
@@ -305,6 +315,10 @@ items member has borrowed in the past
                             {{#if picture}}
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--remove item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ''>Remove Item</button>
+                                    </div>
                                 </div>
                             {{/if}}
                         </div>
@@ -386,11 +400,15 @@ items member has borrowed in the past
                             </div>
                         </div>
                         <!--spacer-->
-                            <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
                         <!--if item has photo, display-->
                         {{#if picture}}
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <img class="item-photo" src='{{picture}}'>
+                                <!--remove item-->
+                                <div class="row">
+                                    <button class="removeItem" id = ''>Remove Item</button>
+                                </div>
                             </div>
                         {{/if}}
                     </div>
