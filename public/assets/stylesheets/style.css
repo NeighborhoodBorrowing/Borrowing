@@ -15,6 +15,7 @@ body {
     background-color: #4d4d4d;
     background-image: url("../images/neighborhood.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
  	background-size: 100%;
 	min-width: 100%;
 	position: relative;
@@ -198,8 +199,7 @@ GRID
 .main-container {
     position: relative;
     top: 1em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 5em auto;
 }
 .main-item-cont {
      background-color: rgba(238, 238, 238, .8);
