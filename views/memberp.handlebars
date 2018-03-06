@@ -24,23 +24,23 @@ items member has borrowed in the past
         <h3 class="centered">Welcome back {{userAndInfo.user.firstName}}!<br></h3>
         <hr>
         <!--user email-->
-        <p>
-            <span class="secondary-color">Your Email:</span> 
+        <p class="borrow-decl">
+            <span class="secondary-color underline">Your Email:</span> 
             {{userAndInfo.user.email}}
         </p>
         <!--user rating-->
-        <p>
-            <span class="secondary-color">Your User Rating:</span>  
+        <p class="borrow-decl">
+            <span class="secondary-color underline">Your User Rating:</span>  
             {{userAndInfo.user.rating}}
         </p>
         <!--user zip code-->
-        <p>
-            <span class="secondary-color">Your Zipcode:</span> 
+        <p class="borrow-decl">
+            <span class="secondary-color underline">Your Zipcode:</span> 
             {{userAndInfo.user.zipCode}}
         </p>
         <!--user join date-->
-        <p>
-            <span class="secondary-color">JoinDate:</span> 
+        <p class="borrow-decl">
+            <span class="secondary-color underline">JoinDate:</span> 
             {{userAndInfo.user.joinDate}}
         </p>
 
@@ -77,6 +77,7 @@ items member has borrowed in the past
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <p class="item-name">{{name}}</p>
+                                <hr>
                                 <!--subrow-->
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -127,16 +128,19 @@ items member has borrowed in the past
                                     </div>
                                     {{/ifEqual}}
                                     <!--borrower-->
-                                    <p class="left item-descr">Borrower: 
-                                       <span class="reset-color">{{ borrowerFirstName}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrower:</span> 
+                                        <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on-->
-                                    <p class="left item-descr">Borrowed On: 
-                                       <span class="reset-color">{{ borrowedDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrowed On:</span> 
+                                        <span class="reset-color">{{ borrowedDate}}</span>
                                     </p>
                                     <!--due date-->
-                                    <p class="left item-descr">Due By: 
-                                       <span class="reset-color">{{ dueDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Due By:</span> 
+                                        <span class="reset-color">{{ dueDate}}</span>
                                     </p>
                                {{/if}}
                             </div>
@@ -168,6 +172,7 @@ items member has borrowed in the past
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <p class="item-name">{{name}}</p>
+                                <hr>
                                 <!--subrow-->
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -218,16 +223,19 @@ items member has borrowed in the past
                                     </div>
                                     {{/ifEqual}}
                                     <!--borrower-->
-                                    <p class="left item-descr">Borrower: 
-                                       <span class="reset-color">{{ borrowerFirstName}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrower:</span> 
+                                        <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on date-->
-                                    <p class="left item-descr">Borrowed On: 
-                                       <span class="reset-color">{{ borrowedDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrowed On:</span> 
+                                        <span class="reset-color">{{ borrowedDate}}</span>
                                     </p>
                                     <!--due date-->
-                                    <p class="left item-descr">Due By: 
-                                       <span class="reset-color">{{ dueDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Due By:</span> 
+                                        <span class="reset-color">{{ dueDate}}</span>
                                     </p>
                                {{/if}}
                             </div>
@@ -259,6 +267,7 @@ items member has borrowed in the past
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <p class="item-name">{{name}}</p>
+                                <hr>
                                 <!--subrow-->
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -300,16 +309,19 @@ items member has borrowed in the past
 
                                     <hr>
                                     <!--borrower-->
-                                    <p class="left item-descr">Borrower: 
-                                       <span class="reset-color">{{ borrowerFirstName}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrower:</span> 
+                                        <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on date-->
-                                    <p class="left item-descr">Borrowed On: 
-                                       <span class="reset-color">{{ borrowedDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrowed On:</span> 
+                                        <span class="reset-color">{{ borrowedDate}}</span>
                                     </p>
                                     <!--returned date-->
-                                    <p class="left item-descr">Returned On: 
-                                       <span class="reset-color">{{ returnDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Returned On:</span> 
+                                        <span class="reset-color">{{ returnDate}}</span>
                                     </p>
                                {{/if}}
                             </div>
@@ -339,6 +351,7 @@ items member has borrowed in the past
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                             <p class="item-name">{{name}}</p>
+                            <hr>
                             <!--subrow-->
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -389,16 +402,19 @@ items member has borrowed in the past
                                 </div>
                                 {{/ifEqual}}
                                 <!--borrower-->
-                                <p class="left item-descr">Borrower: 
-                                   <span class="reset-color">{{ borrowerFirstName}}</span>
+                                <p class=" item-descr borrow-decl">
+                                    <span class="underline">Borrower:</span> 
+                                    <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
                                 <!--borrowed on date-->
-                                <p class="left item-descr">Borrowed On: 
-                                   <span class="reset-color">{{ borrowedDate}}</span>
+                                <p class=" item-descr borrow-decl">
+                                    <span class="underline">Borrowed On:</span> 
+                                    <span class="reset-color">{{ borrowedDate}}</span>
                                 </p>
                                 <!--due date-->
-                                <p class="left item-descr">Due By: 
-                                   <span class="reset-color">{{ dueDate}}</span>
+                                <p class=" item-descr borrow-decl">
+                                    <span class="underline">Due By:</span> 
+                                    <span class="reset-color">{{ dueDate}}</span>
                                 </p>
                            {{/if}}
                         </div>

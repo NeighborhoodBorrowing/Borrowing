@@ -113,6 +113,9 @@ a:hover:hover {
     color: #00B7FF;
     text-align: center;
 }
+.borrow-decl {
+    font-size: 1.2em;
+}
 .reset-color {
    color: rgb(77, 77, 77); 
 }
@@ -153,6 +156,10 @@ a:hover:hover {
 }
 .large {
     font-size: 20px;
+}
+.underline {
+    text-decoration: underline;
+    border-bottom-width: thin;
 }
 /*
 ========================================
