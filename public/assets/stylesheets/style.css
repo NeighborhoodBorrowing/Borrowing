@@ -86,11 +86,6 @@ a {
     padding: .2em;
     text-decoration: underline;
 }
-li:hover,
-a:hover:hover {
-    background:#ff9e04;
-    color:#eee;
-}
 .navbar-logo{
     font-family:Arial;
     font-size:3em;
@@ -181,40 +176,6 @@ GRID
     background: rgba(255, 255, 255, .5);
     padding: .5em;
 }
-button {
-    position: relative;
-    margin: .5em auto;
-    width: 10em;
-    height: auto;
-    min-height: 2em;
-    box-shadow: .2em .2em .4em rgba(0, 0, 0, .4);
-    padding: 1em;
-}
-.button {
-    border:0;
-    outline:none;
-    border-radius:0;
-    padding:15px;
-    font-size:2rem;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    background:#a3a3a3;
-    color:#eee;
-    transition:all.5s ease;
-    -webkit-appearance: none;
-}
-.button:hover, 
-.button:focus {
-    background:#ff9e04;
-    color:#eee;;
-}
-button a {
-    text-decoration: none;
-}
-.button-block {
-  display:block;
-  width:100%;
-}
 .modal-close {
     height: 2.2em;
     width: 5em;
@@ -287,7 +248,61 @@ IMAGES
 ========================================
 FORMS
 ========================================
-
+*/
+button {
+    position: relative;
+    margin: .5em auto;
+    width: 10em;
+    height: auto;
+    min-height: 2em;
+    box-shadow: .2em .2em .4em rgba(0, 0, 0, .4);
+    padding: 1em;
+}
+.button {
+    border:0;
+    outline:none;
+    border-radius:0;
+    padding:15px;
+    font-size:2rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    background:#a3a3a3;
+    color:#eee;
+    transition:all.5s ease;
+    -webkit-appearance: none;
+}
+button a {
+    text-decoration: none;
+}
+.button-block {
+  display:block;
+  width:100%;
+}
+.close{
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+};
+.close:before, 
+.close:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+};
+.close:before {
+    @include transform(rotate(45deg));
+  };
+.close:after {
+    @include transform(rotate(-45deg));
+};
+/*
 ========================================
 LOGIN/SIGNUP
 ========================================
@@ -300,19 +315,6 @@ LOGIN/SIGNUP
     margin: 2em auto;
     vertical-align: middle;
     background-color: rgb(227, 223, 223);
-}
-.tab-group {
-    list-style:none;
-    padding:0;
-    margin:0 0 40px 0;
-}
-.tab-group:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.tab-content > div:first-child {
-    display:none;
 }
 .field-wrap {
     position:relative;
@@ -335,33 +337,6 @@ LOGIN/SIGNUP
 .active a {
     background:#a3a3a3;
     color:#eee;
-}
-label {
-    position:absolute;
-    transform:translateY(6px);
-    left:1em;
-    color: #00B7FF;
-    text-shadow: .05em .05em rgb(77, 77, 77, .3)
-        transition:all 0.25s ease;
-        -webkit-backface-visibility: hidden;
-    pointer-events: none;
-    font-size:22px;
-    padding: .3em .2em;
-}
-label.req {
-    margin:2px;
-    color:#a3a3a3;
-}
-label.active {
-    transform:translateY(50px);
-    left:2px;
-    font-size:14px;
-}
-label.req {
-    opacity:0;
-}
-label.highlight {
-	color:#eee;
 }
 input, 
 textarea {
@@ -418,7 +393,6 @@ VIDEO HANDLING
     overflow: hidden;
     z-index: -100;
 }
-
 .fullscreen-bg__video {
     position: absolute;
     top: 0;
@@ -426,7 +400,11 @@ VIDEO HANDLING
     width: 100%;
     height: 100%;
 }
-/* rotating text */
+/*
+========================================
+ROTATING TEXT
+========================================
+*/
 .text {
     position: fixed;
     width: 100%;
@@ -439,7 +417,6 @@ VIDEO HANDLING
     font-weight: 600;
     font-size: 40px;
 }
-
 .word {
     position: absolute;
     width: 220px;
@@ -462,7 +439,6 @@ VIDEO HANDLING
       transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
       transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
-
 .letter.behind {
       -webkit-transform: rotateX(-90deg);
             transform: rotateX(-90deg);
@@ -474,6 +450,53 @@ VIDEO HANDLING
       transition: -webkit-transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/*
+========================================
+ANIMATIONS & TRANSITIONS
+========================================
+*/
+.vertTranslate {
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+    transition: 2s;
+    margin-top: 25% !important;
+    transform: scale(1.4);
+}
+.grow {
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+    transition: 1s;
+    transform: scale(1.4);
+}
+.item-photo,
+button {
+    transition: all .2s ease-in-out; 
+}
+li:hover,
+a:hover,
+a:focus {
+    background:#ff9e04;
+    color:#eee;
+}
+.item-photo:hover,
+.image-photo:focus {
+    transform: scale(1.1);
+}
+a.div-clickable:hover,
+a.div-clickable:focus {
+    background: none;
+    color: #ff9e04;
+}
+.button:hover, 
+.button:focus {
+    transform: scale(1.04);
+    background:#ff9e04;
+    color:#eee;;
 }
 /*
 ========================================
@@ -494,12 +517,12 @@ MEDIA QUERIES
 }
 @media screen and (max-width: 991px) {
     .item-photo {
-        width: 60%
+        width: 60%;
     }
 }   
 @media screen and (max-width: 768px) {
     .item-photo {
-        width: 35%
+        width: 35%;
     }
     .text {
         left: 10%;
@@ -509,7 +532,7 @@ MEDIA QUERIES
 }  
 @media screen and (max-width: 480px) {
     .item-photo {
-        width: 50%
+        width: 50%;
     }
     .approveBorrowRequest,
     .denyBorrowRequest {
@@ -524,5 +547,9 @@ MEDIA QUERIES
 @media screen and (max-width: 320px) {
    
 }
+
+
+
+
 
 

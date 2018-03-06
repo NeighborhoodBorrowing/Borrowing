@@ -1,12 +1,6 @@
-//hide posted items div on load
-//hide borrowed items div on load
-//hide lent items on load
-//code to count notifications and show red notification indicator
-//on click, show posted items div, hide borrowed and lent items
-//on click, show borrowed items div, hide posted and lent items
-//on click, show lent items, hide posted and borrowed items
 
 
+//----------member page global variables------------
 // pending approval clickable
 var pendAppBtn = $("#pend-app");
 // on lend clickable
@@ -24,44 +18,64 @@ var returnedDiv = $("#returned-div");
 //all items div
 var allItDiv = $("#all-it-div");
 
-//hide item divs on load
+
+
+
+//----------hide member item view divs on load------------
 pendAppDiv.hide();
 onLendDiv.hide();
 returnedDiv.hide();
 allItDiv.hide();
 
-// when the user clicks on pending approval button, open 
-pendAppBtn.on("click", function() {
+
+//----------logic to show/hide member item view divs on click------------
+// when the user clicks on pending approval button, open div, animate text, hide other options
+$("#pend-app").on("click", function() {
+    onLendBtn.hide();
+    returnedBtn.hide();
+    allItBtn.hide();
+    pendAppBtn.addClass('vertTranslate');
     pendAppDiv.show();
-    onLendDiv.hide();
-    returnedDiv.hide();
-    allItDiv.hide();
+    pendAppBtn.addClass('grow');
 });
 
-// when the user clicks on pending approval button, open 
-onLendBtn.on("click", function() {
-    pendAppDiv.hide();
+// when the user clicks on lent items button, open div, animate text, hide other options
+$("#on-lend").on("click", function() {
+    pendAppBtn.hide();
+    returnedBtn.hide();
+    allItBtn.hide();
+    onLendBtn.addClass('vertTranslate');
     onLendDiv.show();
-    returnedDiv.hide();
-    allItDiv.hide();
 });
 
-// when the user clicks on pending approval button, open 
-returnedBtn.on("click", function() {
-    pendAppDiv.hide();
-    onLendDiv.hide();
+// when the user clicks on returned items button, open div, animate text, hide other options
+$("#returned").on("click", function() {
+    onLendBtn.hide();
+    pendAppBtn.hide();
+    allItBtn.hide();
+    returnedBtn.addClass('vertTranslate');
     returnedDiv.show();
-    allItDiv.hide();
 });
 
-// when the user clicks on pending approval button, open 
-allItBtn.on("click", function() {
-    pendAppDiv.hide();
-    onLendDiv.hide();
-    returnedDiv.hide();
+// when the user clicks on all itmes button, open div, animate text, hide other options
+$("#all-it").on("click", function() {
+    onLendBtn.hide();
+    returnedBtn.hide();
+    pendAppBtn.hide();
+    allItBtn.addClass('vertTranslate');
     allItDiv.show();
 });
-
-itemsDivClose.on("click", function() {
-   signupModal.hide();
+//----------close member item view divs------------
+$("#pend-app-close").on("click", function() {
+    pendAppDiv.hide();
 });
+$("#on-lend-close").on("click", function() {
+    onLendDiv.hide();
+});
+$("#returned-close").on("click", function() {
+    returnedDiv.hide();
+});
+$("#all-it-close").on("click", function() {
+    allItDiv.hide();
+});
+

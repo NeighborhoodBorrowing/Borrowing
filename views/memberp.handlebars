@@ -25,22 +25,22 @@ items member has borrowed in the past
         <hr>
         <!--user email-->
         <p class="borrow-decl">
-            <span class="secondary-color underline">Your Email:</span> 
+            <span class="secondary-color ">Your Email:</span> 
             {{userAndInfo.user.email}}
         </p>
         <!--user rating-->
         <p class="borrow-decl">
-            <span class="secondary-color underline">Your User Rating:</span>  
+            <span class="secondary-color ">Your User Rating:</span>  
             {{userAndInfo.user.rating}}
         </p>
         <!--user zip code-->
         <p class="borrow-decl">
-            <span class="secondary-color underline">Your Zipcode:</span> 
+            <span class="secondary-color ">Your Zipcode:</span> 
             {{userAndInfo.user.zipCode}}
         </p>
         <!--user join date-->
         <p class="borrow-decl">
-            <span class="secondary-color underline">JoinDate:</span> 
+            <span class="secondary-color ">JoinDate:</span> 
             {{userAndInfo.user.joinDate}}
         </p>
 
@@ -63,7 +63,15 @@ items member has borrowed in the past
 <!--pending approval div-->
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="pend-app-div">
-        <h4 class="centered">Your Items Pending Approval</h4>
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="pend-app-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">Your Items Pending Approval</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
         <!--for user with items-->
         {{#each userAndInfo.items}}
             <!--if borrowed status is pending approval-->
@@ -104,7 +112,7 @@ items member has borrowed in the past
                             <!--if item has photo, display-->
                             {{#if picture}}
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                                    <img class="item-photo" src='{{picture}}'>
+                                    <img class="item-photo come-in" src='{{picture}}'>
                                     <!--remove item-->
                                     <div class="row">
                                         <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
@@ -166,7 +174,15 @@ items member has borrowed in the past
 <!--item on lend div-->
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="on-lend-div">
-        <h4 class="centered">Your Items Currently on Lend</h4>
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="on-lend-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">Your Items Currently on Lend</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
         <!--if item currently on loan-->
         {{#each userAndInfo.items}}
             {{#ifEqual borrowedStatus 1}}
@@ -266,7 +282,15 @@ items member has borrowed in the past
 <!--item returned div-->
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="returned-div">
-        <h4 class="centered">Your Returned Items</h4>
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="returned-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">Your Returned Items</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
         <!--for each user with items-->
         {{#each userAndInfo.items}}
             <!--if item has been returned-->
@@ -358,7 +382,15 @@ items member has borrowed in the past
 <!--all items div-->
 <div class="row">
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont " id="all-it-div">
-        <h4 class="centered">All Your Listed Items</h4>
+         <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="all-it-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">All Your Listed Items</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
         <!--for each user with items-->
         {{#each userAndInfo.items}}
             <div class="row">
