@@ -577,5 +577,11 @@ MEDIA QUERIES
 }
 
 
+.field-icon {
+    position: absolute;
+    right: 1.5em;
+    bottom: .8em;
+}
+
 
 
