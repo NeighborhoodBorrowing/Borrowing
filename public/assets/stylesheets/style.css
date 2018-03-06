@@ -208,6 +208,9 @@ button {
     background:#ff9e04;
     color:#eee;;
 }
+button a {
+    text-decoration: none;
+}
 .button-block {
   display:block;
   width:100%;
