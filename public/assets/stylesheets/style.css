@@ -243,6 +243,13 @@ GRID
     width: 45%;
     margin: 1em auto;
 }
+.borrowRequest {
+    margin: .5em auto;
+}
+.item-descr {
+    padding: .3em;
+    margin: .5em auto;
+}
 .block {
     display: block;
 }
@@ -319,7 +326,7 @@ button a {
     width: 50px;
     height: 50px;
     overflow: hidden;
-};
+}
 .close:before, 
 .close:after {
     content: '';
