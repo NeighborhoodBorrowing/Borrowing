@@ -172,6 +172,10 @@ li a {
     margin: .2em auto;
     position: relative;
     top: .4em;
+    position: relative;
+    display: inline-block;
+    margin: .2em auto;
+    text-align: center;
 } 
 .navbar-toggler {
     display: inline-block;
@@ -179,8 +183,6 @@ li a {
     width: 100%;
     padding:.2em
     margin: .2em auto;
-    -webkit-align-self: center;
-    align-self: center;
 }
 nav {
     margin-left: 0;
@@ -205,18 +207,6 @@ GRID
 .panel {
     background: rgba(255, 255, 255, .5);
     padding: .5em;
-}
-.modal-close {
-    height: 2.2em;
-    width: 5em;
-    font-size: 18px;
-    font-family: Impact, Charcoal, sans-serif;
-    position: absolute;
-    background-color: rgba(163, 163, 163, .7);
-    text-align: center;
-    padding: .4em .2em .2em .2em;
-    margin: .5em auto;
-    bottom: -.5em;
 }
 .container {
     border-radius: .3em;
@@ -347,11 +337,6 @@ button a {
 .close:after {
     @include transform(rotate(-45deg));
 };
-/*
-========================================
-LOGIN/SIGNUP
-========================================
-*/
 .form {
     padding: 40px;
     max-width:600px;
@@ -364,24 +349,6 @@ LOGIN/SIGNUP
 .field-wrap {
     position:relative;
     margin-bottom:40px;
-}
-.top-row:after {
-    content: "";
-    display: table;
-    clear: both;
-    }
-    > div {
-    float:left;
-    width:48%;
-    margin-right:4%;
-}
-.forgot {
-    margin-top:-20px;
-    text-align:right;
-}
-.active a {
-    background:#a3a3a3;
-    color:#eee;
 }
 input, 
 textarea {
@@ -408,14 +375,8 @@ textarea {
     border:2px solid #a3a3a3;
     resize: vertical;
 }
-.terms {
-    margin: .5em;
-}
 .group {
     margin: .5em auto;
-}
-#loginSubmitBtn {
-    
 }
 /*
 ========================================
@@ -511,6 +472,16 @@ ANIMATIONS & TRANSITIONS
     top: 10% !important;
     transform: scale(1.2);
 }
+.vertTranslateBig {
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+    transition: 2s;
+    position: relative;
+    top: -40% !important;
+    transform: scale(1.2);
+}
 .vertTranslateBtn {
   -webkit-transition: 2s;
   -moz-transition: 2s;
@@ -553,6 +524,9 @@ button:focus {
     background:#ff9e04;
     color:#eee;;
 }
+#logo-a:hover {
+    background: none;
+}
 /*
 ========================================
 MEDIA QUERIES
@@ -582,7 +556,7 @@ MEDIA QUERIES
     .text {
         left: 10%;
         overflow:normal;
-        width: 40%;
+        width: 60%;
     }
     .item-cont {
         width: 90%;
@@ -614,8 +588,6 @@ MEDIA QUERIES
 @media screen and (max-width: 320px) {
    
 }
-
-
 
 
 

@@ -36,7 +36,11 @@ $("#pend-app").on("click", function() {
     onLendBtn.hide();
     returnedBtn.hide();
     allItBtn.hide();
-    pendAppBtn.addClass('vertTranslate');
+    if (pendAppBtn.hasClass('vertTranslate')) {
+        pendAppBtn.removeClass('vertTranslate');
+    } else {
+        pendAppBtn.addClass('vertTranslate');
+    }
     $("#close-pend-btn").addClass('vertTranslateBtn');
     pendAppDiv.show();
 });
@@ -47,7 +51,11 @@ $("#on-lend-btn").on("click", function() {
     pendAppBtn.hide();
     returnedBtn.hide();
     allItBtn.hide();
-    onLendBtn.addClass('vertTranslate');
+    if (onLendBtn.hasClass('vertTranslate')) {
+        onLendBtn.removeClass('vertTranslate');
+    } else {
+        onLendBtn.addClass('vertTranslate');
+    }
     onLendDiv.show();
 });
 
@@ -58,7 +66,11 @@ $("#returned").on("click", function() {
     onLendBtn.hide();
     pendAppBtn.hide();
     allItBtn.hide();
-    returnedBtn.addClass('vertTranslate');
+    if (returnedBtn.hasClass('vertTranslate')) {
+        returnedBtn.removeClass('vertTranslate');
+    } else {
+        returnedBtn.addClass('vertTranslate');
+    }
     returnedDiv.show();
 });
 
@@ -69,7 +81,11 @@ $("#all-it").on("click", function() {
     onLendBtn.hide();
     returnedBtn.hide();
     pendAppBtn.hide();
-    allItBtn.addClass('vertTranslate');
+    if (allItBtn.hasClass('vertTranslate')) {
+        allItBtn.removeClass('vertTranslate');
+    } else {
+        allItBtn.addClass('vertTranslate');
+    }
     allItDiv.show();
 });
 //----------close member item view divs------------
@@ -86,3 +102,12 @@ $("#all-it-close").on("click", function() {
     allItDiv.hide();
 });
 
+
+$(".navbar-toggler").on("click", function() {
+    var text = $(".text");
+    if (text.hasClass('vertTranslateBig')) {
+        text.removeClass('vertTranslateBig');
+    } else {
+       text.addClass('vertTranslateBig');
+    };
+});
