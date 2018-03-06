@@ -204,6 +204,12 @@ GRID
 .main-item-cont {
      background-color: rgba(238, 238, 238, .8);
 }
+.item-cont {
+    display: inline-block;
+    position: relative;
+    width: 90%;
+    margin: .5em auto;
+}
 .wipe-background {
     background: none;
 }
@@ -279,11 +285,11 @@ button a {
   width:100%;
 }
 .close{
-  position: relative;
-  display: inline-block;
-  width: 50px;
-  height: 50px;
-  overflow: hidden;
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
 };
 .close:before, 
 .close:after {
@@ -462,8 +468,18 @@ ANIMATIONS & TRANSITIONS
   -ms-transition: 2s;
   -o-transition: 2s;
     transition: 2s;
-    margin-top: 25% !important;
-    transform: scale(1.4);
+    position: relative;
+    top: 10% !important;
+    transform: scale(1.2);
+}
+.vertTranslateBtn {
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+    transition: 2s;
+    position: relative;
+    top: 10% !important;
 }
 .grow {
   -webkit-transition: 1s;
@@ -529,6 +545,18 @@ MEDIA QUERIES
         overflow:normal;
         width: 40%;
     }
+    .item-cont {
+        width: 90%;
+    }
+    .vertTranslate {
+      -webkit-transition: 2s;
+      -moz-transition: 2s;
+      -ms-transition: 2s;
+      -o-transition: 2s;
+        transition: 2s;
+        margin-top: 2% !important;
+        transform: scale(1.4);
+    }
 }  
 @media screen and (max-width: 480px) {
     .item-photo {
@@ -547,8 +575,6 @@ MEDIA QUERIES
 @media screen and (max-width: 320px) {
    
 }
-
-
 
 
 
