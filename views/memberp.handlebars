@@ -107,7 +107,7 @@ items member has borrowed in the past
                                     <img class="item-photo" src='{{picture}}'>
                                     <!--remove item-->
                                     <div class="row">
-                                        <button class="removeItem" id = ''>Remove Item</button>
+                                        <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
                                     </div>
                                 </div>
                             {{/if}}
@@ -129,8 +129,9 @@ items member has borrowed in the past
                                     {{#ifEqual borrowedStatus -1}}
                                     <div class="row">
                                        <!-- These class names are used in the javascript, please do not change them-->
-                                          <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                                          <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                                            
+                                        <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button>
+                                        <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button>
                                     </div>
                                     {{/ifEqual}}
                                     <!--borrower-->
@@ -225,15 +226,7 @@ items member has borrowed in the past
                                     </p>
 
                                     <hr>
-                                   <!-- Pending Approval is -1 -->
-
-                                    {{#ifEqual borrowedStatus -1}}
-                                    <div class="row">
-                                       <!-- These class names are used in the javascript, please do not change them-->
-                                          <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                                          <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
-                                    </div>
-                                    {{/ifEqual}}
+                                   
                                     <!--borrower-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Borrower:</span> 
@@ -253,7 +246,7 @@ items member has borrowed in the past
                                 <div class="row">
                                    <!-- These class names are used in the javascript, please do not change them-->
                                         <!--recall item-->
-                                        <button class="recallItem" id = ''>Recall Item</button>
+                                        <button class="recallItem" id = ''><a href="#">Recall Item</a></button>
                                         <!--mark item returned-->
                                         <button class="markReturned" id = ''>Mark Item Returned</button>
                                 </div>
@@ -317,7 +310,7 @@ items member has borrowed in the past
                                     <img class="item-photo" src='{{picture}}'>
                                     <!--remove item-->
                                     <div class="row">
-                                        <button class="removeItem" id = ''>Remove Item</button>
+                                        <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
                                     </div>
                                 </div>
                             {{/if}}
@@ -364,7 +357,7 @@ items member has borrowed in the past
 
 <!--all items div-->
 <div class="row">
-     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container " id="all-it-div">
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-ont " id="all-it-div">
         <h4 class="centered">All Your Listed Items</h4>
         <!--for each user with items-->
         {{#each userAndInfo.items}}
@@ -407,7 +400,7 @@ items member has borrowed in the past
                                 <img class="item-photo" src='{{picture}}'>
                                 <!--remove item-->
                                 <div class="row">
-                                    <button class="removeItem" id = ''>Remove Item</button>
+                                    <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
                                 </div>
                             </div>
                         {{/if}}
@@ -429,8 +422,8 @@ items member has borrowed in the past
                                 {{#ifEqual borrowedStatus -1}}
                                 <div class="row">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                      <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                                      <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                                    <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button>
+                                    <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button>
                                 </div>
                                 {{/ifEqual}}
                                 <!--borrower-->

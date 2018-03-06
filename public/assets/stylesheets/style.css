@@ -185,15 +185,16 @@ button {
     position: relative;
     margin: .5em auto;
     width: 10em;
-    min-height: 2em;
     height: auto;
+    min-height: 2em;
     box-shadow: .2em .2em .4em rgba(0, 0, 0, .4);
+    padding: 1em;
 }
 .button {
     border:0;
     outline:none;
     border-radius:0;
-    padding:15px 0;
+    padding:15px;
     font-size:2rem;
     text-transform:uppercase;
     letter-spacing:.1em;
@@ -225,7 +226,7 @@ button {
 }
 .container {
     border-radius: .3em;
-    background-color: rgba(238, 238, 238, .8);
+    background-color: rgb(255, 255, 255);
     padding: 1em;
     height: auto;
     margin: .8em auto;
@@ -235,6 +236,9 @@ button {
     top: 1em;
     margin-left: auto;
     margin-right: auto;
+}
+.main-item-cont {
+     background-color: rgba(238, 238, 238, .8);
 }
 .wipe-background {
     background: none;
