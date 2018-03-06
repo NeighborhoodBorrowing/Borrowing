@@ -101,6 +101,8 @@ a:hover:hover {
 }
 .div-clickable {
     font-size: 1.2em;
+    text-shadow: .05em .05em rgba(170, 166, 166, 0.5);
+    padding: .5em
 }
 .item-name {
     font-size: 1.3em;
@@ -146,6 +148,12 @@ a:hover:hover {
 .right {
     text-align: right;
 }
+.small {
+    font-size: 12px;
+}
+.large {
+    font-size: 20px;
+}
 /*
 ========================================
 GRID
@@ -171,6 +179,7 @@ button {
     margin: .5em auto;
     width: 10em;
     height: 2em;
+    box-shadow: .2em .2em .4em rgba(0, 0, 0, .4);
 }
 .button {
     border:0;
