@@ -24,23 +24,23 @@ items member has borrowed in the past
         <h3 class="centered">Welcome back {{userAndInfo.user.firstName}}!<br></h3>
         <hr>
         <!--user email-->
-        <p>
-            <span class="secondary-color">Your Email:</span> 
+        <p class="borrow-decl">
+            <span class="secondary-color ">Your Email:</span> 
             {{userAndInfo.user.email}}
         </p>
         <!--user rating-->
-        <p>
-            <span class="secondary-color">Your User Rating:</span>  
+        <p class="borrow-decl">
+            <span class="secondary-color ">Your User Rating:</span>  
             {{userAndInfo.user.rating}}
         </p>
         <!--user zip code-->
-        <p>
-            <span class="secondary-color">Your Zipcode:</span> 
+        <p class="borrow-decl">
+            <span class="secondary-color ">Your Zipcode:</span> 
             {{userAndInfo.user.zipCode}}
         </p>
         <!--user join date-->
-        <p>
-            <span class="secondary-color">JoinDate:</span> 
+        <p class="borrow-decl">
+            <span class="secondary-color ">JoinDate:</span> 
             {{userAndInfo.user.joinDate}}
         </p>
 
@@ -50,10 +50,19 @@ items member has borrowed in the past
     <!--user clickable options for items-->
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container" id="myProfile" style="background:white;">
         <h3 class="centered">My Items</h3>
+        <hr>
         <a class="div-clickable centered" id="pend-app" href="#">Pending Approval</a>
-        <a class="div-clickable centered" id="on-lend" href="#">On Lend</a>
+        <br>
+        <div id="close-pend-btn"></div>
+        <a class="div-clickable centered" id="on-lend-btn" href="#">On Lend</a>
+        <br>
+        <div id="close-lend-btn"></div>
         <a class="div-clickable centered" id="returned" href="#">Returned</a>
+        <br>
+        <div id="close-ret-btn"></div>
         <a class="div-clickable centered" id="all-it" href="#">All Items</a>
+        <br>
+        <div id="close-all-btn"></div>
     </div>
     <!--spacer-->
     <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
@@ -61,112 +70,133 @@ items member has borrowed in the past
 
 <!--pending approval div-->
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container " id="pend-app-div">
-        <h4 class="centered">Your Items Pending Approval</h4>
-        <!--for user with items-->
-        {{#each userAndInfo.items}}
-            <!--if borrowed status is pending approval-->
-            {{#ifEqual borrowedStatus -1}}
-                <div class="row">
-                    <!--spacer-->
-                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-                    <!--main item container-->
-                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
-                        <!--item name-->
-                        <div class="row">
-                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                                <p class="item-name">{{name}}</p>
-                                <!--subrow-->
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                        <!--item description-->
-                                        <p class="item-descr centered">About This Item: 
-                                           <br> 
-                                           <span class="reset-color">{{description}}</span>
-                                        </p>
-                                        <!--replacement value-->
-                                        <p class="item-descr centered">Replacement Value: 
-                                           <br>
-                                           <span class="reset-color">${{value}} USD</span>
-                                        </p>
-                                        <!--category-->
-                                        <p class="item-descr centered">Category: 
-                                           <br>
-                                           <span class="reset-color">{{categoryname}}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--if item has photo, display-->
-                            {{#if picture}}
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                                    <img class="item-photo" src='{{picture}}'>
-                                </div>
-                            {{/if}}
-                        </div>
-                        <!--borrowed information-->
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-
-                                {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="pend-app-div">
+        <div class="row">
+            <!--close pending approval div-->
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a class="pend-app-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">Your Items Pending Approval</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
+        <div class="row">
+            <!--for user with items-->
+            {{#each userAndInfo.items}}
+                <!--if borrowed status is pending approval-->
+                {{#ifEqual borrowedStatus -1}}
+                        <!--main item container-->
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
+                            <!--item name-->
+                            <div class="row">
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                                    <p class="item-name">{{name}}</p>
                                     <hr>
-                                    <!--status-->
-                                    <p class="item-descr">Status: 
-                                        <span class="reset-color">{{ borrowedStatusText}}</span>
-                                    </p>
-
-                                    <hr>
-                                   <!-- Pending Approval is -1 -->
-
-                                    {{#ifEqual borrowedStatus -1}}
+                                    <!--subrow-->
                                     <div class="row">
-                                       <!-- These class names are used in the javascript, please do not change them-->
-                                          <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                                          <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                            <!--item description-->
+                                            <p class="item-descr centered">About This Item: 
+                                               <br> 
+                                               <span class="reset-color">{{description}}</span>
+                                            </p>
+                                            <!--replacement value-->
+                                            <p class="item-descr centered">Replacement Value: 
+                                               <br>
+                                               <span class="reset-color">${{value}} USD</span>
+                                            </p>
+                                            <!--category-->
+                                            <p class="item-descr centered">Category: 
+                                               <br>
+                                               <span class="reset-color">{{categoryname}}</span>
+                                            </p>
+                                        </div>
                                     </div>
-                                    {{/ifEqual}}
-                                    <!--borrower-->
-                                    <p class="left item-descr">Borrower: 
-                                       <span class="reset-color">{{ borrowerFirstName}}</span>
-                                    </p>
-                                    <!--borrowed on-->
-                                    <p class="left item-descr">Borrowed On: 
-                                       <span class="reset-color">{{ borrowedDate}}</span>
-                                    </p>
-                                    <!--due date-->
-                                    <p class="left item-descr">Due By: 
-                                       <span class="reset-color">{{ dueDate}}</span>
-                                    </p>
-                               {{/if}}
+                                </div>
+                                <!--spacer-->
+                                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                                <!--if item has photo, display-->
+                                {{#if picture}}
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                                        <img class="item-photo come-in" src='{{picture}}'>
+                                        <!--remove item-->
+                                        <div class="row">
+                                            <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
+                                        </div>
+                                    </div>
+                                {{/if}}
                             </div>
-                        </div>
-                        
-                    </div><!--end main item div-->
-                    <!--spacer-->
-                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-                </div>
-            {{/ifEqual}}
-        {{/each}}
-                
+                            <!--borrowed information-->
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+                                    {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
+                                        <hr>
+                                        <!--status-->
+                                        <p class="item-descr">Status: 
+                                            <span class="reset-color">{{ borrowedStatusText}}</span>
+                                        </p>
+
+                                        <hr>
+                                       <!-- Pending Approval is -1 -->
+
+                                        {{#ifEqual borrowedStatus -1}}
+                                        <div class="row">
+                                           <!-- These class names are used in the javascript, please do not change them-->
+
+                                            <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button>
+                                            <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button>
+                                        </div>
+                                        {{/ifEqual}}
+                                        <!--borrower-->
+                                        <p class=" item-descr borrow-decl">
+                                            <span class="underline">Borrower:</span> 
+                                            <span class="reset-color">{{ borrowerFirstName}}</span>
+                                        </p>
+                                        <!--borrowed on-->
+                                        <p class=" item-descr borrow-decl">
+                                            <span class="underline">Borrowed On:</span> 
+                                            <span class="reset-color">{{ borrowedDate}}</span>
+                                        </p>
+                                        <!--due date-->
+                                        <p class=" item-descr borrow-decl">
+                                            <span class="underline">Due By:</span> 
+                                            <span class="reset-color">{{ dueDate}}</span>
+                                        </p>
+                                   {{/if}}
+                                </div>
+                            </div>
+                        </div><!--end main item div-->
+                {{/ifEqual}}
+            {{/each}}
+         </div>
     </div>
 </div><!--end pending approval div-->
 
 <!--item on lend div-->
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container " id="on-lend-div">
-        <h4 class="centered">Your Items Currently on Lend</h4>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="on-lend-div">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="on-lend-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">Your Items Currently on Lend</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
         <!--if item currently on loan-->
-        {{#each userAndInfo.items}}
-            {{#ifEqual borrowedStatus 1}}
-                <div class="row">
-                    <!--spacer-->
-                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+        <div class="row">
+            {{#each userAndInfo.items}}
+                {{#ifEqual borrowedStatus 1}}
                     <!--main item div-->
-                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
                         <!--item name-->
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <p class="item-name">{{name}}</p>
+                                <hr>
                                 <!--subrow-->
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -188,10 +218,16 @@ items member has borrowed in the past
                                     </div>
                                 </div>
                             </div>
+                            <!--spacer-->
+                            <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
                             <!--if item has photo, display-->
                             {{#if picture}}
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--remove item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ''>Remove Item</button>
+                                    </div>
                                 </div>
                             {{/if}}
                         </div>
@@ -207,57 +243,64 @@ items member has borrowed in the past
                                     </p>
 
                                     <hr>
-                                   <!-- Pending Approval is -1 -->
 
-                                    {{#ifEqual borrowedStatus -1}}
-                                    <div class="row">
-                                       <!-- These class names are used in the javascript, please do not change them-->
-                                          <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                                          <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
-                                    </div>
-                                    {{/ifEqual}}
                                     <!--borrower-->
-                                    <p class="left item-descr">Borrower: 
-                                       <span class="reset-color">{{ borrowerFirstName}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrower:</span> 
+                                        <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on date-->
-                                    <p class="left item-descr">Borrowed On: 
-                                       <span class="reset-color">{{ borrowedDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrowed On:</span> 
+                                        <span class="reset-color">{{ borrowedDate}}</span>
                                     </p>
                                     <!--due date-->
-                                    <p class="left item-descr">Due By: 
-                                       <span class="reset-color">{{ dueDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Due By:</span> 
+                                        <span class="reset-color">{{ dueDate}}</span>
                                     </p>
+
+                                <div class="row">
+                                   <!-- These class names are used in the javascript, please do not change them-->
+                                        <!--recall item-->
+                                        <button class="recallItem" id = ''><a href="#">Recall Item</a></button>
+                                        <!--mark item returned-->
+                                        <button class="markReturned" id = ''>Mark Item Returned</button>
+                                </div>
                                {{/if}}
                             </div>
                         </div>
-                        
                     </div><!--end main item div-->
-                    <!--spacer-->
-                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-                </div>
-            {{/ifEqual}}
-        {{/each}}
+                {{/ifEqual}}
+            {{/each}}
+        </div>
     </div>
 </div><!--end items on loan div-->
 
 <!--item returned div-->
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container " id="returned-div">
-        <h4 class="centered">Your Returned Items</h4>
-        <!--for each user with items-->
-        {{#each userAndInfo.items}}
-            <!--if item has been returned-->
-            {{#ifEqual borrowedStatus 3}}
-                <div class="row">
-                    <!--spacer-->
-                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="returned-div">
+        <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="returned-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">Your Returned Items</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
+        <div class="row">
+            <!--for each user with items-->
+            {{#each userAndInfo.items}}
+                <!--if item has been returned-->
+                {{#ifEqual borrowedStatus 3}}
                     <!--main item div-->
-                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
+                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
                         <!--item name-->
                         <div class="row">
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <p class="item-name">{{name}}</p>
+                                <hr>
                                 <!--subrow-->
                                 <div class="row">
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -279,10 +322,16 @@ items member has borrowed in the past
                                     </div>
                                 </div>
                             </div>
+                            <!--spacer-->
+                            <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
                             <!--if item has picture, display-->
                             {{#if picture}}
-                                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--remove item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
+                                    </div>
                                 </div>
                             {{/if}}
                         </div>
@@ -299,45 +348,52 @@ items member has borrowed in the past
 
                                     <hr>
                                     <!--borrower-->
-                                    <p class="left item-descr">Borrower: 
-                                       <span class="reset-color">{{ borrowerFirstName}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrower:</span> 
+                                        <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on date-->
-                                    <p class="left item-descr">Borrowed On: 
-                                       <span class="reset-color">{{ borrowedDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Borrowed On:</span> 
+                                        <span class="reset-color">{{ borrowedDate}}</span>
                                     </p>
                                     <!--returned date-->
-                                    <p class="left item-descr">Returned On: 
-                                       <span class="reset-color">{{ returnDate}}</span>
+                                    <p class=" item-descr borrow-decl">
+                                        <span class="underline">Returned On:</span> 
+                                        <span class="reset-color">{{ returnDate}}</span>
                                     </p>
                                {{/if}}
                             </div>
                         </div>
                     </div><!--end main item div-->
-                    <!--spacer-->
-                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-                </div>
-                   
-            {{/ifEqual}}
-        {{/each}}
+                {{/ifEqual}}
+            {{/each}}
+        </div>
     </div>
 </div><!--end returned items div-->
 
 <!--all items div-->
 <div class="row">
-     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container " id="all-it-div">
-        <h4 class="centered">All Your Listed Items</h4>
-        <!--for each user with items-->
-        {{#each userAndInfo.items}}
-            <div class="row">
-                <!--spacer-->
-                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont " id="all-it-div">
+         <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="all-it-close" href="">X</a></button> 
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">All Your Listed Items</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
+        <div class="row">
+            <!--for each user with items-->
+            {{#each userAndInfo.items}}
                 <!--main item div-->
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
                     <!--item name-->
                     <div class="row">
                         <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                             <p class="item-name">{{name}}</p>
+                            <hr>
                             <!--subrow-->
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
@@ -359,53 +415,60 @@ items member has borrowed in the past
                                 </div>
                             </div>
                         </div>
+                        <!--spacer-->
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
                         <!--if item has photo, display-->
                         {{#if picture}}
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <img class="item-photo" src='{{picture}}'>
+                                <!--remove item-->
+                                <div class="row">
+                                    <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
+                                </div>
                             </div>
                         {{/if}}
                     </div>
                     <!--borrowed information-->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                            
+
                             {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
                                 <hr>
                                 <!--status-->
                                 <p class="item-descr">Status: 
                                     <span class="reset-color">{{ borrowedStatusText}}</span>
                                 </p>
-                            
+
                                 <hr>
                                <!-- Pending Approval is -1 -->
 
                                 {{#ifEqual borrowedStatus -1}}
                                 <div class="row">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                      <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'>Approve Request</button>
-                                      <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' >Deny Request</button>
+                                    <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button>
+                                    <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button>
                                 </div>
                                 {{/ifEqual}}
                                 <!--borrower-->
-                                <p class="left item-descr">Borrower: 
-                                   <span class="reset-color">{{ borrowerFirstName}}</span>
+                                <p class=" item-descr borrow-decl">
+                                    <span class="underline">Borrower:</span> 
+                                    <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
                                 <!--borrowed on date-->
-                                <p class="left item-descr">Borrowed On: 
-                                   <span class="reset-color">{{ borrowedDate}}</span>
+                                <p class=" item-descr borrow-decl">
+                                    <span class="underline">Borrowed On:</span> 
+                                    <span class="reset-color">{{ borrowedDate}}</span>
                                 </p>
                                 <!--due date-->
-                                <p class="left item-descr">Due By: 
-                                   <span class="reset-color">{{ dueDate}}</span>
+                                <p class=" item-descr borrow-decl">
+                                    <span class="underline">Due By:</span> 
+                                    <span class="reset-color">{{ dueDate}}</span>
                                 </p>
                            {{/if}}
                         </div>
                     </div>
                 </div><!--end main item div-->
-                <!--spacer-->
-                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-            </div>
-        {{/each}}
+            {{/each}}
+        </div>
     </div>
 </div><!--end all items div-->

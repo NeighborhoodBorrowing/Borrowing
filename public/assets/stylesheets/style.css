@@ -15,6 +15,7 @@ body {
     background-color: #4d4d4d;
     background-image: url("../images/neighborhood.jpg");
     background-repeat: no-repeat;
+    background-attachment: fixed;
  	background-size: 100%;
 	min-width: 100%;
 	position: relative;
@@ -86,11 +87,6 @@ a {
     padding: .2em;
     text-decoration: underline;
 }
-li:hover,
-a:hover:hover {
-    background:#ff9e04;
-    color:#eee;
-}
 .navbar-logo{
     font-family:Arial;
     font-size:3em;
@@ -101,6 +97,8 @@ a:hover:hover {
 }
 .div-clickable {
     font-size: 1.2em;
+    text-shadow: .05em .05em rgba(170, 166, 166, 0.5);
+    padding: .5em
 }
 .item-name {
     font-size: 1.3em;
@@ -110,6 +108,9 @@ a:hover:hover {
     font-size: 1em;
     color: #00B7FF;
     text-align: center;
+}
+.borrow-decl {
+    font-size: 1.2em;
 }
 .reset-color {
    color: rgb(77, 77, 77); 
@@ -129,6 +130,9 @@ a:hover:hover {
 .green {
     color: #16a085;
 }
+.red {
+  color: #b72121;
+}
 .error-mess {
     text-align: center;
     color: #c13232;
@@ -143,6 +147,16 @@ a:hover:hover {
 .right {
     text-align: right;
 }
+.small {
+    font-size: 14px;
+}
+.large {
+    font-size: 20px;
+}
+.underline {
+    text-decoration: underline;
+    border-bottom-width: thin;
+}
 /*
 ========================================
 GRID
@@ -153,6 +167,7 @@ GRID
 	width: 100%;
 	position:  relative;
     margin: 0 0 2em 0;
+    top: -1em;
 }
 .header-subrow {
     position: relative;
@@ -161,34 +176,6 @@ GRID
 .panel {
     background: rgba(255, 255, 255, .5);
     padding: .5em;
-}
-button {
-    position: relative;
-    margin: .5em auto;
-    width: 10em;
-    height: 2em;
-}
-.button {
-    border:0;
-    outline:none;
-    border-radius:0;
-    padding:15px 0;
-    font-size:2rem;
-    text-transform:uppercase;
-    letter-spacing:.1em;
-    background:#a3a3a3;
-    color:#eee;
-    transition:all.5s ease;
-    -webkit-appearance: none;
-}
-.button:hover, 
-.button:focus {
-    background:#ff9e04;
-    color:#eee;;
-}
-.button-block {
-  display:block;
-  width:100%;
 }
 .modal-close {
     height: 2.2em;
@@ -204,7 +191,7 @@ button {
 }
 .container {
     border-radius: .3em;
-    background-color: rgba(238, 238, 238, .8);
+    background-color: rgb(255, 255, 255);
     padding: 1em;
     height: auto;
     margin: .8em auto;
@@ -212,8 +199,17 @@ button {
 .main-container {
     position: relative;
     top: 1em;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto 5em auto;
+    padding: 1.5em;
+}
+.main-item-cont {
+     background-color: rgba(238, 238, 238, .8);
+}
+.item-cont {
+    display: inline-block;
+    position: relative;
+    width: 90%;
+    margin: .5em auto 2em auto;
 }
 .wipe-background {
     background: none;
@@ -248,9 +244,9 @@ IMAGES
 .item-photo {
     position: relative;
     z-index: 0;
-    top: .4em;
+    top: .6em;
     display: block;
-    width: 40%;
+    width: 60%;
     padding-bottom: 1em;
     margin: .1em auto;
     border-radius: 7px;
@@ -259,7 +255,61 @@ IMAGES
 ========================================
 FORMS
 ========================================
-
+*/
+button {
+    position: relative;
+    margin: .5em auto;
+    width: 10em;
+    height: auto;
+    min-height: 2em;
+    box-shadow: .2em .2em .4em rgba(0, 0, 0, .4);
+    padding: 1em;
+}
+.button {
+    border:0;
+    outline:none;
+    border-radius:0;
+    padding:15px;
+    font-size:2rem;
+    text-transform:uppercase;
+    letter-spacing:.1em;
+    background:#a3a3a3;
+    color:#eee;
+    transition:all.5s ease;
+    -webkit-appearance: none;
+}
+button a {
+    text-decoration: none;
+}
+.button-block {
+  display:block;
+  width:100%;
+}
+.close{
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    overflow: hidden;
+};
+.close:before, 
+.close:after {
+    content: '';
+    position: absolute;
+    height: 2px;
+    width: 100%;
+    top: 50%;
+    left: 0;
+    margin-top: -1px;
+    background: #000;
+};
+.close:before {
+    @include transform(rotate(45deg));
+  };
+.close:after {
+    @include transform(rotate(-45deg));
+};
+/*
 ========================================
 LOGIN/SIGNUP
 ========================================
@@ -272,19 +322,6 @@ LOGIN/SIGNUP
     margin: 2em auto;
     vertical-align: middle;
     background-color: rgb(227, 223, 223);
-}
-.tab-group {
-    list-style:none;
-    padding:0;
-    margin:0 0 40px 0;
-}
-.tab-group:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-.tab-content > div:first-child {
-    display:none;
 }
 .field-wrap {
     position:relative;
@@ -307,33 +344,6 @@ LOGIN/SIGNUP
 .active a {
     background:#a3a3a3;
     color:#eee;
-}
-label {
-    position:absolute;
-    transform:translateY(6px);
-    left:1em;
-    color: #00B7FF;
-    text-shadow: .05em .05em rgb(77, 77, 77, .3)
-        transition:all 0.25s ease;
-        -webkit-backface-visibility: hidden;
-    pointer-events: none;
-    font-size:22px;
-    padding: .3em .2em;
-}
-label.req {
-    margin:2px;
-    color:#a3a3a3;
-}
-label.active {
-    transform:translateY(50px);
-    left:2px;
-    font-size:14px;
-}
-label.req {
-    opacity:0;
-}
-label.highlight {
-	color:#eee;
 }
 input, 
 textarea {
@@ -390,7 +400,6 @@ VIDEO HANDLING
     overflow: hidden;
     z-index: -100;
 }
-
 .fullscreen-bg__video {
     position: absolute;
     top: 0;
@@ -398,7 +407,11 @@ VIDEO HANDLING
     width: 100%;
     height: 100%;
 }
-/* rotating text */
+/*
+========================================
+ROTATING TEXT
+========================================
+*/
 .text {
     position: fixed;
     width: 100%;
@@ -411,7 +424,6 @@ VIDEO HANDLING
     font-weight: 600;
     font-size: 40px;
 }
-
 .word {
     position: absolute;
     width: 220px;
@@ -434,7 +446,6 @@ VIDEO HANDLING
       transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
       transition: transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19), -webkit-transform 0.32s cubic-bezier(0.55, 0.055, 0.675, 0.19);
 }
-
 .letter.behind {
       -webkit-transform: rotateX(-90deg);
             transform: rotateX(-90deg);
@@ -446,6 +457,63 @@ VIDEO HANDLING
       transition: -webkit-transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       transition: transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275), -webkit-transform 0.38s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+/*
+========================================
+ANIMATIONS & TRANSITIONS
+========================================
+*/
+.vertTranslate {
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+    transition: 2s;
+    position: relative;
+    top: 10% !important;
+    transform: scale(1.2);
+}
+.vertTranslateBtn {
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+    transition: 2s;
+    position: relative;
+    top: 10% !important;
+}
+.grow {
+  -webkit-transition: 1s;
+  -moz-transition: 1s;
+  -ms-transition: 1s;
+  -o-transition: 1s;
+    transition: 1s;
+    transform: scale(1.4);
+}
+.item-photo,
+button {
+    transition: all .2s ease-in-out; 
+}
+li:hover,
+a:hover,
+a:focus {
+    background:#ff9e04;
+    color:#eee;
+}
+.item-photo:hover,
+.image-photo:focus {
+    transform: scale(1.1);
+}
+a.div-clickable:hover,
+a.div-clickable:focus {
+    background: none;
+    color: #ff9e04;
+}
+button:hover, 
+button:focus {
+    transform: scale(1.04);
+    background:#ff9e04;
+    color:#eee;;
 }
 /*
 ========================================
@@ -466,22 +534,34 @@ MEDIA QUERIES
 }
 @media screen and (max-width: 991px) {
     .item-photo {
-        width: 30%
+        width: 60%;
     }
 }   
 @media screen and (max-width: 768px) {
     .item-photo {
-        width: 40%
+        width: 35%;
     }
     .text {
         left: 10%;
         overflow:normal;
         width: 40%;
     }
+    .item-cont {
+        width: 90%;
+    }
+    .vertTranslate {
+      -webkit-transition: 2s;
+      -moz-transition: 2s;
+      -ms-transition: 2s;
+      -o-transition: 2s;
+        transition: 2s;
+        margin-top: 2% !important;
+        transform: scale(1.4);
+    }
 }  
 @media screen and (max-width: 480px) {
     .item-photo {
-        width: 50%
+        width: 50%;
     }
     .approveBorrowRequest,
     .denyBorrowRequest {
@@ -498,8 +578,11 @@ MEDIA QUERIES
 }
 
 
-.red {
-  color: #b72121;
+.field-icon {
+    position: absolute;
+    right: 1.5em;
+    bottom: .8em;
 }
+
 
 
