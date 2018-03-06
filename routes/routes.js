@@ -89,7 +89,6 @@ module.exports = function(app, passport) {
         var userId = req.session.passport.user;
         var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId )"
                           +" values (?,?,?,?,?,?);";
-        console.log(req.body.name, req.body.desc, req.body.photoLink, req.body.value,req.body.category, userId);
         db.sequelize
             .query(queryString
                     , { replacements: [req.body.name, req.body.desc, req.body.photoLink
@@ -116,13 +115,11 @@ module.exports = function(app, passport) {
         var keyword = req.query.keyword;
         var category = req.query.category;
 
-        console.log(zipcode, keyword , category);
         var queryString = "SELECT MI.id as MIid, MI.name, MI.description, MI.picture, "
-                          + " MI.value, MI.categoryId, c.categoryname "
-                          + " FROM memberitems as MI JOIN categories as C ON C.id = MI.categoryID "
+                          + " MI.value, MI.categoryId, c.categoryname, M.firstName as ownername "
+                          +" FROM memberitems as MI JOIN categories as C ON C.id = MI.categoryID "
                           +" JOIN members as M ON M.id = MI.ownerId "
-                          +"LEFT OUTER JOIN borroweditems as BI ON BI.itemId = MI.id "
-                          + "WHERE BI.borrowedStatus NOT IN (1,2) ";
+                          +" WHERE MI.id NOT IN (SELECT BI.itemId FROM borroweditems as BI WHERE BI.borrowedStatus IN (1,2)) ";
         var replacements = [];
         if(isNotNullOrEmpty(zipcode)){
           queryString += " AND M.zipCode=? ";
@@ -133,7 +130,6 @@ module.exports = function(app, passport) {
           queryString += " AND MI.categoryId=? ";
           replacements.push(category);
         }
-
 
         if(isNotNullOrEmpty(keyword)){
           queryString += " AND MI.name LIKE ? ";
@@ -146,8 +142,7 @@ module.exports = function(app, passport) {
         db.sequelize
             .query(queryString, { replacements:replacements, type: db.sequelize.QueryTypes.SELECT})
             .then(function(results){
-              // req.session.categories
-              res.render("search", {categories:{categoryName:"name", parentId:1, id:2}, results:results});
+              res.json(results);
             });
       }//close else logged in
   });

@@ -15,6 +15,7 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <select id="category">
                     <option disabled selected value> -- select a category -- </option>
+                    <option value=""> ALL </option>
                       {{#each categories}}
                             {{#ifEqual this.parentId 0}}
                               <optgroup label="{{this.categoryName}}">
@@ -44,74 +45,10 @@
     <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
 </div>
 
-{{results}}
-    <!--search response div-->
+<!--search response div-->
 <div class="row" id="searchResults">
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="search-resp-div">
-         <h4 class="centered">Search Results</h4>
-          {{#each results}}<!--for each search result-->
-            <div class="row">
-                <!--spacer-->
-                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-                <!--main item container-->
-                <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont">
-                    <!--item name-->
-                    <div class="row">
-                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
-                            <p class="item-name">{{name}}</p>
-                            <!--subrow-->
-                            <div class="row">
-                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                    <!--about item-->
-                                    <p class="item-descr centered">About This Item:
-                                       <br>
-                                       <span class="reset-color">{{description}}</span>
-                                    </p>
-                                    <!--replacement value-->
-                                    <p class="item-descr centered">Replacement Value:
-                                       <br>
-                                       <span class="reset-color">${{value}} USD</span>
-                                    </p>
-                                    <!--category-->
-                                    <p class="item-descr centered">Category:
-                                       <br>
-                                       <span class="reset-color">{{categoryname}}</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                        <!--item photo-->
-                        {{#if picture}}
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 ">
-                                <img class="item-photo" src='{{picture}}'>
-                            </div>
-                        {{/if}}
-                    </div><!--end main item row-->
 
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
 
-                                <hr>
-
-                               <!-- These class names are used in the javascript, please do not change them-->
-                            <!--request to borrow button-->
-                                <button class="borrowRequest" id = '{{id}}'>Request to Borrow</button>
-
-                            <!--lender-->
-                                <p class="left item-descr">Lender:
-                                   <span class="reset-color">{{ lenderFirstName}}</span>
-                                </p>
-                            <!--due date-->
-                                <p class="left item-descr">Due By:
-                                   <span class="reset-color">{{ dueDate}}</span>
-                                </p>
-                        </div>
-                    </div>
-
-                </div>
-                <!--spacer-->
-                <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
-            </div>
-        {{/each}}
     </div>
 </div>
