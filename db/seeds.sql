@@ -61,7 +61,7 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 , 31.05, 801, (Select id from Members where email="jw@c.com"));
 
 INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,2);
+VALUES (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,2);
 
 INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,3);
+VALUES (0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,3);
