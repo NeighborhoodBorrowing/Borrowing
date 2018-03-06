@@ -129,6 +129,9 @@ a:hover:hover {
 .green {
     color: #16a085;
 }
+.red {
+  color: #b72121;
+}
 .error-mess {
     text-align: center;
     color: #c13232;
@@ -153,6 +156,7 @@ GRID
 	width: 100%;
 	position:  relative;
     margin: 0 0 2em 0;
+    top: -1em;
 }
 .header-subrow {
     position: relative;
@@ -495,11 +499,6 @@ MEDIA QUERIES
 }
 @media screen and (max-width: 320px) {
    
-}
-
-
-.red {
-  color: #b72121;
 }
 
 
