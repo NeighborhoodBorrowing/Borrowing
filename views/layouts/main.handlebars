@@ -20,53 +20,41 @@
     </head>
     <!--body-->
     <body>
-        <div class="main-container">
-                        
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light header-bar" role="navigation" >
-                                <a href="/" style="text-decoration:none;"><h1 class="navbar-logo">Borrowed</h1></a>
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarExpandContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse " id="navbarExpandContent">
-                                    <div class="navbar-nav mr-auto">
-                                        
-                                        
-                                       
-                                        
-                                    
-                                    <a class="nav-link" href="/signup">
-                                            <li class="nav-item active">
-                                                Sign Up
-                                            </li>
-                                        </a>
-                                     <a class="nav-link" href="/login">
-                                            <li class="nav-item active">
-                                                Login
-                                            </li>
-                                        </a>
-                                    <a class="nav-link" href="/postit">
-                                            <li class="nav-item active">
-                                                Post an Item
-                                            </li>
-                                        </a>
-                                    <a class="nav-link" href="/search">
-                                            <li class="nav-item active">
-                                                Search
-                                            </li>
-                                        </a>
-                                    <a class="nav-link" href="/memberp">
-                                            <li class="nav-item active">
-                                                My Account
-                                            </li>
-                                    </a>
-                                    </div>
-                                </div>
+                    
+                <nav class="navbar navbar-expand-lg navbar-light bg-light header-bar">
 
-                    </nav>
+                    <div class="mx-auto order-1">
+                        <a href="/" style="text-decoration:none;"><h1 class="navbar-logo mx-auto" >Borrowed</h1></a>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dual-collapse2" toggle="nav-options">
+                                    <span class="navbar-toggler-icon "></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-collapse collapse w-100 order-3 " id="dual-collapse2">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/signup">Sign Up</a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="/search">Search</a>
+                            </li>
+                            <li class="nav-item ">
+                                 <a class="nav-link" href="/postit">Post Item</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="memberp">My Account</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
                     
-                    
-                    
-                    
+                <div class="main-container">
                    
 
                 {{{ body }}}
