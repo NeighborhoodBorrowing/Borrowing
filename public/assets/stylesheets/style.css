@@ -492,8 +492,8 @@ a.div-clickable:focus {
     background: none;
     color: #ff9e04;
 }
-.button:hover, 
-.button:focus {
+button:hover, 
+button:focus {
     transform: scale(1.04);
     background:#ff9e04;
     color:#eee;;
