@@ -48,9 +48,9 @@ h3 {
 }
 h4 {
     font-size: 1.8em;
-} 
+}
 h5 {
-    
+
 }
 h7 {
   display: inline-block;
@@ -99,10 +99,10 @@ a {
     font-size: 1.2em;
 }
 .reset-color {
-   color: rgb(77, 77, 77); 
+   color: rgb(77, 77, 77);
 }
 .secondary-color {
-   color: #00B7FF; 
+   color: #00B7FF;
 }
 .purple {
     color: #6b2589;
@@ -152,9 +152,10 @@ NAV BAR
     font-family:Arial;
     font-size:3em;
     font-weight:bold;
+    color: #;
     text-decoration:none;
-    color:#fff;
-    text-shadow: .05em .05em rgba(170, 166, 166, 0.9);
+    color: #b72121;
+    /* text-shadow: .05em .05em rgba(170, 166, 166, 0.9); */
     padding: .2em;
     margin: .2em auto;
     position: relative;
@@ -171,7 +172,7 @@ li a {
     display: inline-block;
     margin: .2em auto;
     text-align: center;
-} 
+}
 .navbar-toggler {
     display: inline-block;
     position: relative;
@@ -184,14 +185,17 @@ nav {
     margin-right: 0;
 }
 .navbar {
-  min-height: 60px;
+    min-height: 60px;
     padding:0 1em 0 1em;
     margin: 0;
+    /* background: #6A6F62; */
+
 }
 .navbar-brand {
   padding: 0 15px;
   height: 80px;
   line-height: 80px;
+
 }
 .navbar-toggle {
   /* (80px - button height 34px) / 2 = 23px */
@@ -345,7 +349,7 @@ button a {
     height: 50px;
     overflow: hidden;
 }
-.close:before, 
+.close:before,
 .close:after {
     content: '';
     position: absolute;
@@ -375,7 +379,7 @@ button a {
     position:relative;
     margin-bottom:40px;
 }
-input, 
+input,
 textarea {
     font-size:22px;
     display:block;
@@ -453,8 +457,8 @@ ROTATING TEXT
     color: #fff;
     height: auto;
     top: 50%;
-    left: 25%;
-    text-shadow: .05em .05em rgba(170, 166, 166, 0.9);
+    left: 40%;
+    /* text-shadow: .05em .05em rgba(170, 166, 166, 0.9); */
     font-family: 'Open Sans', 'Helvetica', 'Arial' sans-serif;
     font-weight: 600;
     font-size: 40px;
@@ -547,7 +551,7 @@ ANIMATIONS & TRANSITIONS
 }
 .item-photo,
 button {
-    transition: all .2s ease-in-out; 
+    transition: all .2s ease-in-out;
 }
 li:hover,
 a:hover,
@@ -564,7 +568,7 @@ a.div-clickable:focus {
     background: none;
     color: #ff9e04;
 }
-button:hover, 
+button:hover,
 button:focus {
     transform: scale(1.04);
     background:#ff9e04;
@@ -573,6 +577,133 @@ button:focus {
 #logo-a:hover {
     background: none;
 }
+
+/*
+========================================
+Animated Log In
+========================================  */
+@import url("https://fonts.googleapis.com/css?family=Roboto:100");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container_login {
+  width: 390px;
+  height: 549px;
+  background: #000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 11px;
+  -webkit-box-shadow: 0px 0px 114px 2px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 114px 2px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 114px 2px rgba(0, 0, 0, 0.75);
+}
+.container_login svg {
+  position: absolute;
+}
+
+.rect1 {
+  z-index: 1;
+  stroke-dasharray: 197 509;
+  stroke-dashoffset: -729;
+  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.rect2 {
+  z-index: 1;
+  stroke-dasharray: 197 509;
+  stroke-dashoffset: -1058;
+  transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.text_login {
+  position: absolute;
+  margin-top: 254px;
+  border: none;
+  background: #000;
+  margin-left: 101px;
+  color: gray;
+  width: 196px;
+  height: 44px;
+  padding-left: 3px;
+  z-index: 100;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 21px;
+  transition: all 600ms cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+.text_login:focus {
+  outline-width: 0;
+  font-size: 16px;
+}
+
+.pass {
+  position: absolute;
+  margin-top: 305px;
+  border: none;
+  background: #000;
+  margin-left: 101px;
+  color: gray;
+  width: 196px;
+  height: 44px;
+  padding-left: 3px;
+  z-index: 100;
+  font-family: 'Roboto', sans-serif;
+  padding-top: 21px;
+  transition: all 600ms cubic-bezier(0.895, 0.03, 0.685, 0.22);
+}
+.pass:focus {
+  outline-width: 0;
+  font-size: 16px;
+}
+
+#button_login {
+  position: absolute;
+  z-index: 100;
+  width: 149px;
+  height: 43px;
+  border: 1px solid #fff;
+  background: #000;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 22px;
+  margin-top: 421px;
+  margin-left: 120.5px;
+  transition: 0.5s;
+  cursor: pointer;
+}
+button_login:hover {
+  color: #000;
+  background: #fff;
+}
+button_login:focus {
+  outline-width: 0;
+}
+
+.header_login {
+  position: absolute;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #fff;
+  font-size: 48px;
+  margin-left: 128px;
+  margin-top: 81px;
+}
+
+.info_login {
+  position: absolute;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  color: #BDFFBD;
+  font-size: 14px;
+  margin-left: 125px;
+  margin-top: 181px;
+}
+
 /*
 ========================================
 MEDIA QUERIES
@@ -594,12 +725,12 @@ MEDIA QUERIES
     .item-photo {
         width: 60%;
     }
-}   
+}
 @media screen and (max-width: 768px) {
     .item-photo {
         width: 35%;
     }
-    .text {
+    .text, .text_signup {
         left: 10%;
         overflow:normal;
         width: 60%;
@@ -616,7 +747,7 @@ MEDIA QUERIES
         margin-top: 2% !important;
         transform: scale(1.4);
     }
-}  
+}
 @media screen and (max-width: 480px) {
     .item-photo {
         width: 50%;
@@ -625,22 +756,12 @@ MEDIA QUERIES
     .denyBorrowRequest {
         width: 90%;
     }
-    .text {
+    .text, .text_signup {
         left: 10%;
         overflow:normal;
         width: 20%;
     }
 }
 @media screen and (max-width: 320px) {
-   
+
 }
-
-
-
-
-
-
-
-
-
-
