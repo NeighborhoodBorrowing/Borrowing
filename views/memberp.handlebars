@@ -51,21 +51,31 @@ items member has borrowed in the past
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container" id="myProfile" style="background:white;">
         <h3 class="centered">My Items</h3>
         <hr>
+        <!--pending approval-->
         <a class="div-clickable centered" id="pend-app" href="#">
             Pending Approval
-            <span class="badge label label-default">{{pendItCount}}</span>
+            <!--notification badge-->
+            <span class="badge label label-default">{{pendItCount}}</span><!--notification badge-->
         </a>
         <br>
         <div id="close-pend-btn"></div>
+        <!--approved-->
+        <a class="div-clickable centered" id="approved" href="#">Approved</a>
+        <br>
+        <div id="close-appr-btn"></div>
+        <!--items on lend-->
         <a class="div-clickable centered" id="on-lend-btn" href="#">
             On Lend
-            <span class="badge label label-default" >{{lendItCount}}</span>
+            <!--notification badge-->
+            <span class="badge label label-default" >{{lendItCount}}</span><!--notification badge-->
         </a>
         <br>
         <div id="close-lend-btn"></div>
+        <!--returned-->
         <a class="div-clickable centered" id="returned" href="#">Returned</a>
         <br>
         <div id="close-ret-btn"></div>
+        <!--all items-->
         <a class="div-clickable centered" id="all-it" href="#">All Items</a>
         <br>
         <div id="close-all-btn"></div>
@@ -147,7 +157,14 @@ items member has borrowed in the past
                                         <p class="item-descr">Status:
                                             <span class="reset-color">{{ borrowedStatusText}}</span>
                                         </p>
-
+                                    
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                           <!-- These class names are used in the javascript, please do not change them-->
+                                                <a class="borrowCompl centered" id = '' href="#">Mark Borrowed</a>
+                                                <a class="cancelReq centered" id = '' href="#">Cancel Request</a>
+                                            </div>
+                                        </div>
                                         <hr>
                                        <!-- Pending Approval is -1 -->
 
@@ -161,17 +178,17 @@ items member has borrowed in the past
                                         {{/ifEqual}}
                                         <!--borrower-->
                                         <p class=" item-descr borrow-decl">
-                                            <span class="underline">Borrower:</span>
+                                            <span>Borrower:</span>
                                             <span class="reset-color">{{ borrowerFirstName}}</span>
                                         </p>
                                         <!--borrowed on-->
                                         <p class=" item-descr borrow-decl">
-                                            <span class="underline">Borrowed On:</span>
+                                            <span>Borrowed On:</span>
                                             <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                         </p>
                                         <!--due date-->
                                         <p class=" item-descr borrow-decl">
-                                            <span class="underline">Due By:</span>
+                                            <span>Due By:</span>
                                             <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                         </p>
                                    {{/if}}
@@ -183,6 +200,118 @@ items member has borrowed in the past
          </div>
     </div>
 </div><!--end pending approval div-->
+
+<!--approved items div-->
+<div class="row">
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont " id="approved-div">
+         <div class="row">
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
+                <button class="close"><a id="all-it-close" href="">X</a></button>
+            </div>
+            <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
+                <h4 class="centered">All Your Listed Items</h4>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
+        </div>
+        <div class="row">
+            <!--for each user with items-->
+            {{#each userAndInfo.items}}
+                <!--main item div-->
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
+                    <!--item name-->
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                            <p class="item-name">{{name}}</p>
+                            <hr>
+                            <!--subrow-->
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <!--item description-->
+                                    <p class="item-descr centered">About This Item:
+                                       <br>
+                                       <span class="reset-color">{{description}}</span>
+                                    </p>
+                                    <!--item replacement value-->
+                                    <p class="item-descr centered">Replacement Value:
+                                       <br>
+                                       <span class="reset-color">${{value}} USD</span>
+                                    </p>
+                                    <!--item category-->
+                                    <p class="item-descr centered">Category:
+                                       <br>
+                                       <span class="reset-color">{{categoryname}}</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <!--spacer-->
+                        <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                        <!--if item has photo, display-->
+                        {{#if picture}}
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                                <img class="item-photo" src='{{picture}}'>
+                                <!--update item-->
+                                <div class="row">
+                                    <button class="removeItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
+                                </div>
+                                <!--remove item-->
+                                <div class="row">
+                                    <button class="removeItem" id = '{{id}}'><a href="/disableBorrowing?id={{id}}">Remove Item</a></button>
+                                </div>
+                            </div>
+                        {{/if}}
+                    </div>
+                    <!--borrowed information-->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+                            {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
+                                <hr>
+                                <!--status-->
+                                <p class="item-descr">Status:
+                                    <span class="reset-color">{{ borrowedStatusText}}</span>
+                                </p>
+
+                                <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                   <!-- These class names are used in the javascript, please do not change them-->
+                                        <a class="borrowCompl centered" id = '' href="#">Mark Borrowed</a>
+                                        <a class="cancelReq centered" id = '' href="#">Cancel Request</a>
+                                    </div>
+                                </div>
+                                <hr>
+                               <!-- Pending Approval is -1 -->
+
+                                {{#ifEqual borrowedStatus -1}}
+                                <div class="row">
+                                   <!-- These class names are used in the javascript, please do not change them-->
+                                    <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button>
+                                    <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button>
+                                </div>
+                                {{/ifEqual}}
+                                <!--borrower-->
+                                <p class=" item-descr borrow-decl">
+                                    <span>Borrower:</span>
+                                    <span class="reset-color">{{ borrowerFirstName}}</span>
+                                </p>
+                                <!--borrowed on date-->
+                                <p class=" item-descr borrow-decl">
+                                    <span>Borrowed On:</span>
+                                    <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
+                                </p>
+                                <!--due date-->
+                                <p class=" item-descr borrow-decl">
+                                    <span>Due By:</span>
+                                    <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
+                                </p>
+                           {{/if}}
+                        </div>
+                    </div>
+                </div><!--end main item div-->
+            {{/each}}
+        </div>
+    </div>
+</div><!--end all items div-->
 
 <!--item on lend div-->
 <div class="row">
@@ -255,22 +384,28 @@ items member has borrowed in the past
                                     <p class="item-descr">Status:
                                         <span class="reset-color">{{ borrowedStatusText}}</span>
                                     </p>
-
+                                
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                       <!-- These class names are used in the javascript, please do not change them-->
+                                            <a class="borrowCompl centered" id = '' href="#">Mark Returned</a>
+                                        </div>
+                                    </div>
                                     <hr>
 
                                     <!--borrower-->
                                     <p class=" item-descr borrow-decl">
-                                        <span class="underline">Borrower:</span>
+                                        <span>Borrower:</span>
                                         <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on date-->
                                     <p class=" item-descr borrow-decl">
-                                        <span class="underline">Borrowed On:</span>
+                                        <span>Borrowed On:</span>
                                         <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                     <!--due date-->
                                     <p class=" item-descr borrow-decl">
-                                        <span class="underline">Due By:</span>
+                                        <span>Due By:</span>
                                         <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
 
@@ -363,21 +498,21 @@ items member has borrowed in the past
                                     <p class="item-descr">Status:
                                         <span class="reset-color">{{ borrowedStatusText}}</span>
                                     </p>
-
+                                
                                     <hr>
                                     <!--borrower-->
                                     <p class=" item-descr borrow-decl">
-                                        <span class="underline">Borrower:</span>
+                                        <span>Borrower:</span>
                                         <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on date-->
                                     <p class=" item-descr borrow-decl">
-                                        <span class="underline">Borrowed On:</span>
+                                        <span>Borrowed On:</span>
                                         <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                     <!--returned date-->
                                     <p class=" item-descr borrow-decl">
-                                        <span class="underline">Returned On:</span>
+                                        <span>Returned On:</span>
                                         <span class="reset-color">{{dateFormat returnDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                {{/if}}
@@ -462,9 +597,11 @@ items member has borrowed in the past
                                 </p>
 
                                 <div class="row">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                    <button class="borrowCompl" id = ''><a href="#">Mark Borrowed</a></button>
-                                    <button class="cancelReq" id = '' ><a href="#">Cancel Request</a></button>
+                                        <a class="borrowCompl centered" id = '' href="#">Mark Borrowed</a>
+                                        <a class="cancelReq centered" id = '' href="#">Cancel Request</a>
+                                    </div>
                                 </div>
                                 <hr>
                                <!-- Pending Approval is -1 -->
@@ -478,17 +615,17 @@ items member has borrowed in the past
                                 {{/ifEqual}}
                                 <!--borrower-->
                                 <p class=" item-descr borrow-decl">
-                                    <span class="underline">Borrower:</span>
+                                    <span>Borrower:</span>
                                     <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
                                 <!--borrowed on date-->
                                 <p class=" item-descr borrow-decl">
-                                    <span class="underline">Borrowed On:</span>
+                                    <span>Borrowed On:</span>
                                     <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
                                 <!--due date-->
                                 <p class=" item-descr borrow-decl">
-                                    <span class="underline">Due By:</span>
+                                    <span>Due By:</span>
                                     <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
                            {{/if}}
