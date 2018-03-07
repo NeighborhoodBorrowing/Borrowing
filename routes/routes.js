@@ -141,7 +141,8 @@ module.exports = function(app, passport) {
                           + " MI.value, MI.categoryId, c.categoryname, M.firstName as ownername "
                           +" FROM memberitems as MI JOIN categories as C ON C.id = MI.categoryID "
                           +" JOIN members as M ON M.id = MI.ownerId "
-                          +" WHERE MI.canBorrow = true AND MI.id NOT IN (SELECT BI.itemId FROM borroweditems as BI WHERE BI.borrowedStatus IN (1,2)) ";
+                          +" WHERE MI.canBorrow = true AND MI.id NOT IN "
+                          +" (SELECT BI.itemId FROM borroweditems as BI WHERE BI.borrowedStatus IN (1,2)) ";
         var replacements = [];
         if(isNotNullOrEmpty(zipcode)){
           queryString += " AND M.zipCode=? ";
@@ -233,6 +234,25 @@ module.exports = function(app, passport) {
             var catString = JSON.stringify(req.session.categories);
             res.render("search", {categories:req.session.categories, catString:catString});
           }
+    } else { // not logged in
+        res.render("login", {message: "Please Log In"});
+    }
+  });
+
+  app.get("/disableBorrowing:id", function(req, res) {
+    var message = req.query.message==null ? "" : req.query.message;
+    if(req.session.passport != null){//not logged in
+      var userId = req.session.passport.user;
+      db.sequelize
+          .query(
+                  "Update memberItems SET canBorrow = false where id = ? and ownerId = ?;"
+                  , { replacements: [req.query.id, userId], type: db.sequelize.QueryTypes.UPDATE}
+                )
+          .then(function(results){
+            console.log(results);
+            res.render("memberp", {categories:req.session.categories, message:message, catString:catString});
+
+          });
     } else { // not logged in
         res.render("login", {message: "Please Log In"});
     }
