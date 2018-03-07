@@ -45,6 +45,7 @@ Handlebars.registerHelper('ifNotEqual',function(v1, v2, options) {
                   }
                   return options.inverse(this);
                 });
+Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // parse application/json
 app.use(bodyParser.json());

@@ -60,14 +60,9 @@ h7 {
 p {
     color: #4d4d4d;
 }
-
 a.light-link {
     background: rgba(255, 255, 255, .5);
     padding: .5em;
-}
-
-::placeholder {
-    color: #a3a3a3;
 }
 li a {
     display:block;
@@ -202,6 +197,14 @@ nav {
   /* (80px - button height 34px) / 2 = 23px */
   margin-top: 23px;
   padding: 9px 10px !important;
+}
+span.badge {
+    background-color:#be0000;
+    color: #eee;
+    padding: .3em .3em ;
+    margin-right: .3em;
+    position: relative;
+    bottom: .1em;
 }
 /*
 ========================================
@@ -400,6 +403,17 @@ textarea {
 .group {
     margin: .5em auto;
 }
+input.edit-it  {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.form-text {
+    position: relative;
+    top: 1em;
+    left: 1em;
+    padding: .2em;
+    margin: .2e,;
+}
 /*
 ========================================
 VIDEO HANDLING
@@ -492,6 +506,16 @@ ANIMATIONS & TRANSITIONS
     transition: 2s;
     position: relative;
     top: 10% !important;
+    transform: scale(1.2);
+}
+.vertTranslateFromBot {
+  -webkit-transition: 2s;
+  -moz-transition: 2s;
+  -ms-transition: 2s;
+  -o-transition: 2s;
+    transition: 2s;
+    position: relative;
+    bottom: 10% !important;
     transform: scale(1.2);
 }
 .vertTranslateBig {
@@ -618,11 +642,5 @@ MEDIA QUERIES
 
 
 
-span.badge {
-    background-color:#be0000;
-    color: #eee;
-    padding: .3em .3em ;
-    margin-right: .3em;
-    position: relative;
-    bottom: .1em;
-}
+
+
