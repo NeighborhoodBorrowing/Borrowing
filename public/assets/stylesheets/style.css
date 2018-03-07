@@ -613,3 +613,16 @@ MEDIA QUERIES
 
 
 
+
+
+
+
+
+span.badge {
+    background-color:#be0000;
+    color: #eee;
+    padding: .3em .3em ;
+    margin-right: .3em;
+    position: relative;
+    bottom: .1em;
+}
