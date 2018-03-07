@@ -223,6 +223,10 @@ module.exports = function(app, passport) {
         res.render("login", {message: "Please Log In"});
     }
   });
+    
+  app.get("/updateIt", function(req, res) {
+    res.render("updateIt", {layout: "main"});
+  });
 
   app.get('/logout', function(req, res){
     req.session.destroy(function(err) {

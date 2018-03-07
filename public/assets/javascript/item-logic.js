@@ -66,10 +66,10 @@ $("#returned").on("click", function() {
     onLendBtn.hide();
     pendAppBtn.hide();
     allItBtn.hide();
-    if (returnedBtn.hasClass('vertTranslate')) {
-        returnedBtn.removeClass('vertTranslate');
+    if (returnedBtn.hasClass('vertTranslateFromBot')) {
+        returnedBtn.removeClass('vertTranslateFromBot');
     } else {
-        returnedBtn.addClass('vertTranslate');
+        returnedBtn.addClass('vertTranslateFromBot');
     }
     returnedDiv.show();
 });
@@ -81,10 +81,10 @@ $("#all-it").on("click", function() {
     onLendBtn.hide();
     returnedBtn.hide();
     pendAppBtn.hide();
-    if (allItBtn.hasClass('vertTranslate')) {
-        allItBtn.removeClass('vertTranslate');
+    if (allItBtn.hasClass('vertTranslateFromBot')) {
+        allItBtn.removeClass('vertTranslateFromBot');
     } else {
-        allItBtn.addClass('vertTranslate');
+        allItBtn.addClass('vertTranslateFromBot');
     }
     allItDiv.show();
 });
