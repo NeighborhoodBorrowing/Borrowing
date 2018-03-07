@@ -243,6 +243,9 @@ GRID
 .wipe-background {
     background: none;
 }
+.transp-background {
+    background-color: rgba(255, 255, 255, .7);
+}
 .div-clickable {
     text-decoration: none;
     display: block;
@@ -421,6 +424,14 @@ input.edit-it  {
     left: 1em;
     padding: .2em;
     margin: .2e,;
+}
+.allow-req {
+    position: relative;
+    left: 1em;
+}
+label.allow-req {
+    bottom: 1.8em;
+    left: 1.5em;
 }
 /*
 ========================================

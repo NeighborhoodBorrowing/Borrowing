@@ -21,26 +21,29 @@ items member has borrowed in the past
     <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
     <!--user welcome div-->
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container" id="myProfile">
-        <h3 id="user-name" class="centered">Welcome back {{userAndInfo.user.firstName}}!<br></h3>
+        <h3 id="user-name" class="centered">Welcome back 
+            <span class="secondary-color" style="font-size:1.2em;">{{userAndInfo.user.firstName}}!</span>
+            <br>
+        </h3>
         <hr>
         <!--user email-->
         <p class="borrow-decl">
-            <span class="secondary-color ">Your Email:</span>
+            <span class="secondary-color" style="font-size:1.2em;">Your Email:</span>
             {{userAndInfo.user.email}}
         </p>
         <!--user rating-->
         <p class="borrow-decl">
-            <span class="secondary-color ">Your User Rating:</span>
+            <span class="secondary-color" style="font-size:1.2em;">Your User Rating:</span>
             {{userAndInfo.user.rating}}
         </p>
         <!--user zip code-->
         <p class="borrow-decl">
-            <span class="secondary-color ">Your Zipcode:</span>
+            <span class="secondary-color" style="font-size:1.2em;">Your Zipcode:</span>
             {{userAndInfo.user.zipCode}}
         </p>
         <!--user join date-->
         <p class="borrow-decl">
-            <span class="secondary-color" id="join-date" >JoinDate:</span>
+            <span class="secondary-color" style="font-size:1.2em;" id="join-date" >JoinDate:</span>
             {{dateFormat now "dddd, MMMM Do YYYY"}}
         </p>
 

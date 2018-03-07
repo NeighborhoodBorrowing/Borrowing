@@ -21,6 +21,8 @@ var onLendDiv = $("#on-lend-div");
 var returnedDiv = $("#returned-div");
 //all items div
 var allItDiv = $("#all-it-div");
+//search response div
+var searchRespDiv = $("#search-resp-div");
 
 
 
@@ -31,6 +33,11 @@ apprItDiv.hide();
 onLendDiv.hide();
 returnedDiv.hide();
 allItDiv.hide();
+searchRespDiv.hide();
+
+$("#searchSubmitBtn").on("click", function () {
+    searchRespDiv.show();
+});
 
 
 //----------logic to show/hide member item view divs on click------------
