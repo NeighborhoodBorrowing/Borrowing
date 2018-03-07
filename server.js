@@ -45,13 +45,14 @@ Handlebars.registerHelper('ifNotEqual',function(v1, v2, options) {
                   }
                   return options.inverse(this);
                 });
+Handlebars.registerHelper('dateFormat', require('handlebars-dateformat'));
 
 // parse application/json
 app.use(bodyParser.json());
 
 // Static directory
 app.use(express.static("public"));
-app.use(session({ secret: "cats" }));
+app.use(session({ secret: "nalksfdhJKQ1oiy30491sfouts"}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(passport.initialize());
 app.use(passport.session());

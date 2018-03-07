@@ -63,6 +63,20 @@ function loginFunction(username, password){
 
 }
 
+function showSubForSearch(categories){
+  $("#subCategory").empty();
+  var subCatsOptions = "<option value=''>ALL</option>";
+  var parentId = $("#mainCategory").val();
+  var cats = JSON.parse(categories);
+  for(i=0; i<cats.length; i++){
+    if(cats[i].parentId === parseInt(parentId)){
+      subCatsOptions += "<option value='"+cats[i].id+"'>"+cats[i].categoryName+"</option>";
+    }
+  }
+
+  $("#subCategory").append(subCatsOptions);
+}
+
 /******* LOGIN Submission Logic  *************/
 $("#loginSubmitBtn").click(function(event){
   event.preventDefault();
@@ -143,19 +157,22 @@ function getHeaderForSearchResults(additionalMessage){
                     + "<hr>"
                     +additionalMessage
                     +"</div><div class='col-lg-1 col-md-1 col-sm-0 col-xs-0 '></div>";
-                   
+
 
 }
+
 /** search on submit **/
 $("#searchSubmitBtn").click(function(event){
   event.preventDefault();
   var keyword = $("#keyword").val()== null ? "" : $("#keyword").val();
   var zipcode = $("#zipcode").val()== null ? "" : $("#zipcode").val();
-  var category= $("#category").val()== null ? "" : $("#category").val();
+  var mainCategory= $("#mainCategory").val()== null ? "" : $("#mainCategory").val();
+  var subCategory= $("#subCategory").val()== null ? "" : $("#subCategory").val();
     var data = {
-      keyword: keyword == null ? "" : keyword,
-      zipcode: zipcode == null ? "" : zipcode,
-      category: category == null ? "" : category
+      keyword: keyword,
+      zipcode: zipcode,
+      mainCategory: mainCategory,
+      subCategory:subCategory
     }
     $.get("/api/search", data)
       .done(function(results){
@@ -240,13 +257,13 @@ function changeWord() {
   for (var i = 0; i < cw.length; i++) {
     animateLetterOut(cw, i);
   }
-  
+
   for (var i = 0; i < nw.length; i++) {
     nw[i].className = 'letter behind';
     nw[0].parentElement.style.opacity = 1;
     animateLetterIn(nw, i);
   }
-  
+
   currentWord = (currentWord == wordArray.length-1) ? 0 : currentWord+1;
 }
 
@@ -273,7 +290,7 @@ function splitLetters(word) {
     word.appendChild(letter);
     letters.push(letter);
   }
-  
+
   wordArray.push(letters);
 }
 

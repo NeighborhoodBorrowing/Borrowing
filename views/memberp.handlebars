@@ -40,8 +40,8 @@ items member has borrowed in the past
         </p>
         <!--user join date-->
         <p class="borrow-decl">
-            <span class="secondary-color ">JoinDate:</span> 
-            {{userAndInfo.user.joinDate}}
+            <span class="secondary-color" id="join-date" >JoinDate:</span> 
+            {{dateFormat now "dddd, MMMM Do YYYY"}}
         </p>
 
     </div><!--end user welcome div-->
@@ -51,10 +51,16 @@ items member has borrowed in the past
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container" id="myProfile" style="background:white;">
         <h3 class="centered">My Items</h3>
         <hr>
-        <a class="div-clickable centered" id="pend-app" href="#">Pending Approval</a>
+        <a class="div-clickable centered" id="pend-app" href="#">
+            Pending Approval
+            <span class="badge label label-default">{{pendItCount}}</span>
+        </a>
         <br>
         <div id="close-pend-btn"></div>
-        <a class="div-clickable centered" id="on-lend-btn" href="#">On Lend</a>
+        <a class="div-clickable centered" id="on-lend-btn" href="#">
+            On Lend
+            <span class="badge label label-default" >{{lendItCount}}</span>
+        </a>
         <br>
         <div id="close-lend-btn"></div>
         <a class="div-clickable centered" id="returned" href="#">Returned</a>
@@ -120,6 +126,10 @@ items member has borrowed in the past
                                 {{#if picture}}
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                         <img class="item-photo come-in" src='{{picture}}'>
+                                        <!--update item-->
+                                        <div class="row">
+                                            <button class="removeItem" id = ' '><a href="/updateIt">Update Item</a></button>
+                                        </div>
                                         <!--remove item-->
                                         <div class="row">
                                             <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
@@ -157,12 +167,12 @@ items member has borrowed in the past
                                         <!--borrowed on-->
                                         <p class=" item-descr borrow-decl">
                                             <span class="underline">Borrowed On:</span> 
-                                            <span class="reset-color">{{ borrowedDate}}</span>
+                                            <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                         </p>
                                         <!--due date-->
                                         <p class=" item-descr borrow-decl">
                                             <span class="underline">Due By:</span> 
-                                            <span class="reset-color">{{ dueDate}}</span>
+                                            <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                         </p>
                                    {{/if}}
                                 </div>
@@ -224,6 +234,10 @@ items member has borrowed in the past
                             {{#if picture}}
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--update item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ' '><a href="/updateIt">Update Item</a></button>
+                                    </div>
                                     <!--remove item-->
                                     <div class="row">
                                         <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
@@ -252,12 +266,12 @@ items member has borrowed in the past
                                     <!--borrowed on date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Borrowed On:</span> 
-                                        <span class="reset-color">{{ borrowedDate}}</span>
+                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                     <!--due date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Due By:</span> 
-                                        <span class="reset-color">{{ dueDate}}</span>
+                                        <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
 
                                 <div class="row">
@@ -328,6 +342,10 @@ items member has borrowed in the past
                             {{#if picture}}
                                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                     <img class="item-photo" src='{{picture}}'>
+                                    <!--update item-->
+                                    <div class="row">
+                                        <button class="removeItem" id = ' '><a href="/updateIt">Update Item</a></button>
+                                    </div>
                                     <!--remove item-->
                                     <div class="row">
                                         <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
@@ -355,12 +373,12 @@ items member has borrowed in the past
                                     <!--borrowed on date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Borrowed On:</span> 
-                                        <span class="reset-color">{{ borrowedDate}}</span>
+                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                     <!--returned date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Returned On:</span> 
-                                        <span class="reset-color">{{ returnDate}}</span>
+                                        <span class="reset-color">{{dateFormat returnDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                {{/if}}
                             </div>
@@ -421,9 +439,13 @@ items member has borrowed in the past
                         {{#if picture}}
                             <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <img class="item-photo" src='{{picture}}'>
+                                <!--update item-->
+                                <div class="row">
+                                    <button class="removeItem" id = ' '><a href="/updateIt">Update Item</a></button>
+                                </div>
                                 <!--remove item-->
                                 <div class="row">
-                                    <button class="removeItem" id = ''><a href="#">Remove Item</a></button>
+                                    <button class="removeItem" id = ' '><a href="#">Remove Item</a></button>
                                 </div>
                             </div>
                         {{/if}}
@@ -457,12 +479,12 @@ items member has borrowed in the past
                                 <!--borrowed on date-->
                                 <p class=" item-descr borrow-decl">
                                     <span class="underline">Borrowed On:</span> 
-                                    <span class="reset-color">{{ borrowedDate}}</span>
+                                    <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
                                 <!--due date-->
                                 <p class=" item-descr borrow-decl">
                                     <span class="underline">Due By:</span> 
-                                    <span class="reset-color">{{ dueDate}}</span>
+                                    <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
                            {{/if}}
                         </div>
