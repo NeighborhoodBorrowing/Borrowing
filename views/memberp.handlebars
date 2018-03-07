@@ -40,8 +40,8 @@ items member has borrowed in the past
         </p>
         <!--user join date-->
         <p class="borrow-decl">
-            <span class="secondary-color ">JoinDate:</span> 
-            {{userAndInfo.user.joinDate}}
+            <span class="secondary-color" id="join-date" >JoinDate:</span> 
+            {{dateFormat now "dddd, MMMM Do YYYY"}}
         </p>
 
     </div><!--end user welcome div-->
@@ -163,12 +163,12 @@ items member has borrowed in the past
                                         <!--borrowed on-->
                                         <p class=" item-descr borrow-decl">
                                             <span class="underline">Borrowed On:</span> 
-                                            <span class="reset-color">{{ borrowedDate}}</span>
+                                            <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                         </p>
                                         <!--due date-->
                                         <p class=" item-descr borrow-decl">
                                             <span class="underline">Due By:</span> 
-                                            <span class="reset-color">{{ dueDate}}</span>
+                                            <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                         </p>
                                    {{/if}}
                                 </div>
@@ -258,12 +258,12 @@ items member has borrowed in the past
                                     <!--borrowed on date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Borrowed On:</span> 
-                                        <span class="reset-color">{{ borrowedDate}}</span>
+                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                     <!--due date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Due By:</span> 
-                                        <span class="reset-color">{{ dueDate}}</span>
+                                        <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
 
                                 <div class="row">
@@ -361,12 +361,12 @@ items member has borrowed in the past
                                     <!--borrowed on date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Borrowed On:</span> 
-                                        <span class="reset-color">{{ borrowedDate}}</span>
+                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                     <!--returned date-->
                                     <p class=" item-descr borrow-decl">
                                         <span class="underline">Returned On:</span> 
-                                        <span class="reset-color">{{ returnDate}}</span>
+                                        <span class="reset-color">{{dateFormat returnDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
                                {{/if}}
                             </div>
@@ -463,12 +463,12 @@ items member has borrowed in the past
                                 <!--borrowed on date-->
                                 <p class=" item-descr borrow-decl">
                                     <span class="underline">Borrowed On:</span> 
-                                    <span class="reset-color">{{ borrowedDate}}</span>
+                                    <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
                                 <!--due date-->
                                 <p class=" item-descr borrow-decl">
                                     <span class="underline">Due By:</span> 
-                                    <span class="reset-color">{{ dueDate}}</span>
+                                    <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
                            {{/if}}
                         </div>

@@ -113,5 +113,6 @@ $(".navbar-toggler").on("click", function() {
 });
 
 
-
+var joinDate = $("#join-date");
+console.log(joinDate);
 
