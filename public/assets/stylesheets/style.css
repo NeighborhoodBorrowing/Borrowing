@@ -302,7 +302,8 @@ ICONS
 .field-icon {
     position: absolute;
     right: 1.5em;
-    bottom: .8em;
+    bottom: .5em;
+    width: 1em;
 }
 span.badge {
     background-color:#be0000;
