@@ -1,9 +1,9 @@
-
+<!DOCTYPE html>
+<html lang="en">
     <head>
         <!--meta-->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1">
-
+         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
         <!--title-->
@@ -12,7 +12,6 @@
         <!--stylesheets-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="assets/stylesheets/style.css">
-        <link rel="stylesheet" type="text/css" href="assets/stylesheets/style_index.css">
 
         <!--javascript-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -21,38 +20,40 @@
     </head>
     <!--body-->
     <body>
-        <div class="container">
-        <div class="header-bar">
-        <div class="navbar-logo">Borrowed</div>
+                    
+                <nav class="navbar navbar-expand-lg navbar-light bg-light header-bar">
 
-        <header>
-            <div class="header">
-                <nav class="navigation">
-                <div class="navbar-right">
-                    <a href="/memberp.handlebars">Sign Up</a>
-                    <a href="/memberp.handlebars">Log In</a>
-                    <a href="#">Contact</a>
-                </div>
+                    <div class="mx-auto order-1">
+                        <a id="logo-a" href="/" style="text-decoration:none;"><h1 class="navbar-logo mx-auto" >Borrowed</h1></a>
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#dual-collapse2" toggle="nav-options">
+                                    <span class="navbar-toggler-icon "></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="navbar-collapse collapse w-100 order-3 " id="dual-collapse2">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/signup">Sign Up</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                        </ul>
+                    </div>
                 </nav>
-            </div>
-        </header>
-        <div class="video-container">
-            <video autoplay muted loop id="myVideo">
-                <source src="https://d2fa3j67sd1nwo.cloudfront.net/video/homepage.7053d1c36d03.mp4" type="video/mp4">
-            </video>
-        </div>
-        <div class="text">
-        <h7>Borrowing stuff is</h7>
-        <h7>
-        <span class="word purple">easy.</span>
-        <span class="word belize">wonderful.</span>
-        <span class="word pomegranate">fun.</span>
-        <span class="word green">fast.</span>
-        <span class="word red">free.</span>
-        </h7>
+                    
+                <div class="main-container">
+                   
 
-        </div>
+                {{{ body }}}
 
+
+            <!--footer-->
+            <!-- add about us and other page nav links -->
+        </div>
     </body>
 
     <!--javascript-->
@@ -61,39 +62,7 @@
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
         crossorigin="anonymous">
     </script>
-    <script src="assets/javascript/login-signup.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="assets/javascript/commonScripts.js"></script>
-    <script src="assets/javascript/index.js"></script>
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-             <!--logo and slogan-->
-                    <div class="header-bar">
-                        <div class="row">
-                            <!--logo-->
-                            <div class="col-lg-5 col-md-10 col-sm-12 col-xs-12">
-                                <img class="logo inline" src="assets/images/logo-slogan.png" alt="Borrowed Logo">
-                            </div>
-                            <!--spacer-->
-                            <!--search button-->
-                            <button class="inline" id="searchBarBtn"><a href="/search">Search</a></button>
-                            <!--post item button-->
-                            <button class="inline" id="postItemBarBtn"><a href="/postit">Post an Item</a></button>
-
-                            <!-- my account button -->
-                            <button id="memberp-button" class="nav-button"><a href="/memberp">My Account</a></button>
-                        </div><!-- /header subrow -->
-                    </div><!-- /header box -->
-                </div><!-- /column -->
-            </div><!-- /row -->
-
-
-
+    <script src="assets/javascript/memberp-js.js"></script>
+</html>
