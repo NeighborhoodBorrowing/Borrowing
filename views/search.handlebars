@@ -19,16 +19,16 @@
         <!--category-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <select id="category">
+                <select id="mainCategory" onchange="showSubForSearch('{{catString}}')">
                     <option disabled selected value> -- select a category -- </option>
                       {{#each categories}}
                             {{#ifEqual this.parentId 0}}
-                              <optgroup label="{{this.categoryName}}">
-                            {{/ifEqual}}
-                            {{#ifNotEqual this.parentId 0}}
                               <option value="{{this.id}}">{{this.categoryName}}</option>
-                            {{/ifNotEqual}}
+                            {{/ifEqual}}
                       {{/each}}
+                </select>
+                <select id="subCategory">
+
                 </select>
             </div>
         </div>
@@ -48,7 +48,7 @@
 
     <!--spacer-->
     <div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 "></div>
-    
+
 </div>
 
 {{results}}

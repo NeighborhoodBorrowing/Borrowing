@@ -15,11 +15,13 @@ INSERT INTO categories (categoryName, id, parentId) values
 ("Dinnerware", 601, 600),
 ("Grill", 602, 600),
 ("Pots and Pans", 603, 600),
+("Other", 699, 600),
 
 
 ("Electronics",800, 0),
 ("DVD Players", 801, 800),
 ("TV", 802, 800),
+("Other", 899, 800),
 
 ("Entertainment", 900, 0),
 ("Board Games",901, 900),

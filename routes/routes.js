@@ -113,7 +113,8 @@ module.exports = function(app, passport) {
         var userId = req.session.passport.user;
         var zipcode = req.query.zipcode;
         var keyword = req.query.keyword;
-        var category = req.query.category;
+        var mainCategory = req.query.mainCategory;
+        var subCategory = req.query.subCategory;
 
         var queryString = "SELECT MI.id as MIid, MI.name, MI.description, MI.picture, "
                           + " MI.value, MI.categoryId, c.categoryname, M.firstName as ownername "
@@ -126,9 +127,14 @@ module.exports = function(app, passport) {
           replacements.push(zipcode);
         }
 
-        if(isNotNullOrEmpty(category)){
+        if(isNotNullOrEmpty(subCategory)){
           queryString += " AND MI.categoryId=? ";
-          replacements.push(category);
+          replacements.push(subCategory);
+        }
+
+        if(isNullOrEmpty(subCategory) && isNotNullOrEmpty(mainCategory)){
+          queryString += " AND MI.categoryId IN (SELECT id from categories WHERE parentId = ?) ";
+          replacements.push(mainCategory);
         }
 
         if(isNotNullOrEmpty(keyword)){
@@ -198,10 +204,12 @@ module.exports = function(app, passport) {
         if(req.session.categories == null){
             getCategoriesToDisplay(function(categories){
                 req.session.categories = categories;
-                res.render("search", {categories:req.session.categories});
+                var catString = JSON.stringify(req.session.categories);
+                res.render("search", {categories:req.session.categories, catString:catString});
             });
           } else {
-            res.render("search", {categories:req.session.categories});
+            var catString = JSON.stringify(req.session.categories);
+            res.render("search", {categories:req.session.categories, catString:catString});
           }
     } else { // not logged in
         res.render("login", {message: "Please Log In"});
@@ -214,10 +222,12 @@ module.exports = function(app, passport) {
         if(req.session.categories == null){
             getCategoriesToDisplay(function(categories){
                 req.session.categories = categories;
-                res.render("postit", {categories:req.session.categories, message:message});
+                var catString = JSON.stringify(req.session.categories);
+                res.render("postit", {categories:req.session.categories, message:message, catString:catString});
             });
           } else {
-            res.render("postit", {categories:req.session.categories, message:message});
+            var catString = JSON.stringify(req.session.categories);
+            res.render("postit", {categories:req.session.categories, message:message, catString:catString});
           }
     } else { // not logged in
         res.render("login", {message: "Please Log In"});
@@ -300,6 +310,10 @@ function isNotNullOrEmpty(val){
   else if(val === undefined){return false;}
   else if (val.trim() === "") { return false;}
   else {return true;}
+}
+
+function isNullOrEmpty(val){
+  return !isNotNullOrEmpty(val);
 }
 
 };
