@@ -190,7 +190,7 @@ module.exports = function(app, passport) {
   });
 
   app.get("/", function(req, res) {
-    res.render("index");
+    res.render("index", {layout: "init"});
   });
 
   app.get("/search", function(req, res) {
