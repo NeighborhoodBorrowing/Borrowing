@@ -48,9 +48,9 @@ h3 {
 }
 h4 {
     font-size: 1.8em;
-} 
+}
 h5 {
-    
+
 }
 h7 {
   display: inline-block;
@@ -104,10 +104,10 @@ a {
     font-size: 1.2em;
 }
 .reset-color {
-   color: rgb(77, 77, 77); 
+   color: rgb(77, 77, 77);
 }
 .secondary-color {
-   color: #00B7FF; 
+   color: #00B7FF;
 }
 .purple {
     color: #6b2589;
@@ -157,9 +157,10 @@ NAV BAR
     font-family:Arial;
     font-size:3em;
     font-weight:bold;
+    color: #;
     text-decoration:none;
-    color:#fff;
-    text-shadow: .05em .05em rgba(170, 166, 166, 0.9);
+    color: #b72121;
+    /* text-shadow: .05em .05em rgba(170, 166, 166, 0.9); */
     padding: .2em;
     margin: .2em auto;
     position: relative;
@@ -176,7 +177,7 @@ li a {
     display: inline-block;
     margin: .2em auto;
     text-align: center;
-} 
+}
 .navbar-toggler {
     display: inline-block;
     position: relative;
@@ -189,14 +190,17 @@ nav {
     margin-right: 0;
 }
 .navbar {
-  min-height: 60px;
+    min-height: 60px;
     padding:0 1em 0 1em;
     margin: 0;
+    /* background: #6A6F62; */
+
 }
 .navbar-brand {
   padding: 0 15px;
   height: 80px;
   line-height: 80px;
+
 }
 .navbar-toggle {
   /* (80px - button height 34px) / 2 = 23px */
@@ -342,7 +346,7 @@ button a {
     height: 50px;
     overflow: hidden;
 }
-.close:before, 
+.close:before,
 .close:after {
     content: '';
     position: absolute;
@@ -372,7 +376,7 @@ button a {
     position:relative;
     margin-bottom:40px;
 }
-input, 
+input,
 textarea {
     font-size:22px;
     display:block;
@@ -439,8 +443,8 @@ ROTATING TEXT
     color: #fff;
     height: auto;
     top: 50%;
-    left: 25%;
-    text-shadow: .05em .05em rgba(170, 166, 166, 0.9);
+    left: 40%;
+    /* text-shadow: .05em .05em rgba(170, 166, 166, 0.9); */
     font-family: 'Open Sans', 'Helvetica', 'Arial' sans-serif;
     font-weight: 600;
     font-size: 40px;
@@ -523,7 +527,7 @@ ANIMATIONS & TRANSITIONS
 }
 .item-photo,
 button {
-    transition: all .2s ease-in-out; 
+    transition: all .2s ease-in-out;
 }
 li:hover,
 a:hover,
@@ -540,7 +544,7 @@ a.div-clickable:focus {
     background: none;
     color: #ff9e04;
 }
-button:hover, 
+button:hover,
 button:focus {
     transform: scale(1.04);
     background:#ff9e04;
@@ -548,6 +552,98 @@ button:focus {
 }
 #logo-a:hover {
     background: none;
+}
+
+/*
+========================================
+Animated Log In
+========================================  */
+/* colors */
+$darkBlue: #217093;
+$medBlue: #4eb8dd;
+$lightBlue: #ddf1fa;
+$inputBG: #f3fafd;
+
+html {width: 100%; height: 100%;}
+body {
+	background-color: #eff3f4; position: relative; width: 100%; height: 100%;
+	font-size: 16px; font-family: 'Source Sans Pro', sans-serif; font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+}
+form {
+	position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+	display: block; width: 100%; max-width: 400px; background-color: #FFF;
+	margin: 0; padding: 2.25em; box-sizing: border-box; border: solid 1px #DDD; border-radius: .5em;
+	font-family: 'Source Sans Pro', sans-serif;
+	.svgContainer {
+		position: relative; width: 200px; height: 200px; margin: 0 auto 1em;
+		border-radius: 50%; background: none; border: solid 2.5px #3A5E77; overflow: hidden;
+		pointer-events: none;
+		div {
+			position: relative; width: 100%; height: 0; overflow: hidden;
+			padding-bottom: 100%;
+		}
+		.mySVG {
+			position: absolute; left: 0; top: 0; width: 100%; height: 100%;
+			pointer-events: none;
+		}
+	}
+	.inputGroup {
+		margin: 0 0 2em; padding: 0; position: relative;
+		&:last-of-type {
+			margin-bottom: 0;
+		}
+	}
+	label {
+		margin: 0 0 12px; display: block;
+		font-size: 1.25em; color: #217093; font-weight: 700; font-family: inherit;
+	}
+	input[type='email'], input[type="text"], input[type='password'] {
+		display: block; margin: 0; padding: 0 1em 0;
+		background-color: $inputBG; border: solid 2px $darkBlue; border-radius: 4px; -webkit-appearance: none;
+		box-sizing: border-box;
+		width: 100%; height: 65px;
+		font-size: 1.55em; color: #353538; font-weight: 600; font-family: inherit;
+		transition: box-shadow .2s linear, border-color .25s ease-out;
+		&:focus {
+			outline: none;
+			box-shadow: 0px 2px 10px rgba(0,0,0,.1);
+			border: solid 2px #4eb8dd;
+		}
+	}
+	input[type='email'], input[type="text"] {
+		padding: 14px 1em 0px;
+	}
+	button {
+		display: block; margin: 0; padding: .65em 1em 1em;
+		background-color: $medBlue; border: none; border-radius: 4px;
+		box-sizing: border-box; box-shadow: none;
+		width: 100%; height: 65px;
+		font-size: 1.55em; color: #FFF; font-weight: 600; font-family: inherit;
+		transition: background-color .2s ease-out;
+		&:hover, &:active {
+			background-color: $darkBlue;
+		}
+	}
+
+	.inputGroup1 {
+		.helper {
+			position: absolute; z-index: 1;
+			font-family: inherit;
+		}
+		.helper1 {
+			top: 0; left: 0;
+			transform: translate(1.4em, 2.6em) scale(1); transform-origin: 0 0;
+			color: $darkBlue; font-size: 1.25em; font-weight: 400; opacity: .65;
+			pointer-events: none;
+			transition: transform .2s ease-out, opacity .2s linear;
+		}
+
+		&.focusWithText .helper {
+		/*input[type='email']:focus + .helper {*/
+			transform: translate(1.4em, 2.0em) scale(.65); opacity: 1;
+		}
+	}
 }
 /*
 ========================================
@@ -570,7 +666,7 @@ MEDIA QUERIES
     .item-photo {
         width: 60%;
     }
-}   
+}
 @media screen and (max-width: 768px) {
     .item-photo {
         width: 35%;
@@ -592,7 +688,7 @@ MEDIA QUERIES
         margin-top: 2% !important;
         transform: scale(1.4);
     }
-}  
+}
 @media screen and (max-width: 480px) {
     .item-photo {
         width: 50%;
@@ -608,8 +704,5 @@ MEDIA QUERIES
     }
 }
 @media screen and (max-width: 320px) {
-   
+
 }
-
-
-
