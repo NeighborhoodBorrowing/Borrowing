@@ -126,6 +126,7 @@ $("#addItemSubmitBtn").click(function(event){
   var photoLink = $("#it-photo").val();
   var value = $("#it-value").val();
   var category= $("#it-cat").val();
+  var canBorrow = $("#canBorrow").is(":checked");
   var validInput = notNullOrEmpty(name) && notNullOrEmpty(value) && notNullOrEmpty(category) && !isNaN(value);
   if(validInput){
     var newItem = {
@@ -133,7 +134,8 @@ $("#addItemSubmitBtn").click(function(event){
       desc:desc,
       photoLink:photoLink,
       value:value,
-      category:category
+      category:category,
+      canBorrow:canBorrow
     }
     $.post("/api/postit", newItem)
       .done(function(){
@@ -233,6 +235,18 @@ $("#searchSubmitBtn").click(function(event){
       });
 });
 
+/** REQUEST TO BORROW AN ITEM**/
+$(document).on("click", ".borrowRequest", function(event){
+  console.log("clicked");
+  $.post("/api/borrowRequest", {itemId:this.id})
+    .done(function(){
+      window.location = "/search";
+    })
+    .fail(function(err){
+      alert("Unable to submit borrow request");
+      console.log(err);
+    });
+});
 
 function notNullOrEmpty(name){
   return name!=null && name.trim()!="";

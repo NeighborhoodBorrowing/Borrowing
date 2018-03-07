@@ -81,18 +81,39 @@ module.exports = function(app, passport) {
     })(req, res, next);
   });
 
+  app.post("/api/borrowRequest", function(req, res){
+    if(req.session.passport == null){
+      res.render("login", {message: "Please Log In"});
+    } else {
+        var userId = req.session.passport.user;
+        var queryString = "INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId) "
+                          +" VALUES (-1, null, null, null,?,?);";
+        db.sequelize
+            .query(queryString
+                    , { replacements: [req.body.itemId, userId]
+                        , type: db.sequelize.QueryTypes.INSERT
+                      }
+                  )
+            .then(function(results){
+                res.status(200).send("borrow item request complete");
+                res.end();
+            });
+      }//close else logged in
+  });
+
   //add an item to be borrowed
   app.post("/api/postit", function(req, res) {
     if(req.session.passport == null){
       res.render("login", {message: "Please Log In"});
     } else {
         var userId = req.session.passport.user;
-        var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId )"
-                          +" values (?,?,?,?,?,?);";
+        var canBorrow = (req.body.canBorrow==='true') ? 1 : 0;
+        var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId, canBorrow )"
+                          +" values (?,?,?,?,?,?,?);";
         db.sequelize
             .query(queryString
                     , { replacements: [req.body.name, req.body.desc, req.body.photoLink
-                                      , parseFloat(req.body.value), req.body.category, userId]
+                                      , parseFloat(req.body.value), req.body.category, userId, canBorrow]
                         , type: db.sequelize.QueryTypes.INSERT
                       }
                   )
@@ -120,7 +141,7 @@ module.exports = function(app, passport) {
                           + " MI.value, MI.categoryId, c.categoryname, M.firstName as ownername "
                           +" FROM memberitems as MI JOIN categories as C ON C.id = MI.categoryID "
                           +" JOIN members as M ON M.id = MI.ownerId "
-                          +" WHERE MI.id NOT IN (SELECT BI.itemId FROM borroweditems as BI WHERE BI.borrowedStatus IN (1,2)) ";
+                          +" WHERE MI.canBorrow = true AND MI.id NOT IN (SELECT BI.itemId FROM borroweditems as BI WHERE BI.borrowedStatus IN (1,2)) ";
         var replacements = [];
         if(isNotNullOrEmpty(zipcode)){
           queryString += " AND M.zipCode=? ";
@@ -142,7 +163,8 @@ module.exports = function(app, passport) {
           replacements.push("%"+keyword+"%");
         }
 
-        queryString+= ";";
+        queryString+= " AND MI.ownerId <> ? ;";
+        replacements.push(userId);
         console.log("QUERY" , queryString);
 
         db.sequelize
@@ -233,7 +255,7 @@ module.exports = function(app, passport) {
         res.render("login", {message: "Please Log In"});
     }
   });
-    
+
   app.get("/updateIt", function(req, res) {
     res.render("updateIt", {layout: "main"});
   });
@@ -267,7 +289,8 @@ module.exports = function(app, passport) {
                 " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
                 +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
                 +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
-                +" M.firstName as borrowerFirstName, M.id as borrowerId, BI.id as borrowedItemsId "
+                +" M.firstName as borrowerFirstName, M.id as borrowerId, "
+                +" BI.id as borrowedItemsId, MI.canBorrow "
                 +" from  memberItems as MI  "
                 +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
                 +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
@@ -285,6 +308,7 @@ module.exports = function(app, passport) {
                         value: results[i].value,
                         categoryId: results[i].categoryId,
                         categoryname: results[i].categoryname,
+                        canBorrow:results[i].canBorrow,
                         borrowedStatus: results[i].borrowedStatus,
                         borrowedStatusText : getBorrowedStatusText(results[i].borrowedStatus),
                         borrowedDate: setBlankIfNull(results[i].borrowedDate),
