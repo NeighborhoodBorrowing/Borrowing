@@ -60,10 +60,10 @@ $("#approved").on("click", function() {
     pendAppBtn.hide();
     allItBtn.hide();
     //conditional to add or remove vertical transition
-    if (approvedBtn.hasClass('vertTranslateFromBot')) {
-        approvedBtn.removeClass('vertTranslateFromBot');
+    if (approvedBtn.hasClass('vertTranslate')) {
+        approvedBtn.removeClass('vertTranslate');
     } else {
-        approvedBtn.addClass('vertTranslateFromBot');
+        approvedBtn.addClass('vertTranslate');
     }
     apprItDiv.show();
 });
@@ -120,7 +120,7 @@ $("#all-it").on("click", function() {
 $(".pend-app-close").on("click", function() {
     pendAppDiv.hide();
 });
-$("#approved-close").on("click", function() {
+$("#appr-it-close").on("click", function() {
     apprItDiv.hide();
 });
 $("#on-lend-close").on("click", function() {

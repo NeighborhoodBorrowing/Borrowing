@@ -90,7 +90,7 @@ items member has borrowed in the past
         <div class="row">
             <!--close pending approval div-->
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                <button class="close"><a class="pend-app-close" href="">X</a></button>
+                <button class="close"><a class="pend-app-close" href="">X</a></button><!--close button-->
             </div>
             <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                 <h4 class="centered">Your Items Pending Approval</h4>
@@ -159,10 +159,10 @@ items member has borrowed in the past
                                         </p>
                                     
                                         <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                            <!-- These class names are used in the javascript, please do not change them-->
-                                                <a class="borrowCompl centered" id = '' href="#">Mark Borrowed</a>
-                                                <a class="cancelReq centered" id = '' href="#">Cancel Request</a>
+                                                <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                                <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
                                             </div>
                                         </div>
                                         <hr>
@@ -206,16 +206,18 @@ items member has borrowed in the past
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont " id="approved-div">
          <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                <button class="close"><a id="all-it-close" href="">X</a></button>
+                <button class="close"><a id="appr-it-close" href="">X</a></button><!--close button-->
             </div>
             <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
-                <h4 class="centered">All Your Listed Items</h4>
+                <h4 class="centered">Your Approved Items</h4>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
         </div>
         <div class="row">
             <!--for each user with items-->
             {{#each userAndInfo.items}}
+            <!--if borrow status is 'approved'-->
+            {{#ifEqual borrowedStatus 1}}
                 <!--main item div-->
                 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
                     <!--item name-->
@@ -273,10 +275,10 @@ items member has borrowed in the past
                                 </p>
 
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                        <a class="borrowCompl centered" id = '' href="#">Mark Borrowed</a>
-                                        <a class="cancelReq centered" id = '' href="#">Cancel Request</a>
+                                        <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                        <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
                                     </div>
                                 </div>
                                 <hr>
@@ -308,27 +310,29 @@ items member has borrowed in the past
                         </div>
                     </div>
                 </div><!--end main item div-->
+            {{/ifEqual}}
             {{/each}}
         </div>
     </div>
-</div><!--end all items div-->
+</div><!--end approved items div-->
 
 <!--item on lend div-->
 <div class="row">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="on-lend-div">
         <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                <button class="close"><a id="on-lend-close" href="">X</a></button>
+                <button class="close"><a id="on-lend-close" href="">X</a></button><!--close button-->
             </div>
             <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                 <h4 class="centered">Your Items Currently on Lend</h4>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3"></div>
         </div>
-        <!--if item currently on loan-->
         <div class="row">
+            <!--for each user item-->
             {{#each userAndInfo.items}}
-                {{#ifEqual borrowedStatus 1}}
+                <!--if borrow status is 'on loan'-->
+                {{#ifEqual borrowedStatus 2}}
                     <!--main item div-->
                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container item-cont">
                         <!--item name-->
@@ -385,12 +389,6 @@ items member has borrowed in the past
                                         <span class="reset-color">{{ borrowedStatusText}}</span>
                                     </p>
                                 
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                       <!-- These class names are used in the javascript, please do not change them-->
-                                            <a class="borrowCompl centered" id = '' href="#">Mark Returned</a>
-                                        </div>
-                                    </div>
                                     <hr>
 
                                     <!--borrower-->
@@ -431,7 +429,7 @@ items member has borrowed in the past
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont" id="returned-div">
         <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                <button class="close"><a id="returned-close" href="">X</a></button>
+                <button class="close"><a id="returned-close" href="">X</a></button><!--close button-->
             </div>
             <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                 <h4 class="centered">Your Returned Items</h4>
@@ -530,7 +528,7 @@ items member has borrowed in the past
      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 main-item-cont " id="all-it-div">
          <div class="row">
             <div class="col-lg-1 col-md-1 col-sm-3 col-xs-3">
-                <button class="close"><a id="all-it-close" href="">X</a></button>
+                <button class="close"><a id="all-it-close" href="">X</a></button><!--close button-->
             </div>
             <div class="col-lg-10 col-md-10 col-sm-6 col-xs-6">
                 <h4 class="centered">All Your Listed Items</h4>
@@ -597,10 +595,10 @@ items member has borrowed in the past
                                 </p>
 
                                 <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                        <a class="borrowCompl centered" id = '' href="#">Mark Borrowed</a>
-                                        <a class="cancelReq centered" id = '' href="#">Cancel Request</a>
+                                        <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                        <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
                                     </div>
                                 </div>
                                 <hr>
@@ -609,8 +607,8 @@ items member has borrowed in the past
                                 {{#ifEqual borrowedStatus -1}}
                                 <div class="row">
                                    <!-- These class names are used in the javascript, please do not change them-->
-                                    <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button>
-                                    <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button>
+                                    <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button><!--approve request-->
+                                    <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button><!--deny request-->
                                 </div>
                                 {{/ifEqual}}
                                 <!--borrower-->
