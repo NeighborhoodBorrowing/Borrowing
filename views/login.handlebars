@@ -1,32 +1,18 @@
+<div class="row">
+    <!--spacer-->
+	<div class="col-lg-3 col-md-3 col-sm-2 col-xs-0"></div>
     <!--main login container-->
 	<div class="col-lg-6 col-md-6 col-sm-8 col-xs-12 container">
-<!-- input of new sign up -->
-		<form>
-		  <div class="al"></div>
-		<div class="container_login">
-		 <div class="header_login">Log In</div>
-		 <div class='info_login'>*Click on the input boxes</div>
-		 <input id='username' class='text_login' onfocus="handle2()" class='inc2' type="text" name="Username" placeholder='Username' value="">
-		<!-- Had to remove the type "password" due to the browser user credential's autofill-->
-		 <input id='password' class='pass' onfocus="handle1()" class='inc1' type="pass" name="Password" placeholder='Password' value="">
-		 <button id = "button_login">Log In</button>
-		 <svg width="390" height="549" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-		      <rect id='rect' class='rect1'   x="45px"  y="300px"   rx="27" ry="27" width="300px" height="50px" style="stroke: #fff; stroke-width: 1px; fill: #000" />
-		</svg>
-		</div>
-		</form>
-<!-- end of new input -->
-
-        <p class="error-mess">{{message}}</p> <!--error message if login fails>
-        <!-username-->
+        <p class="error-mess">{{message}}</p> <!-- error message if login fails -->
+        <!--username-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
                 <input id="username" name="username" placeholder="Email" type="text" class="input">
             </div>
         </div>
         <!--password-->
-      <div class="row">
-          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
                 <input type="password" id="password" name="password" placeholder="Password" class="input password" >
                 <span toggle="#password" class="field-icon toggle-password">
                     <img src="/assets/stylesheets/open-iconic/svg/eye.svg">
@@ -41,7 +27,7 @@
         </div>
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group centered">
-                <p class="small">Oops! I need to  -->
+                <p class="small">Oops! I need to 
                     <button class="nav-button"><a href="/signup">Sign Up</a>
                     </button>
                 </p>

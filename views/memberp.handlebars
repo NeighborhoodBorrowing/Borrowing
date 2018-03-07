@@ -21,7 +21,7 @@ items member has borrowed in the past
     <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
     <!--user welcome div-->
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container" id="myProfile">
-        <h3 class="centered">Welcome back {{userAndInfo.user.firstName}}!<br></h3>
+        <h3 id="user-name" class="centered">Welcome back {{userAndInfo.user.firstName}}!<br></h3>
         <hr>
         <!--user email-->
         <p class="borrow-decl">
@@ -461,6 +461,11 @@ items member has borrowed in the past
                                     <span class="reset-color">{{ borrowedStatusText}}</span>
                                 </p>
 
+                                <div class="row">
+                                   <!-- These class names are used in the javascript, please do not change them-->
+                                    <button class="borrowCompl" id = ''><a href="#">Mark Borrowed</a></button>
+                                    <button class="cancelReq" id = '' ><a href="#">Cancel Request</a></button>
+                                </div>
                                 <hr>
                                <!-- Pending Approval is -1 -->
 
