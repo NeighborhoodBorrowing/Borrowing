@@ -51,10 +51,16 @@ items member has borrowed in the past
     <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 container" id="myProfile" style="background:white;">
         <h3 class="centered">My Items</h3>
         <hr>
-        <a class="div-clickable centered" id="pend-app" href="#">Pending Approval</a>
+        <a class="div-clickable centered" id="pend-app" href="#">
+            Pending Approval
+            <span class="badge label label-default">{{pendItCount}}</span>
+        </a>
         <br>
         <div id="close-pend-btn"></div>
-        <a class="div-clickable centered" id="on-lend-btn" href="#">On Lend</a>
+        <a class="div-clickable centered" id="on-lend-btn" href="#">
+            On Lend
+            <span class="badge label label-default" >{{lendItCount}}</span>
+        </a>
         <br>
         <div id="close-lend-btn"></div>
         <a class="div-clickable centered" id="returned" href="#">Returned</a>
