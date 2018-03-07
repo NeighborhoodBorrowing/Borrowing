@@ -224,6 +224,13 @@ module.exports = function(app, passport) {
     }
   });
 
+  app.get('/logout', function(req, res){
+    req.session.destroy(function(err) {
+      req.logout();
+      res.redirect('/');
+    });
+  });
+
   function getCategoriesToDisplay(cb){
     db.sequelize
         .query(
