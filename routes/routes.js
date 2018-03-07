@@ -148,11 +148,11 @@ module.exports = function(app, passport) {
   });
 
   app.get("/signup", function(req, res) {
-    res.render("signup");
+    res.render("signup", {layout: "init"});
   });
 
   app.get("/login", function(req, res) {
-    res.render("login");
+    res.render("login", {layout: "init"});
   });
 
   app.get("/memberp", function(req, res) {
