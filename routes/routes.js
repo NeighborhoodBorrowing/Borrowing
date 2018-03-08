@@ -61,7 +61,7 @@ module.exports = function(app, passport) {
     //if there is anyone else who wanted to borrow it, mark that as denied
     db.sequelize
         .query(
-                "UPDATE borroweditems SET borrowedStatus = 2 WHERE itemId = ?;" //2 = on lend
+                "UPDATE borroweditems SET borrowedStatus = 2, dueDate = DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE itemId = ?;" //2 = on lend
                 , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
               )
         .then(function(results){
@@ -91,7 +91,7 @@ module.exports = function(app, passport) {
         //if there is anyone else who wanted to borrow it, mark that as denied
         db.sequelize
             .query(
-                    "UPDATE borroweditems SET borrowedStatus = 3 WHERE itemId = ?;" //3 = borrowed
+                    "UPDATE borroweditems SET borrowedStatus = 3, returnDate = CURRENT_TIMESTAMP WHERE itemId = ?;" //3 = borrowed
                     , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
                   )
             .then(function(results){

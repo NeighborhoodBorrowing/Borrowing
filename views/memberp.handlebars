@@ -193,15 +193,17 @@ items member has borrowed in the past
                                             <span class="reset-color">{{ borrowerFirstName}}</span>
                                         </p>
                                         <!--borrowed on-->
-                                        <p class=" item-descr borrow-decl">
-                                            <span>Borrowed On:</span>
-                                            <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
-                                        </p>
-                                        <!--due date-->
-                                        <p class=" item-descr borrow-decl">
-                                            <span>Due By:</span>
-                                            <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
-                                        </p>
+                                        {{#ifEqual borrowedStatus 2}}   
+                                            <p class=" item-descr borrow-decl">
+                                                <span>Borrowed On:</span>
+                                                <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
+                                            </p>
+                                            <!--due date-->
+                                            <p class=" item-descr borrow-decl">
+                                                <span>Due By:</span>
+                                                <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
+                                            </p>
+                                        {{/ifEqual}}
                                    {{/if}}
                                 </div>
                             </div>
@@ -316,16 +318,18 @@ items member has borrowed in the past
                                     <span>Borrower:</span>
                                     <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
-                                <!--borrowed on date-->
-                                <p class=" item-descr borrow-decl">
-                                    <span>Borrowed On:</span>
-                                    <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
-                                </p>
-                                <!--due date-->
-                                <p class=" item-descr borrow-decl">
-                                    <span>Due By:</span>
-                                    <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
-                                </p>
+                                <!--borrowed on-->
+                                {{#ifEqual borrowedStatus 2}}   
+                                    <p class=" item-descr borrow-decl">
+                                        <span>Borrowed On:</span>
+                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
+                                    </p>
+                                    <!--due date-->
+                                    <p class=" item-descr borrow-decl">
+                                        <span>Due By:</span>
+                                        <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
+                                    </p>
+                                {{/ifEqual}}
                            {{/if}}
                         </div>
                     </div>
@@ -422,17 +426,18 @@ items member has borrowed in the past
                                         <span>Borrower:</span>
                                         <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
-                                    <!--borrowed on date-->
-                                    <p class=" item-descr borrow-decl">
-                                        <span>Borrowed On:</span>
-                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
-                                    </p>
+                                    <!--borrowed on-->
+                                    {{#ifEqual borrowedStatus 2}}   
+                                        <p class=" item-descr borrow-decl">
+                                            <span>Borrowed On:</span>
+                                            <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
+                                        </p>
                                     <!--due date-->
-                                    <p class=" item-descr borrow-decl">
-                                        <span>Due By:</span>
-                                        <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
-                                    </p>
-
+                                        <p class=" item-descr borrow-decl">
+                                            <span>Due By:</span>
+                                            <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
+                                        </p>
+                                    {{/ifEqual}}
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                        <!-- These class names are used in the javascript, please do not change them-->
@@ -555,16 +560,20 @@ items member has borrowed in the past
                                         <span>Borrower:</span>
                                         <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
-                                    <!--borrowed on date-->
-                                    <p class=" item-descr borrow-decl">
-                                        <span>Borrowed On:</span>
-                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
-                                    </p>
+                                    <!--borrowed on-->
+                                    {{#ifEqual borrowedStatus 2}}   
+                                        <p class=" item-descr borrow-decl">
+                                            <span>Borrowed On:</span>
+                                            <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
+                                        </p>
+                                    {{/ifEqual}}
                                     <!--returned date-->
-                                    <p class=" item-descr borrow-decl">
-                                        <span>Returned On:</span>
-                                        <span class="reset-color">{{dateFormat returnDate "dddd, MMMM Do YYYY"}}</span>
-                                    </p>
+                                    {{#ifEqual borrowedStatus 3}}
+                                        <p class=" item-descr borrow-decl">
+                                            <span>Returned On:</span>
+                                            <span class="reset-color">{{dateFormat returnDate "dddd, MMMM Do YYYY"}}</span>
+                                        </p>
+                                    {{/ifEqual}}
                                {{/if}}
                             </div>
                         </div>
@@ -675,16 +684,24 @@ items member has borrowed in the past
                                     <span>Borrower:</span>
                                     <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
-                                <!--borrowed on date-->
-                                <p class=" item-descr borrow-decl">
-                                    <span>Borrowed On:</span>
-                                    <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
-                                </p>
-                                <!--due date-->
-                                <p class=" item-descr borrow-decl">
-                                    <span>Due By:</span>
-                                    <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
-                                </p>
+                                <!--borrowed on-->
+                                {{#ifEqual borrowedStatus 2}}   
+                                    <p class=" item-descr borrow-decl">
+                                        <span>Borrowed On:</span>
+                                        <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
+                                    </p>
+                                    <!--due date-->
+                                    <p class=" item-descr borrow-decl">
+                                        <span>Due By:</span>
+                                        <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
+                                    </p>
+                                {{/ifEqual}}
+                                {{#ifEqual borrowedStatus 3}}
+                                    <p class=" item-descr borrow-decl">
+                                            <span>Returned On:</span>
+                                            <span class="reset-color">{{dateFormat returnDate "dddd, MMMM Do YYYY"}}</span>
+                                        </p>
+                                {{/ifEqual}}
                                 {{#ifEqual borrowedStatus 2}}
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
