@@ -266,6 +266,36 @@ $(".borrowCompl").click(function(event){
       console.log(err);
     });
 });
+//-----cancel borrow request
+$(".cancelReq").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+    $.post("/api/cancelRequest", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to approve request");
+      console.log(err);
+    });
+});
+//-----mark item returned
+$(".markReturned").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+    $.post("/api/itReturned", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to approve request");
+      console.log(err);
+    });
+});
 
 
 

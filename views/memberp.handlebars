@@ -434,13 +434,15 @@ items member has borrowed in the past
                                         <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                     </p>
 
-                                <div class="row">
-                                   <!-- These class names are used in the javascript, please do not change them-->
-                                        <!--recall item-->
-                                        <button class="recallItem" id = ''><a href="#">Recall Item</a></button>
-                                        <!--mark item returned-->
-                                        <button class="markReturned" id = ''><a href="#">Mark Item Returned</a></button>
-                                </div>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
+                                       <!-- These class names are used in the javascript, please do not change them-->
+                                            <!--recall item-->
+                                            <a class="recallItem" id = '{{borrowedItemsId}}, {{id}}' href="#">Recall Item</a>
+                                            <!--mark item returned-->
+                                            <a class="markReturned" id = '{{borrowedItemsId}}, {{id}}' href="#">Mark Returned</a>
+                                        </div>
+                                    </div>
                                {{/if}}
                             </div>
                         </div>
@@ -529,8 +531,26 @@ items member has borrowed in the past
                                     <p class="item-descr">Status:
                                         <span class="reset-color">{{ borrowedStatusText}}</span>
                                     </p>
-                                
+                                    <!-- Pending Approval is -1 -->
+                                    {{#ifEqual borrowedStatus -1}}
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
+                                           <!-- These class names are used in the javascript, please do not change them-->
+                                                <a class="borrowCompl" id = '{{borrowedItemsId}}, {{id}}' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                                <a class="cancelReq" id = '{{borrowedItemsId}}, {{id}}' href="#">Cancel Request</a><!--cancel request-->
+                                            </div>
+                                        </div>
+                                    {{/ifEqual}}
                                     <hr>
+                                   <!-- Pending Approval is -1 -->
+
+                                    {{#ifEqual borrowedStatus -1}}
+                                        <div class="row">
+                                           <!-- These class names are used in the javascript, please do not change them-->
+                                            <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button><!--approve request-->
+                                            <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button><!--deny request-->
+                                        </div>
+                                    {{/ifEqual}}
                                     <!--borrower-->
                                     <p class=" item-descr borrow-decl">
                                         <span>Borrower:</span>
@@ -636,8 +656,8 @@ items member has borrowed in the past
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                        <!-- These class names are used in the javascript, please do not change them-->
-                                            <a class="borrowCompl" id = '{{id}}' href="#">Mark Borrowed</a><!--mark borrowed-->
-                                            <a class="cancelReq" id = '{{id}}' href="#">Cancel Request</a><!--cancel request-->
+                                            <a class="borrowCompl" id = '{{borrowedItemsId}}, {{id}}' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                            <a class="cancelReq" id = '{{borrowedItemsId}}, {{id}}' href="#">Cancel Request</a><!--cancel request-->
                                         </div>
                                     </div>
                                 {{/ifEqual}}
@@ -666,6 +686,17 @@ items member has borrowed in the past
                                     <span>Due By:</span>
                                     <span class="reset-color">{{dateFormat dueDate "dddd, MMMM Do YYYY"}}</span>
                                 </p>
+                                {{#ifEqual borrowedStatus 2}}
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
+                                       <!-- These class names are used in the javascript, please do not change them-->
+                                            <!--recall item-->
+                                            <a class="recallItem" id = '{{borrowedItemsId}}, {{id}}' href="#">Recall Item</a>
+                                            <!--mark item returned-->
+                                            <a class="markReturned" id = '{{borrowedItemsId}}, {{id}}' href="#">Mark Returned</a>
+                                        </div>
+                                    </div>
+                                {{/ifEqual}}
                            {{/if}}
                         </div>
                     </div>

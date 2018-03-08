@@ -69,6 +69,36 @@ module.exports = function(app, passport) {
               res.end();
         });
   });
+    
+    //Mark item borrowed
+      app.post("/api/cancelRequest", function(req, res) {
+        //update this record to show the borrowing has been approved
+        //if there is anyone else who wanted to borrow it, mark that as denied
+        db.sequelize
+            .query(
+                    "UPDATE borroweditems SET borrowedStatus = 3 WHERE itemId = ?;" //3 = borrowed
+                    , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
+                  )
+            .then(function(results){
+                  res.status(200).send("Update successful");
+                  res.end();
+            });
+      });
+    
+     //Mark item returned
+      app.post("/api/itReturned", function(req, res) {
+        //update this record to show the borrowing has been approved
+        //if there is anyone else who wanted to borrow it, mark that as denied
+        db.sequelize
+            .query(
+                    "UPDATE borroweditems SET borrowedStatus = 3 WHERE itemId = ?;" //3 = borrowed
+                    , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
+                  )
+            .then(function(results){
+                  res.status(200).send("Update successful");
+                  res.end();
+            });
+      });
 
   function denyAllBorrowRequestsForItem(id, cb){
     db.sequelize
