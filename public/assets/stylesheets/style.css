@@ -78,7 +78,7 @@ a {
     color: #00B7FF;
     text-shadow: .03em .03em rgba(255, 255, 255, 0.4);
     transition:.5s ease;
-    padding: .2em;
+    padding: .6em;
     text-decoration: underline;
 }
 .div-clickable {
@@ -92,7 +92,7 @@ a {
 }
 .item-descr {
     font-size: 1em;
-    color: #00B7FF;
+    color: #b72121 !important;
     text-align: center;
 }
 .borrow-decl {
@@ -100,9 +100,6 @@ a {
 }
 .reset-color {
    color: rgb(77, 77, 77);
-}
-.secondary-color {
-   color: #00B7FF;
 }
 .purple {
     color: #6b2589;
@@ -142,6 +139,9 @@ a {
 .underline {
     text-decoration: underline;
     border-bottom-width: thin;
+}
+.secondary-color {
+   color: #b72121 !important;
 }
 /*
 ========================================
@@ -243,6 +243,9 @@ GRID
 .wipe-background {
     background: none;
 }
+.transp-background {
+    background-color: rgba(255, 255, 255, .7);
+}
 .div-clickable {
     text-decoration: none;
     display: block;
@@ -299,7 +302,8 @@ ICONS
 .field-icon {
     position: absolute;
     right: 1.5em;
-    bottom: .8em;
+    bottom: .5em;
+    width: 1em;
 }
 span.badge {
     background-color:#be0000;
@@ -349,6 +353,9 @@ button a {
     width: 50px;
     height: 50px;
     overflow: hidden;
+}
+button.close {
+    opacity: 1 !important;
 }
 .close:before,
 .close:after {
@@ -418,6 +425,14 @@ input.edit-it  {
     left: 1em;
     padding: .2em;
     margin: .2e,;
+}
+.allow-req {
+    position: relative;
+    left: 1em;
+}
+label.allow-req {
+    bottom: 1.8em;
+    left: 1.5em;
 }
 /*
 ========================================

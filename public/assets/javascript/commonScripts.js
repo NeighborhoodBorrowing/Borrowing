@@ -189,9 +189,7 @@ $("#searchSubmitBtn").click(function(event){
         //if the results are empty the code below has no consequence bc of the for loop
         searchResultDisplay = getHeaderForSearchResults("");
         for(i=0; i<results.length; i++){
-          searchResultDisplay += "<div class='row'>"
-                            +"<div class='col-lg-1 col-md-1 col-sm-0 col-xs-0 '></div>"
-                            +"<div class='col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont'>"
+          searchResultDisplay +="<div class='col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont'>" 
                             +"        <div class='row'>"
                             +"        <div class='col-lg-5 col-md-5 col-sm-12 col-xs-12 '>"
                             +"            <p class='item-name'>"+results[i].name+"</p>"
@@ -210,7 +208,7 @@ $("#searchSubmitBtn").click(function(event){
                           +" <div class='row'>"
                           +"      <div class='col-lg-12 col-md-12 col-sm-12 col-xs-12 centered'><hr>"
                           +"<!-- These class names are used in the javascript, please do not change them-->"
-                          +"        <button class='borrowRequest ' id = '"+results[i].MIid+"'><a href='#'>Request to Borrow</a></button>"
+                          +"        <a class='borrowRequest ' id = '"+results[i].MIid+"' style='font-size:1.3em;padding:.3em;'href='#'>Request to Borrow</a>"
                           +"    </div>"
                           +"</div>"
                           +" <div class='row'>"
@@ -219,10 +217,7 @@ $("#searchSubmitBtn").click(function(event){
                           +"    </div>"
                           +"    </div>"
 
-                            +"</div>"
-                            +"<!--spacer-->"
-                            +"<div class='col-lg-1 col-md-1 col-sm-0 col-xs-0 '></div>"
-                        +"</div>";
+                            +"</div>";
 
           $("#search-resp-div").append(searchResultDisplay);
           searchResultDisplay = "";
@@ -251,6 +246,51 @@ $(document).on("click", ".borrowRequest", function(event){
 function notNullOrEmpty(name){
   return name!=null && name.trim()!="";
 }
+//-----mark item borrowed
+$(".borrowCompl").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+    $.post("/api/borrowed", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to approve request");
+      console.log(err);
+    });
+});
+//-----cancel borrow request
+$(".cancelReq").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+    $.post("/api/cancelRequest", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to approve request");
+      console.log(err);
+    });
+});
+//-----mark item returned
+$(".markReturned").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+    $.post("/api/itReturned", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to approve request");
+      console.log(err);
+    });
+});
 
 
 
@@ -310,3 +350,5 @@ function splitLetters(word) {
 
 changeWord();
 setInterval(changeWord, 4000);
+
+

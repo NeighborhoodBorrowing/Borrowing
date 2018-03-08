@@ -6,14 +6,14 @@
         <p class="error-mess">{{message}}</p> <!-- error message if login fails -->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
-                <h3 class="centered">What do you need?</h3>
+                <h3 class="centered secondary-color">What do you need?</h3>
                 <hr>
             </div>
         </div>
         <!--search keyword-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
-                <input id="keyword" name="keyword" placeholder="keyword" type="text" class="input" required>
+                <input id="keyword" name="keyword" placeholder="keyword" type="text" class="input searchForm" required>
             </div>
         </div>
         <!--category-->
@@ -35,7 +35,7 @@
         <!--zip code-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 group">
-                <input id="zipcode" name="zipcodeSearch" placeholder="Zip Code" type="text" class="input" required>
+                <input id="zipcode" name="zipcodeSearch" placeholder="Zip Code" type="text" class="input searchForm" required>
             </div>
         </div>
         <!--search button-->
@@ -53,8 +53,8 @@
 
 {{results}}
     <!--search response div-->
-<div class="row" id="">
-     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container wipe-background" id="search-resp-div">
-
+<div class="row">
+     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 container transp-background" id="main-search-div">
+         <div class="row"id="search-resp-div"></div>
     </div>
 </div>
