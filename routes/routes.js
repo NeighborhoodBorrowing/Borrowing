@@ -70,7 +70,7 @@ module.exports = function(app, passport) {
         });
   });
     
-    //Mark item borrowed
+    //cancel borrow request
       app.post("/api/cancelRequest", function(req, res) {
         //update this record to show the borrowing has been approved
         //if there is anyone else who wanted to borrow it, mark that as denied
@@ -99,7 +99,7 @@ module.exports = function(app, passport) {
                   res.end();
             });
       });
-
+  //function to deny all borrow requests for items
   function denyAllBorrowRequestsForItem(id, cb){
     db.sequelize
         .query(
@@ -112,7 +112,7 @@ module.exports = function(app, passport) {
         });
   }
 
-
+ //-----login post route
  //http://toon.io/understanding-passportjs-authentication-flow/
   app.post('/api/login', function(req, res, next) {
     passport.authenticate('local', function(err, user, info) {
