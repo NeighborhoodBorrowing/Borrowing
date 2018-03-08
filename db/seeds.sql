@@ -23,11 +23,10 @@ INSERT INTO categories (categoryName, id, parentId) values
 ("Pots and Pans", 604, 600),
 ("Other", 699, 600),
 
-
 ("Electronics", 800, 0),
 ("CD/DVD Players", 801, 800),
 ("Computers", 802, 800),
-("Gaming", 803, 800),
+("Gaming Consoles", 803, 800),
 ("TVs", 804, 800),
 ("Other", 899, 800),
 
@@ -62,6 +61,35 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 , "https://images-na.ssl-images-amazon.com/images/I/61hdpi68FDL._SL1000_.jpg"
 , 98, 1101, (Select id from Members where email="fa@a.com")),
 
+("iRobot Roomba Vacuum Cleaner", "iRobot Roomba 690 Wi-Fi® Connected Vacuuming Robot"
+, "https://target.scene7.com/is/image/Target/52360762?wid=1400"
+, 318, 302, (Select id from Members where email="fa@a.com")),
+
+("Upright Vacuum Cleaner", "Dirt Devil Pro Power™ Bagless Upright Vacuum- UD70172"
+, "https://target.scene7.com/is/image/Target/11301939?wid=1400"
+, 53.99, 302, (Select id from Members where email="fa@a.com")),
+
+("Wood Handle Shovel", "48 in. Wood Handle Round Point Shovel"
+, "https://images.homedepot-static.com/productImages/f6245d72-0c10-4793-8d75-ebe57dfdcdea/svn/ames-shovels-2535600-64_1000.jpg", 15, 1001, (Select id from Members where email="fa@a.com")),
+
+("Gas Powered Lawn Mower", "21 in. 3-in-1 Variable Speed Gas Walk Behind Self Propelled Lawn Mower with Auto Choke"
+, "https://images.homedepot-static.com/productImages/549c9e56-1e17-4e23-9c7a-62274702346a/svn/honda-self-propelled-lawn-mowers-hrr216vka-64_1000.jpg", 400, 1002, (Select id from Members where email="fa@a.com")),
+
+("Battery Powered Leaf Blower", "DEWALT 90 MPH 400 CFM 20-Volt MAX Lithium-Ion Cordless Handheld Leaf Blower with 5.0Ah Battery and Charger Included"
+, "https://images.homedepot-static.com/productImages/a56701ff-16f7-424d-8289-381aa8f1559d/svn/dewalt-leaf-blowers-dcbl720p1-64_1000.jpg", 199, 1002, (Select id from Members where email="fa@a.com")),
+
+("Cordless String Trimmer (Weed Eater, Lawn Edger)"
+ , "4BLACK+DECKER 13 in. 40-Volt MAX Lithium-Ion Cordless 2-in-1 String Grass Trimmer/Lawn Edger with 1.5 Ah Battery and Charger Included", "https://images.homedepot-static.com/productImages/6d59dc9e-581e-433a-ab16-e6c3ba79e3f6/svn/black-decker-cordless-string-trimmers-lst136-64_1000.jpg"
+ , 149, 1002, (Select id from Members where email="fa@a.com")),
+
+("Gardening Gloves", "Digz Women's Medium/Large Nitrile Coated Gloves"
+ , "https://images.homedepot-static.com/productImages/1224b565-222b-4ce1-b974-703b8528e120/svn/multi-digz-gardening-gloves-77881-024-64_1000.jpg"
+ , 5, 1001, (Select id from Members where email="fa@a.com")),
+
+("Hand Tiller", "Ames Stand-Up Garden Tiller"
+ , "https://images.homedepot-static.com/productImages/38b3471e-8fed-40e1-aa6a-22b345cde802/svn/ames-cultivators-2917100-64_1000.jpg"
+ , 25.98, 1001, (Select id from Members where email="fa@a.com")),
+
 ("Compact DVD Player", "Craig Compact DVD/JPEG/CD-R/CD-RW/CD Player with Remote"
 , "https://images-na.ssl-images-amazon.com/images/I/61jIRy8PKLL._SL1000_.jpg"
 , 31.05, 801, (Select id from Members where email="jw@c.com")),
@@ -84,7 +112,33 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 
 ("Hand Mixer", "KitchenAid® 5-Speed Hand Mixer"
 , "https://target.scene7.com/is/image/Target/14205267?wid=1400"
-, 29.99, 603, (Select id from Members where email="jw@c.com"));
+, 29.99, 603, (Select id from Members where email="jw@c.com")),
+
+("The Elder Scrolls V: Skyrim for Nintendo Switch", "Return to the snowy, dragon-ridden mountains of Skyrim and save the world - but this time on Nintendo's portable console."
+, "https://www.gamestop.com/common/images/lbox/141780b.jpg"
+, 60, 904, (Select id from Members where email="jw@c.com")),
+
+("The Legend of Zelda: Breath of the Wild for Nintendo Switch", "Breath of the Wild is a feat of design and polish. Hyrule feels like a real place, and the journey Link and Zelda undertake to defeat Ganon is compelling."
+, "https://www.gamestop.com/common/images/lbox/141686b.jpg"
+, 60, 904, (Select id from Members where email="jw@c.com")),
+
+("Mario Kart 8 Deluxe for Nintendo Switch", "With multiple new additions and important improvements, Mario Kart 8 Deluxe is the definitive version of one of the Wii U's best games."
+, "https://www.gamestop.com/common/images/lbox/141784b.jpg"
+, 60, 904, (Select id from Members where email="jw@c.com")),
+
+("The Witcher III: Wild Hunt Complete Edition for PS4", "Become a professional monster slayer and embark on an adventure of epic proportions."
+, "https://www.gamestop.com/common/images/lbox/128348b.jpg"
+, 60, 904, (Select id from Members where email="jw@c.com")),
+
+("Grand Theft Auto V for PS4", "A young street hustler, a retired bank robber and a terrifying psychopath must pull off a series of dangerous heists to survive in a ruthless city in which they can trust nobody, least of all each other."
+, "https://www.gamestop.com/common/images/lbox/102048b.jpg"
+, 60, 904, (Select id from Members where email="jw@c.com")),
+
+("Resident Evil 7 Biohazard Gold Edition for PS4", "Resident Evil®7 biohazard sets a new course for the Resident Evil series as it leverages its roots and opens the door to a truly terrifying horror experience."
+, "https://www.gamestop.com/common/images/lbox/155491b.jpg"
+, 60, 904, (Select id from Members where email="jw@c.com"));
+
+
 
 INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
 VALUES (2, null, null, null,1,2);

@@ -22,7 +22,7 @@ var returnedDiv = $("#returned-div");
 //all items div
 var allItDiv = $("#all-it-div");
 //search response div
-var searchRespDiv = $("#search-resp-div");
+var searchRespDiv = $("#main-search-div");
 
 
 
