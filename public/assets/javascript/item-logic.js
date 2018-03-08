@@ -35,12 +35,6 @@ returnedDiv.hide();
 allItDiv.hide();
 searchRespDiv.hide();
 
-$("#searchSubmitBtn").on("click", function () {
-    event.preventDefault();
-    searchRespDiv.show();
-});
-
-
 //----------logic to show/hide member item view divs on click------------
 // when the user clicks on pending approval button, open div, animate text, hide other options
 $("#pend-app").on("click", function() {
@@ -165,4 +159,3 @@ $(".navbar-toggler").on("click", function() {
 
 var joinDate = $("#join-date");
 console.log(joinDate);
-
