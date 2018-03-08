@@ -123,6 +123,29 @@ module.exports = function(app, passport) {
             });
       }//close else logged in
   });
+    
+//  //update an item
+//  app.post("/api/updateit", function(req, res) {
+//    if(req.session.passport == null){
+//      res.render("login", {message: "Please Log In"});
+//    } else {
+//        var userId = req.session.passport.user;
+//        var canBorrow = (req.body.canBorrow==='true') ? 1 : 0;
+//        var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId, canBorrow )"
+//                          +" values (?,?,?,?,?,?,?);";
+//        db.sequelize
+//            .query(queryString
+//                    , { replacements: [req.body.name, req.body.desc, req.body.photoLink
+//                                      , parseFloat(req.body.value), req.body.category, userId, canBorrow]
+//                        , type: db.sequelize.QueryTypes.INSERT
+//                      }
+//                  )
+//            .then(function(results){
+//                res.status(200).send("Added item");
+//                res.end();
+//            });
+//      }//close else logged in
+//  });
 
 
 /*** GET ROUTES TO DISPLAY PAGES*****/
@@ -278,6 +301,9 @@ module.exports = function(app, passport) {
   //update item route
   app.get("/updateIt", function(req, res) {
     res.render("updateIt", {layout: "main"});
+      getUserItemById(3, 10, function () {
+            console.log("test");         
+      });
   });
   //logout route
   app.get('/logout', function(req, res){
@@ -340,28 +366,68 @@ module.exports = function(app, passport) {
                 } // close for loop
                 cb(userItems);
             }); //close then
-}//close function
+    }//close function
+    
+    //retrieve user items with specific id function
+    function getUserItemById(userId, id, cb){
+        db.sequelize
+            .query(
+                    " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
+                    +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
+                    +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
+                    +" M.firstName as borrowerFirstName, M.id as borrowerId, "
+                    +" BI.id as borrowedItemsId, MI.canBorrow "
+                    +" from  memberItems as MI  "
+                    +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
+                    +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
+                    +" LEFT OUTER JOIN categories as C on MI.categoryId = C.id "
+                    +" WHERE MI.ownerId = ? && MI.id = ? ORDER BY BI.borrowedStatus;"
+                    , { replacements: [userId, id], type: db.sequelize.QueryTypes.SELECT}
+                  ).then (function(results){
+                    var userItem = [];
+                    for(i=0; i<results.length; i++){
+                      userItem.push({
+                            id: results[i].MIid,
+                            name: results[i].name,
+                            description: results[i].description,
+                            picture:setBlankIfNull(results[i].picture),
+                            value: results[i].value,
+                            categoryId: results[i].categoryId,
+                            categoryname: results[i].categoryname,
+                            canBorrow:results[i].canBorrow,
+                            borrowedStatus: results[i].borrowedStatus,
+                            borrowedStatusText : getBorrowedStatusText(results[i].borrowedStatus),
+                            borrowedDate: setBlankIfNull(results[i].borrowedDate),
+                            dueDate: setBlankIfNull(results[i].dueDate),
+                            borrowerFirstName: setBlankIfNull(results[i].borrowerFirstName),
+                            borrowerId: setBlankIfNull(results[i].borrowerId),
+                            borrowedItemsId:setBlankIfNull(results[i].borrowedItemsId)
+                        });
+                    } // close for loop
+                    cb(userItem);
+                }); //close then
+    }//close function
 
-//get borrowed status function
-function getBorrowedStatusText(status){
-  var text = "";
-  if(status === -1){ text = "Pending Approval";}
-  else if (status === 0){ text = "Denied";}
-  else if (status === 1){ text = "Approved"; }
-  else if (status === 2){ text = "Borrowed"; }
-  else if (status === 3){ text = "Returned"; }
-  return text;
-}
+    //get borrowed status function
+    function getBorrowedStatusText(status){
+      var text = "";
+      if(status === -1){ text = "Pending Approval";}
+      else if (status === 0){ text = "Denied";}
+      else if (status === 1){ text = "Approved"; }
+      else if (status === 2){ text = "Borrowed"; }
+      else if (status === 3){ text = "Returned"; }
+      return text;
+    }
 
-function isNotNullOrEmpty(val){
-  if(val==null) {return false;}
-  else if(val === undefined){return false;}
-  else if (val.trim() === "") { return false;}
-  else {return true;}
-}
+    function isNotNullOrEmpty(val){
+      if(val==null) {return false;}
+      else if(val === undefined){return false;}
+      else if (val.trim() === "") { return false;}
+      else {return true;}
+    }
 
-function isNullOrEmpty(val){
-  return !isNotNullOrEmpty(val);
-}
+    function isNullOrEmpty(val){
+      return !isNotNullOrEmpty(val);
+    }
 
 };
