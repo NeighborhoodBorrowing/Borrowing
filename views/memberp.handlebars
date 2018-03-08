@@ -146,7 +146,12 @@ items member has borrowed in the past
                                         </div>
                                         <!--remove item-->
                                         <div class="row centered">
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                            {{#ifEqual canBorrow 1}}
+                                                <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                            {{/ifEqual}}
+                                            {{#ifEqual canBorrow 0}}
+                                                <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                            {{/ifEqual}}
                                         </div>
                                     </div>
                                 {{/if}}
@@ -266,7 +271,12 @@ items member has borrowed in the past
                                 </div>
                                 <!--remove item-->
                                 <div class="row centered">
-                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    {{#ifEqual canBorrow 1}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
+                                    {{#ifEqual canBorrow 0}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
                                 </div>
                             </div>
                         {{/if}}
@@ -374,7 +384,12 @@ items member has borrowed in the past
                                     </div>
                                     <!--remove item-->
                                     <div class="row centered">
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        {{#ifEqual canBorrow 1}}
+                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        {{/ifEqual}}
+                                        {{#ifEqual canBorrow 0}}
+                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                        {{/ifEqual}}
                                     </div>
                                 </div>
                             {{/if}}
@@ -483,7 +498,12 @@ items member has borrowed in the past
                                     </div>
                                     <!--remove item-->
                                     <div class="row centered">
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        {{#ifEqual canBorrow 1}}
+                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        {{/ifEqual}}
+                                        {{#ifEqual canBorrow 0}}
+                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                        {{/ifEqual}}
                                     </div>
                                 </div>
                             {{/if}}
@@ -581,7 +601,12 @@ items member has borrowed in the past
                                 </div>
                                 <!--remove item-->
                                 <div class="row centered">
-                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    {{#ifEqual canBorrow 1}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
+                                    {{#ifEqual canBorrow 0}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
                                 </div>
                             </div>
                         {{/if}}
