@@ -178,6 +178,7 @@ $("#searchSubmitBtn").click(function(event){
     }
     $.get("/api/search", data)
       .done(function(results){
+        $("#searchResultDisplay:hidden").show();
         $("#search-resp-div").empty();
 
         var searchResultDisplay = "";
@@ -189,7 +190,7 @@ $("#searchSubmitBtn").click(function(event){
         //if the results are empty the code below has no consequence bc of the for loop
         searchResultDisplay = getHeaderForSearchResults("");
         for(i=0; i<results.length; i++){
-          searchResultDisplay +="<div class='col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont'>" 
+          searchResultDisplay +="<div class='col-lg-10 col-md-10 col-sm-12 col-xs-12 container item-cont'>"
                             +"        <div class='row'>"
                             +"        <div class='col-lg-5 col-md-5 col-sm-12 col-xs-12 '>"
                             +"            <p class='item-name'>"+results[i].name+"</p>"
@@ -350,5 +351,3 @@ function splitLetters(word) {
 
 changeWord();
 setInterval(changeWord, 4000);
-
-
