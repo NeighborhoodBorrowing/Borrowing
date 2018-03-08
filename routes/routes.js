@@ -62,7 +62,7 @@ module.exports = function(app, passport) {
     db.sequelize
         .query(
                 "UPDATE borroweditems SET borrowedStatus = 2, dueDate = DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE itemId = ?;" //2 = on lend
-                , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
+                , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
               )
         .then(function(results){
               res.status(200).send("Update successful");
