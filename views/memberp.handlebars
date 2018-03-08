@@ -22,7 +22,7 @@ items member has borrowed in the past
     <!--user welcome div-->
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container" id="myProfile">
         <h3 id="user-name" class="centered">Welcome back 
-            <span class="secondary-color" style="font-size:1.2em;">{{userAndInfo.user.firstName}}!</span>
+            <span class="secondary-color" style="font-size:1.2em;padding:.3em;">{{userAndInfo.user.firstName}}!</span>
             <br>
         </h3>
         <hr>
@@ -136,25 +136,25 @@ items member has borrowed in the past
                                 </div>
                                 <!--spacer-->
                                 <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                                 <!--if item has photo, display-->
-                                {{#if picture}}
-                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                                    {{#if picture}}
                                         <img class="item-photo come-in" src='{{picture}}'>
-                                        <!--update item-->
-                                        <div class="row">
-                                            <button class="updateItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
-                                        </div>
-                                        <!--remove item-->
-                                        <div class="row centered">
-                                            {{#ifEqual canBorrow 1}}
-                                                <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
-                                            {{/ifEqual}}
-                                            {{#ifEqual canBorrow 0}}
-                                                <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
-                                            {{/ifEqual}}
-                                        </div>
+                                    {{/if}}
+                                    <!--update item-->
+                                    <div class="row">
+                                        <button class="updateItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
                                     </div>
-                                {{/if}}
+                                    <!--remove item-->
+                                    <div class="row centered">
+                                        {{#ifEqual canBorrow 1}}
+                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        {{/ifEqual}}
+                                        {{#ifEqual canBorrow 0}}
+                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                        {{/ifEqual}}
+                                    </div>
+                                </div>
                             </div>
                             <!--borrowed information-->
                             <div class="row">
@@ -262,25 +262,25 @@ items member has borrowed in the past
                         </div>
                         <!--spacer-->
                         <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                         <!--if item has photo, display-->
-                        {{#if picture}}
-                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                            {{#if picture}}
                                 <img class="item-photo" src='{{picture}}'>
-                                <!--update item-->
-                                <div class="row">
-                                    <button class="updateItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
-                                </div>
-                                <!--remove item-->
-                                <div class="row centered">
-                                    {{#ifEqual canBorrow 1}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
-                                    {{/ifEqual}}
-                                    {{#ifEqual canBorrow 0}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
-                                    {{/ifEqual}}
-                                </div>
+                            {{/if}}
+                            <!--update item-->
+                            <div class="row">
+                                <button class="updateItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
                             </div>
-                        {{/if}}
+                            <!--remove item-->
+                            <div class="row centered">
+                                {{#ifEqual canBorrow 1}}
+                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                {{/ifEqual}}
+                                {{#ifEqual canBorrow 0}}
+                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                {{/ifEqual}}
+                            </div>
+                        </div>
                     </div>
                     <!--borrowed information-->
                     <div class="row">
@@ -298,8 +298,8 @@ items member has borrowed in the past
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                        <!-- These class names are used in the javascript, please do not change them-->
-                                            <a class="borrowCompl" id = '{{id}}' href="#">Mark Borrowed</a><!--mark borrowed-->
-                                            <a class="cancelReq" id = '{{id}}' href="#">Cancel Request</a><!--cancel request-->
+                                            <a class="borrowCompl" id = '{{borrowedItemsId}}, {{id}}' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                            <a class="cancelReq" id = '{{borrowedItemsId}}, {{id}}' href="#">Cancel Request</a><!--cancel request-->
                                         </div>
                                     </div>
                                 {{/ifEqual}}
@@ -388,25 +388,25 @@ items member has borrowed in the past
                             </div>
                             <!--spacer-->
                             <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                             <!--if item has photo, display-->
-                            {{#if picture}}
-                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                                {{#if picture}}
                                     <img class="item-photo" src='{{picture}}'>
-                                    <!--update item-->
-                                    <div class="row">
-                                        <button class="updateItem" id = ' '><a href="/updateIt">Update Item</a></button>
-                                    </div>
-                                    <!--remove item-->
-                                    <div class="row centered">
-                                        {{#ifEqual canBorrow 1}}
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
-                                        {{/ifEqual}}
-                                        {{#ifEqual canBorrow 0}}
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
-                                        {{/ifEqual}}
-                                    </div>
+                                {{/if}}
+                                <!--update item-->
+                                <div class="row">
+                                    <button class="updateItem" id = ' '><a href="/updateIt">Update Item</a></button>
                                 </div>
-                            {{/if}}
+                                <!--remove item-->
+                                <div class="row centered">
+                                    {{#ifEqual canBorrow 1}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
+                                    {{#ifEqual canBorrow 0}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
+                                </div>
+                            </div>
                         </div>
                         <!--borrowed information-->
                         <div class="row">
@@ -505,25 +505,25 @@ items member has borrowed in the past
                             </div>
                             <!--spacer-->
                             <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                             <!--if item has picture, display-->
-                            {{#if picture}}
-                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                                {{#if picture}}
                                     <img class="item-photo" src='{{picture}}'>
-                                    <!--update item-->
-                                    <div class="row">
-                                        <button class="updateItem" id = ' '><a href="/updateIt">Update Item</a></button>
-                                    </div>
-                                    <!--remove item-->
-                                    <div class="row centered">
-                                        {{#ifEqual canBorrow 1}}
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
-                                        {{/ifEqual}}
-                                        {{#ifEqual canBorrow 0}}
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
-                                        {{/ifEqual}}
-                                    </div>
+                                {{/if}}
+                                <!--update item-->
+                                <div class="row">
+                                    <button class="updateItem" id = ' '><a href="/updateIt">Update Item</a></button>
                                 </div>
-                            {{/if}}
+                                <!--remove item-->
+                                <div class="row centered">
+                                    {{#ifEqual canBorrow 1}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
+                                    {{#ifEqual canBorrow 0}}
+                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                    {{/ifEqual}}
+                                </div>
+                            </div>
                         </div>
                         <!--borrow information-->
                         <div class="row">
@@ -630,25 +630,25 @@ items member has borrowed in the past
                         </div>
                         <!--spacer-->
                         <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0 "></div>
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
                         <!--if item has photo, display-->
-                        {{#if picture}}
-                            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 ">
+                            {{#if picture}}
                                 <img class="item-photo" src='{{picture}}'>
-                                <!--update item-->
-                                <div class="row">
-                                    <button class="updateItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
-                                </div>
-                                <!--remove item-->
-                                <div class="row centered">
-                                    {{#ifEqual canBorrow 1}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
-                                    {{/ifEqual}}
-                                    {{#ifEqual canBorrow 0}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
-                                    {{/ifEqual}}
-                                </div>
+                            {{/if}}
+                            <!--update item-->
+                            <div class="row">
+                                <button class="updateItem" id = '{{id}}'><a href="/updateIt">Update Item</a></button>
                             </div>
-                        {{/if}}
+                            <!--remove item-->
+                            <div class="row centered">
+                                {{#ifEqual canBorrow 1}}
+                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                {{/ifEqual}}
+                                {{#ifEqual canBorrow 0}}
+                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                {{/ifEqual}}
+                            </div>
+                        </div>
                     </div>
                     <!--borrowed information-->
                     <div class="row">
