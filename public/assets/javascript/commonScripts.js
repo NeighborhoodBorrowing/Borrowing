@@ -251,6 +251,21 @@ $(document).on("click", ".borrowRequest", function(event){
 function notNullOrEmpty(name){
   return name!=null && name.trim()!="";
 }
+//-----mark item borrowed
+$(".borrowCompl").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+    $.post("/api/borrowed", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to approve request");
+      console.log(err);
+    });
+});
 
 
 
@@ -312,26 +327,3 @@ changeWord();
 setInterval(changeWord, 4000);
 
 
-/** 'ON ENTER' submit button **/
-$('.input.signUpForm').keypress(function (e) {
-  if (e.keyCode === 13) {
-    $('#signupSubmitBtn').click();
-  }
-});
-
-$('.input.loginForm').keypress(function (e) {
-  if (e.keyCode === 13) {
-    $('#loginSubmitBtn').click();
-  }
-});
-
-$('.input.postItForm').keypress(function (e) {
-  if (e.keyCode === 13) {
-    $('#addItemSubmitBtn').click();
-  }
-});
-$('.input.searchForm').keypress(function (e) {
-  if (e.keyCode === 13) {
-    $('#searchSubmitBtn').click();
-  }
-});

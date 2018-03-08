@@ -36,6 +36,7 @@ allItDiv.hide();
 searchRespDiv.hide();
 
 $("#searchSubmitBtn").on("click", function () {
+    event.preventDefault();
     searchRespDiv.show();
 });
 
@@ -43,6 +44,7 @@ $("#searchSubmitBtn").on("click", function () {
 //----------logic to show/hide member item view divs on click------------
 // when the user clicks on pending approval button, open div, animate text, hide other options
 $("#pend-app").on("click", function() {
+    event.preventDefault();
     var closePendBtn = $("#close-pend-btn");
     closePendBtn.append('<button class="close pend-app-close"><a href="">X</a></button>');
     approvedBtn.hide();
@@ -60,6 +62,7 @@ $("#pend-app").on("click", function() {
 });
 // when the user clicks on approved itmes button, open div, animate text, hide other options
 $("#approved").on("click", function() {
+    event.preventDefault();
     var closeApprBtn = $("#close-appr-btn");
     closeApprBtn.append('<button class="close approved-close"><a href="">X</a></button>');
     onLendBtn.hide();
@@ -76,6 +79,7 @@ $("#approved").on("click", function() {
 });
 // when the user clicks on lent items button, open div, animate text, hide other options
 $("#on-lend-btn").on("click", function() {
+    event.preventDefault();
     var closeLendBtn = $("#close-lend-btn");
     closeLendBtn.append('<button class="close on-lend-close"><a href="">X</a></button>');
     pendAppBtn.hide();
@@ -92,6 +96,7 @@ $("#on-lend-btn").on("click", function() {
 });
 // when the user clicks on returned items button, open div, animate text, hide other options
 $("#returned").on("click", function() {
+    event.preventDefault();
     var closeRetBtn = $("#close-ret-btn");
     closeRetBtn.append('<button class="close returned-close"><a href="">X</a></button>');
     onLendBtn.hide();
@@ -109,6 +114,7 @@ $("#returned").on("click", function() {
 
 // when the user clicks on all itmes button, open div, animate text, hide other options
 $("#all-it").on("click", function() {
+    event.preventDefault();
     var closeAllBtn = $("#close-all-btn");
     closeAllBtn.append('<button class="close all-it-close"><a href="">X</a></button>');
     onLendBtn.hide();
@@ -125,23 +131,29 @@ $("#all-it").on("click", function() {
 });
 //----------close member item view divs------------
 $(".pend-app-close").on("click", function() {
+    event.preventDefault();
     pendAppDiv.hide();
 });
 $("#appr-it-close").on("click", function() {
+    event.preventDefault();
     apprItDiv.hide();
 });
 $("#on-lend-close").on("click", function() {
+    event.preventDefault();
     onLendDiv.hide();
 });
 $("#returned-close").on("click", function() {
+    event.preventDefault();
     returnedDiv.hide();
 });
 $("#all-it-close").on("click", function() {
+    event.preventDefault();
     allItDiv.hide();
 });
 
 
 $(".navbar-toggler").on("click", function() {
+    event.preventDefault();
     var text = $(".text");
     if (text.hasClass('vertTranslateBig')) {
         text.removeClass('vertTranslateBig');

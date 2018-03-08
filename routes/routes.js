@@ -54,6 +54,21 @@ module.exports = function(app, passport) {
             });
         });
   });
+    
+  //Mark item borrowed
+  app.post("/api/borrowed", function(req, res) {
+    //update this record to show the borrowing has been approved
+    //if there is anyone else who wanted to borrow it, mark that as denied
+    db.sequelize
+        .query(
+                "UPDATE borroweditems SET borrowedStatus = 2 WHERE itemId = ?;" //2 = on lend
+                , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
+              )
+        .then(function(results){
+              res.status(200).send("Update successful");
+              res.end();
+        });
+  });
 
   function denyAllBorrowRequestsForItem(id, cb){
     db.sequelize
@@ -123,31 +138,7 @@ module.exports = function(app, passport) {
             });
       }//close else logged in
   });
-    
-//  //update an item
-//  app.post("/api/updateit", function(req, res) {
-//    if(req.session.passport == null){
-//      res.render("login", {message: "Please Log In"});
-//    } else {
-//        var userId = req.session.passport.user;
-//        var canBorrow = (req.body.canBorrow==='true') ? 1 : 0;
-//        var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId, canBorrow )"
-//                          +" values (?,?,?,?,?,?,?);";
-//        db.sequelize
-//            .query(queryString
-//                    , { replacements: [req.body.name, req.body.desc, req.body.photoLink
-//                                      , parseFloat(req.body.value), req.body.category, userId, canBorrow]
-//                        , type: db.sequelize.QueryTypes.INSERT
-//                      }
-//                  )
-//            .then(function(results){
-//                res.status(200).send("Added item");
-//                res.end();
-//            });
-//      }//close else logged in
-//  });
-
-
+ 
 /*** GET ROUTES TO DISPLAY PAGES*****/
   //search for items
   app.get("/api/search", function(req, res) {
