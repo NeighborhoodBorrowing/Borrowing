@@ -90,4 +90,13 @@ INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, it
 VALUES (2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,2);
 
 INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,1,3);
+VALUES (0, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,2,3);
+
+INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
+VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,5,3);
+
+INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
+VALUES (-1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,6,3);
+
+INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
+VALUES (3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, null,7,3);

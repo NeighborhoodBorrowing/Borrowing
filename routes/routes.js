@@ -80,7 +80,7 @@ module.exports = function(app, passport) {
       });
     })(req, res, next);
   });
-
+  //borrow request post route
   app.post("/api/borrowRequest", function(req, res){
     if(req.session.passport == null){
       res.render("login", {message: "Please Log In"});
@@ -175,15 +175,15 @@ module.exports = function(app, passport) {
             });
       }//close else logged in
   });
-
+  //sign up route
   app.get("/signup", function(req, res) {
     res.render("signup", {layout: "init"});
   });
-
+  //login route
   app.get("/login", function(req, res) {
     res.render("login", {layout: "init"});
   });
-
+  //memberpage route
   app.get("/memberp", function(req, res) {
     if(req.session.passport != null){
       var userId = req.session.passport.user;
@@ -217,11 +217,11 @@ module.exports = function(app, passport) {
       res.render("login", {message: "Please Log In"});
     }
   });
-
+  //index route
   app.get("/", function(req, res) {
     res.render("index", {layout: "init"});
   });
-
+  //search route
   app.get("/search", function(req, res) {
     if(req.session.passport != null){
         if(req.session.categories == null){
@@ -238,7 +238,7 @@ module.exports = function(app, passport) {
         res.render("login", {message: "Please Log In"});
     }
   });
-
+  //disable borrowing
   app.get("/disableBorrowing:id", function(req, res) {
     var message = req.query.message==null ? "" : req.query.message;
     if(req.session.passport != null){//not logged in
@@ -257,7 +257,7 @@ module.exports = function(app, passport) {
         res.render("login", {message: "Please Log In"});
     }
   });
-
+  //post item route
   app.get("/postit", function(req, res) {
     var message = req.query.message==null ? "" : req.query.message;
     if(req.session.passport != null){
@@ -275,18 +275,18 @@ module.exports = function(app, passport) {
         res.render("login", {message: "Please Log In"});
     }
   });
-
+  //update item route
   app.get("/updateIt", function(req, res) {
     res.render("updateIt", {layout: "main"});
   });
-
+  //logout route
   app.get('/logout', function(req, res){
     req.session.destroy(function(err) {
       req.logout();
       res.redirect('/');
     });
   });
-
+  //function to display categories
   function getCategoriesToDisplay(cb){
     db.sequelize
         .query(
@@ -298,11 +298,11 @@ module.exports = function(app, passport) {
              cb(results);
         });
   }
-
+  //set blank if null function
   function setBlankIfNull(value){
     return value == null ? "" : value;
   }
-
+  //retrieve user items function
   function getUserItems(userId, cb){
     db.sequelize
         .query(
@@ -342,7 +342,7 @@ module.exports = function(app, passport) {
             }); //close then
 }//close function
 
-
+//get borrowed status function
 function getBorrowedStatusText(status){
   var text = "";
   if(status === -1){ text = "Pending Approval";}

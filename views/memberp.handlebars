@@ -154,7 +154,7 @@ items member has borrowed in the past
                             <!--borrowed information-->
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-
+                                    <!-- These class names are used in the javascript, please do not change them-->
                                     {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
                                         <hr>
                                         <!--status-->
@@ -162,13 +162,16 @@ items member has borrowed in the past
                                             <span class="reset-color">{{ borrowedStatusText}}</span>
                                         </p>
                                     
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
-                                           <!-- These class names are used in the javascript, please do not change them-->
-                                                <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
-                                                <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
+                                        <!-- Pending Approval is -1 -->
+                                        {{#ifEqual borrowedStatus -1}}
+                                            <div class="row">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
+                                               <!-- These class names are used in the javascript, please do not change them-->
+                                                    <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                                    <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
+                                                </div>
                                             </div>
-                                        </div>
+                                        {{/ifEqual}}
                                         <hr>
                                        <!-- Pending Approval is -1 -->
 
@@ -278,14 +281,6 @@ items member has borrowed in the past
                                 <p class="item-descr">Status:
                                     <span class="reset-color">{{ borrowedStatusText}}</span>
                                 </p>
-
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
-                                   <!-- These class names are used in the javascript, please do not change them-->
-                                        <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
-                                        <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
-                                    </div>
-                                </div>
                                 <hr>
                                <!-- Pending Approval is -1 -->
 
@@ -594,30 +589,31 @@ items member has borrowed in the past
                     <!--borrowed information-->
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-
                             {{#if borrowedItemsId}} <!-- only display if the item has been borrowed before-->
                                 <hr>
                                 <!--status-->
                                 <p class="item-descr">Status:
                                     <span class="reset-color">{{ borrowedStatusText}}</span>
                                 </p>
-
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
-                                   <!-- These class names are used in the javascript, please do not change them-->
-                                        <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
-                                        <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
+                                <!-- Pending Approval is -1 -->
+                                {{#ifEqual borrowedStatus -1}}
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
+                                       <!-- These class names are used in the javascript, please do not change them-->
+                                            <a class="borrowCompl" id = '' href="#">Mark Borrowed</a><!--mark borrowed-->
+                                            <a class="cancelReq" id = '' href="#">Cancel Request</a><!--cancel request-->
+                                        </div>
                                     </div>
-                                </div>
+                                {{/ifEqual}}
                                 <hr>
                                <!-- Pending Approval is -1 -->
 
                                 {{#ifEqual borrowedStatus -1}}
-                                <div class="row">
-                                   <!-- These class names are used in the javascript, please do not change them-->
-                                    <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button><!--approve request-->
-                                    <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button><!--deny request-->
-                                </div>
+                                    <div class="row">
+                                       <!-- These class names are used in the javascript, please do not change them-->
+                                        <button class="approveBorrowRequest" id = '{{borrowedItemsId}},{{id}}'><a href="#">Approve Request</a></button><!--approve request-->
+                                        <button class="denyBorrowRequest" id = '{{borrowedItemsId}},{{id}}' ><a href="#">Deny Request</a></button><!--deny request-->
+                                    </div>
                                 {{/ifEqual}}
                                 <!--borrower-->
                                 <p class=" item-descr borrow-decl">
