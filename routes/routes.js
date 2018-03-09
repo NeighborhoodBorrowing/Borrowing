@@ -357,13 +357,13 @@ module.exports = function(app, passport) {
                 " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
                 +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
                 +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
-                +" M.firstName as borrowerFirstName, M.id as borrowerId "
-                +" BI.id as borrowedItemsId, MI.canBorrow,  "
-                +" from  memberItems as MI  "
+                +" M.firstName as borrowerFirstName, M.id as borrowerId, "
+                +" BI.id as borrowedItemsId, MI.canBorrow "
+                +" FROM memberItems as MI  "
                 +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
                 +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
                 +" LEFT OUTER JOIN categories as C on MI.categoryId = C.id "
-                +" WHERE MI.ownerId = ? ORDER BY BI.borrowedStatus;"
+                +" WHERE MI.ownerId = ? ORDER BY MI.id;"
                 , { replacements: [userId], type: db.sequelize.QueryTypes.SELECT}
               ).then (function(results){
                 var userItems = [];
@@ -399,7 +399,7 @@ module.exports = function(app, passport) {
                     +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
                     +" M.firstName as borrowerFirstName, M.id as borrowerId, "
                     +" BI.id as borrowedItemsId, MI.canBorrow "
-                    +" from  memberItems as MI  "
+                    +" from  memberItems as MI "
                     +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
                     +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
                     +" LEFT OUTER JOIN categories as C on MI.categoryId = C.id "
