@@ -221,11 +221,11 @@ module.exports = function(app, passport) {
   });
   //sign up route
   app.get("/signup", function(req, res) {
-    res.render("signup", {layout: "init"});
+    res.render("signup", {layout: "log-sign"});
   });
   //login route
   app.get("/login", function(req, res) {
-    res.render("login", {layout: "init"});
+    res.render("login", {layout: "log-sign"});
   });
   //memberpage route
   app.get("/memberp", function(req, res) {

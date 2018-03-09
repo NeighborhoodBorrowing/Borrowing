@@ -193,7 +193,7 @@ $("#searchSubmitBtn").click(function(event){
     }
     $.get("/api/search", data)
       .done(function(results){
-        $("#searchResultDisplay:hidden").show();
+        $("#main-search-div").show();
         $("#search-resp-div").empty();
 
         var searchResultDisplay = "";

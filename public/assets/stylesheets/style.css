@@ -440,11 +440,9 @@ VIDEO HANDLING
 ========================================
 */
 #myVideo {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
+    position: absolute;
+    bottom: -2.8em;
+    width: 100%;
 }
 .video-container {
     position: fixed;
@@ -483,7 +481,7 @@ ROTATING TEXT
     position: absolute;
     width: 220px;
     opacity: 0;
-    text-shadow: .01em .01em rgba(227, 223, 223, .3);
+    text-shadow: .01em .01em rgba(227, 223, 223, .5);
 }
 .letter {
     display: inline-block;
@@ -614,6 +612,12 @@ MEDIA QUERIES
 @media screen and (max-width: 991px) {
     .item-photo {
         width: 60%;
+    }
+    #myVideo {
+        height:auto;
+        display: inline-block;
+        margin: 0 auto; 
+        top: 7.6em;
     }
 }
 @media screen and (max-width: 768px) {
