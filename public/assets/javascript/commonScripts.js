@@ -86,7 +86,22 @@ $("#loginSubmitBtn").click(function(event){
 });
 
 
-/******* Approve or Deny Borrowing Request Logic  *************/
+/******* Approve or Deny or Mark Borrowed or Mark Returned Borrowing Request Logic  *************/
+$(".borrowCompl").click(function(event){
+  event.preventDefault();
+  var borrowedItemsId = this.id.split(",")[0];
+  var itemId = this.id.split(",")[1];
+
+  $.post("/api/markBorrowed", {borrowedItemsId:borrowedItemsId, itemId:itemId})
+    .done(function(){
+      window.location = "/memberp";
+    })
+    .fail(function(err){
+      alert("Unable to mark borrowed");
+      console.log(err);
+    });
+});
+
 $(".approveBorrowRequest").click(function(event){
   event.preventDefault();
   var borrowedItemsId = this.id.split(",")[0];
@@ -103,7 +118,7 @@ $(".approveBorrowRequest").click(function(event){
 });
 
 /** DENY **/
-$(".denyBorrowRequest").click(function(event){
+$(".denyBorrowRequest", ".cancelReq").click(function(event){
   event.preventDefault();
   var borrowedItemsId = this.id.split(",")[0];
   var itemId = this.id.split(",")[1];

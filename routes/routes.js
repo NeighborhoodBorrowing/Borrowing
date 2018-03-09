@@ -24,6 +24,21 @@ module.exports = function(app, passport) {
         });
   });
 
+
+  //DENY a request to borrow
+  app.post("/api/markBorrowed", function(req, res) {
+    //update this record to show the borrowing has denied
+    db.sequelize
+        .query(
+                "UPDATE borroweditems SET borrowedStatus = 2 WHERE id = ?;" //0 = denied
+                , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
+              )
+        .then(function(results){
+              res.status(200).send("Update successful");
+              res.end();
+            });
+        });
+
   //DENY a request to borrow
   app.post("/api/deny", function(req, res) {
     //update this record to show the borrowing has denied
@@ -54,14 +69,14 @@ module.exports = function(app, passport) {
             });
         });
   });
-    
+
   //Mark item borrowed
   app.post("/api/borrowed", function(req, res) {
     //update this record to show the borrowing has been approved
     //if there is anyone else who wanted to borrow it, mark that as denied
     db.sequelize
         .query(
-                "UPDATE borroweditems SET borrowedStatus = 2, dueDate = DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE itemId = ?;" //2 = on lend
+                "UPDATE borroweditems SET borrowedStatus = 2, borrowedDate = CURRENT_TIMESTAMP, dueDate = DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE itemId = ?;" //2 = on lend
                 , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
               )
         .then(function(results){
@@ -69,22 +84,7 @@ module.exports = function(app, passport) {
               res.end();
         });
   });
-    
-    //cancel borrow request
-      app.post("/api/cancelRequest", function(req, res) {
-        //update this record to show the borrowing has been approved
-        //if there is anyone else who wanted to borrow it, mark that as denied
-        db.sequelize
-            .query(
-                    "UPDATE borroweditems SET borrowedStatus = 3 WHERE itemId = ?;" //3 = borrowed
-                    , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
-                  )
-            .then(function(results){
-                  res.status(200).send("Update successful");
-                  res.end();
-            });
-      });
-    
+
      //Mark item returned
       app.post("/api/itReturned", function(req, res) {
         //update this record to show the borrowing has been approved
@@ -128,7 +128,7 @@ module.exports = function(app, passport) {
   //borrow request post route
   app.post("/api/borrowRequest", function(req, res){
     if(req.session.passport == null){
-      res.render("login", {message: "Please Log In"});
+      res.render("login", {message: "Please Log In", layout: "init"});
     } else {
         var userId = req.session.passport.user;
         var queryString = "INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId) "
@@ -149,7 +149,7 @@ module.exports = function(app, passport) {
   //add an item to be borrowed
   app.post("/api/postit", function(req, res) {
     if(req.session.passport == null){
-      res.render("login", {message: "Please Log In"});
+      res.render("login", {message: "Please Log In", layout: "init"});
     } else {
         var userId = req.session.passport.user;
         var canBorrow = (req.body.canBorrow==='true') ? 1 : 0;
@@ -168,12 +168,12 @@ module.exports = function(app, passport) {
             });
       }//close else logged in
   });
- 
+
 /*** GET ROUTES TO DISPLAY PAGES*****/
   //search for items
   app.get("/api/search", function(req, res) {
     if(req.session.passport == null){
-      res.render("login", {message: "Please Log In"});
+      res.render("login", {message: "Please Log In", layout: "init"});
     } else {
         var userId = req.session.passport.user;
         var zipcode = req.query.zipcode;
@@ -234,6 +234,7 @@ module.exports = function(app, passport) {
       var userAndInfo = {user:null, items:null};
       var user;
       var items;
+      var borrowedItems;
       db.sequelize
           .query(
                   "Select firstName, lastName, email, rating, zipCode, joinDate from Members where id = ?;"
@@ -251,14 +252,14 @@ module.exports = function(app, passport) {
                 joinDate: results[0].joinDate
               }
               getUserItems(userId, function(items){
-                userAndInfo = {user:user, items:items};
+              //  getBorrowedItems(userId, borrowedItems)
                 res.render('memberp', {userAndInfo:userAndInfo, helpers:{ json:function(context){return JSON.stringify(context); } }});
               });
 
             } //close if results!=0
           });
     } else {
-      res.render("login", {message: "Please Log In"});
+      res.render("login", {message: "Please Log In", layout: "init"});
     }
   });
   //index route
@@ -279,26 +280,25 @@ module.exports = function(app, passport) {
             res.render("search", {categories:req.session.categories, catString:catString});
           }
     } else { // not logged in
-        res.render("login", {message: "Please Log In"});
+        res.render("login", {message: "Please Log In", layout: "init"});
     }
   });
   //disable borrowing
-  app.get("/disableBorrowing:id", function(req, res) {
+  app.get("/toggleBorrowing", function(req, res) {
     var message = req.query.message==null ? "" : req.query.message;
     if(req.session.passport != null){//not logged in
       var userId = req.session.passport.user;
       db.sequelize
           .query(
-                  "Update memberItems SET canBorrow = false where id = ? and ownerId = ?;"
+                  "Update memberItems SET canBorrow = !canBorrow where id = ? and ownerId = ?;"
                   , { replacements: [req.query.id, userId], type: db.sequelize.QueryTypes.UPDATE}
                 )
           .then(function(results){
             console.log(results);
-            res.render("memberp", {categories:req.session.categories, message:message, catString:catString});
-
+            res.redirect("/memberp");
           });
     } else { // not logged in
-        res.render("login", {message: "Please Log In"});
+        res.render("login", {message: "Please Log In", layout: "init"});
     }
   });
   //post item route
@@ -316,14 +316,14 @@ module.exports = function(app, passport) {
             res.render("postit", {categories:req.session.categories, message:message, catString:catString});
           }
     } else { // not logged in
-        res.render("login", {message: "Please Log In"});
+        res.render("login", {message: "Please Log In", layout: "init"});
     }
   });
   //update item route
   app.get("/updateIt", function(req, res) {
     res.render("updateIt", {layout: "main"});
       getUserItemById(3, 10, function () {
-            console.log("test");         
+            console.log("test");
       });
   });
   //logout route
@@ -388,7 +388,7 @@ module.exports = function(app, passport) {
                 cb(userItems);
             }); //close then
     }//close function
-    
+
     //retrieve user items with specific id function
     function getUserItemById(userId, id, cb){
         db.sequelize
