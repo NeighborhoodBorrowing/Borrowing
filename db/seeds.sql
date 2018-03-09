@@ -1,4 +1,4 @@
-INSERT INTO members (firstName, lastName, email, password, zipCode) VALUES
+INSERT INTO Members (firstName, lastName, email, password, zipCode) VALUES
 ("Fatima", "Ahmed", "fa@a.com", "12345", "76040"),
 ("Hermione", "Granger", "hg@b.com", "abcde", "76040"),
 ("John", "Walks", "jw@c.com", "abc12", "75062"),
@@ -10,7 +10,7 @@ INSERT INTO members (firstName, lastName, email, password, zipCode) VALUES
 ("Jenine", "Lalo", "jl@a.com", "44444", "76040"),
 ("Vin", "Simms", "vs@a.com", "55555", "76040");
 
-INSERT INTO categories (categoryName, id, parentId) values
+INSERT INTO Categories (categoryName, id, parentId) values
 ("Cleaning Supplies",300, 0),
 ("Brooms",301, 300),
 ("Mops", 302, 300),
@@ -54,7 +54,7 @@ INSERT INTO categories (categoryName, id, parentId) values
 ("Other", 1199, 1100);
 
 
-INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId ) values
+INSERT INTO MemberItems (name, description, picture, value, categoryId, ownerId ) values
 ("Stanley STHT51304 Hammer", "Stanley STHT51304 20Oz Rip Claw Fiberglass Hammer"
 , "https://images-na.ssl-images-amazon.com/images/I/41qM9ujhD%2BL._AC_UL160_SR160,160_.jpg"
 , 12.99, 1102, (Select id from Members where email="fa@a.com")),
@@ -170,17 +170,9 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 
 
 
-INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (2, null, null, null,1,2);
-
-INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (0, null, null, null,2,3);
-
-INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (-1, null, null, null,5,3);
-
-INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (-1, null, null, null,6,3);
-
-INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
-VALUES (3, null, null, null,7,3);
+INSERT INTO BorrowedItems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId)
+VALUES (2, null, null, null,1,2),
+(0, null, null, null,2,3),
+(-1, null, null, null,5,3),
+(-1, null, null, null,6,3),
+(3, null, null, null,7,3);

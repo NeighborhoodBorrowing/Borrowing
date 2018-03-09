@@ -30,7 +30,7 @@ module.exports = function(app, passport) {
     //update this record to show the borrowing has denied
     db.sequelize
         .query(
-                "UPDATE borroweditems SET borrowedStatus = 2 WHERE id = ?;" //0 = denied
+                "UPDATE BorrowedItems SET borrowedStatus = 2 WHERE id = ?;" //0 = denied
                 , { replacements: [req.body.borrowedItemsId], type: db.sequelize.QueryTypes.UPDATE}
               )
         .then(function(results){
@@ -76,7 +76,7 @@ module.exports = function(app, passport) {
     //if there is anyone else who wanted to borrow it, mark that as denied
     db.sequelize
         .query(
-                "UPDATE borroweditems SET borrowedStatus = 2, borrowedDate = CURRENT_TIMESTAMP, dueDate = DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE itemId = ?;" //2 = on lend
+                "UPDATE BorrowedItems SET borrowedStatus = 2, borrowedDate = CURRENT_TIMESTAMP, dueDate = DATE_ADD(NOW(), INTERVAL 7 DAY) WHERE itemId = ?;" //2 = on lend
                 , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
               )
         .then(function(results){
@@ -91,7 +91,7 @@ module.exports = function(app, passport) {
         //if there is anyone else who wanted to borrow it, mark that as denied
         db.sequelize
             .query(
-                    "UPDATE borroweditems SET borrowedStatus = 3, returnDate = CURRENT_TIMESTAMP WHERE itemId = ?;" //3 = borrowed
+                    "UPDATE BorrowedItems SET borrowedStatus = 3, returnDate = CURRENT_TIMESTAMP WHERE itemId = ?;" //3 = borrowed
                     , { replacements: [req.body.itemId], type: db.sequelize.QueryTypes.UPDATE}
                   )
             .then(function(results){
@@ -104,7 +104,7 @@ module.exports = function(app, passport) {
     db.sequelize
         .query(
                 //0 = denied, -1 = Pending Approval
-                "UPDATE borroweditems SET borrowedStatus = 0 WHERE itemId = ? AND borrowedStatus = -1 ;"
+                "UPDATE BorrowedItems SET borrowedStatus = 0 WHERE itemId = ? AND borrowedStatus = -1 ;"
                 , { replacements: [id], type: db.sequelize.QueryTypes.UPDATE}
               )
         .then(function(results){
@@ -131,7 +131,7 @@ module.exports = function(app, passport) {
       res.render("login", {message: "Please Log In", layout: "log-sign"});
     } else {
         var userId = req.session.passport.user;
-        var queryString = "INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId) "
+        var queryString = "INSERT INTO BorrowedItems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId) "
                           +" VALUES (-1, null, null, null,?,?);";
         db.sequelize
             .query(queryString
@@ -153,7 +153,7 @@ module.exports = function(app, passport) {
     } else {
         var userId = req.session.passport.user;
         var canBorrow = (req.body.canBorrow==='true') ? 1 : 0;
-        var queryString = "INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId, canBorrow )"
+        var queryString = "INSERT INTO MemberItems (name, description, picture, value, categoryId, ownerId, canBorrow )"
                           +" values (?,?,?,?,?,?,?);";
         db.sequelize
             .query(queryString
@@ -183,10 +183,10 @@ module.exports = function(app, passport) {
 
         var queryString = "SELECT MI.id as MIid, MI.name, MI.description, MI.picture, "
                           + " MI.value, MI.categoryId, c.categoryname, M.firstName as ownername "
-                          +" FROM memberitems as MI JOIN categories as C ON C.id = MI.categoryID "
-                          +" JOIN members as M ON M.id = MI.ownerId "
+                          +" FROM MemberItems as MI JOIN Categories as C ON C.id = MI.categoryID "
+                          +" JOIN Members as M ON M.id = MI.ownerId "
                           +" WHERE MI.canBorrow = true AND MI.id NOT IN "
-                          +" (SELECT BI.itemId FROM borroweditems as BI WHERE BI.borrowedStatus IN (1,2)) ";
+                          +" (SELECT BI.itemId FROM BorrowedItems as BI WHERE BI.borrowedStatus IN (1,2)) ";
         var replacements = [];
         if(isNotNullOrEmpty(zipcode)){
           queryString += " AND M.zipCode=? ";
@@ -199,7 +199,7 @@ module.exports = function(app, passport) {
         }
 
         if(isNullOrEmpty(subCategory) && isNotNullOrEmpty(mainCategory)){
-          queryString += " AND MI.categoryId IN (SELECT id from categories WHERE parentId = ?) ";
+          queryString += " AND MI.categoryId IN (SELECT id from Categories WHERE parentId = ?) ";
           replacements.push(mainCategory);
         }
 
@@ -291,7 +291,7 @@ module.exports = function(app, passport) {
       var userId = req.session.passport.user;
       db.sequelize
           .query(
-                  "Update memberItems SET canBorrow = !canBorrow where id = ? and ownerId = ?;"
+                  "Update MemberItems SET canBorrow = !canBorrow where id = ? and ownerId = ?;"
                   , { replacements: [req.query.id, userId], type: db.sequelize.QueryTypes.UPDATE}
                 )
           .then(function(results){
@@ -339,7 +339,7 @@ module.exports = function(app, passport) {
     db.sequelize
         .query(
                 //0 = denied, -1 = Pending Approval
-                "SELECT categoryName, id, parentId FROM categories ORDER BY id ;"
+                "SELECT categoryName, id, parentId FROM Categories ORDER BY id ;"
                 , {type: db.sequelize.QueryTypes.SELECT}
               )
         .then(function(results){
@@ -359,10 +359,10 @@ module.exports = function(app, passport) {
                 +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
                 +" M.firstName as borrowerFirstName, M.id as borrowerId, "
                 +" BI.id as borrowedItemsId, MI.canBorrow "
-                +" FROM memberItems as MI  "
-                +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
+                +" FROM MemberItems as MI  "
+                +" LEFT OUTER JOIN BorrowedItems as BI ON MI.id = BI.itemId  "
                 +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
-                +" LEFT OUTER JOIN categories as C on MI.categoryId = C.id "
+                +" LEFT OUTER JOIN Categories as C on MI.categoryId = C.id "
                 +" WHERE MI.ownerId = ? ORDER BY MI.id;"
                 , { replacements: [userId], type: db.sequelize.QueryTypes.SELECT}
               ).then (function(results){
@@ -399,10 +399,10 @@ module.exports = function(app, passport) {
                     +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
                     +" M.firstName as borrowerFirstName, M.id as borrowerId, "
                     +" BI.id as borrowedItemsId, MI.canBorrow "
-                    +" from  memberItems as MI "
-                    +" LEFT OUTER JOIN borroweditems as BI ON MI.id = BI.itemId  "
+                    +" from  MemberItems as MI "
+                    +" LEFT OUTER JOIN BorrowedItems as BI ON MI.id = BI.itemId  "
                     +" LEFT OUTER JOIN Members as M on BI.borrowerId = M.id "
-                    +" LEFT OUTER JOIN categories as C on MI.categoryId = C.id "
+                    +" LEFT OUTER JOIN Categories as C on MI.categoryId = C.id "
                     +" WHERE MI.ownerId = ? && MI.id = ? ORDER BY BI.borrowedStatus;"
                     , { replacements: [userId, id], type: db.sequelize.QueryTypes.SELECT}
                   ).then (function(results){
