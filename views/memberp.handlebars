@@ -21,7 +21,7 @@ items member has borrowed in the past
     <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"></div>
     <!--user welcome div-->
     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12 container" id="myProfile">
-        <h3 id="user-name" class="centered">Welcome back 
+        <h3 id="user-name" class="centered">Welcome back
             <span class="secondary-color" style="font-size:1.2em;padding:.3em;">{{userAndInfo.user.firstName}}!</span>
             <br>
         </h3>
@@ -148,10 +148,10 @@ items member has borrowed in the past
                                     <!--remove item-->
                                     <div class="row centered">
                                         {{#ifEqual canBorrow 1}}
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                            <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
                                         {{/ifEqual}}
                                         {{#ifEqual canBorrow 0}}
-                                            <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                            <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
                                         {{/ifEqual}}
                                     </div>
                                 </div>
@@ -166,7 +166,7 @@ items member has borrowed in the past
                                         <p class="item-descr">Status:
                                             <span class="reset-color">{{ borrowedStatusText}}</span>
                                         </p>
-                                    
+
                                         <!-- Pending Approval is -1 -->
                                         {{#ifEqual borrowedStatus -1}}
                                             <div class="row">
@@ -193,7 +193,7 @@ items member has borrowed in the past
                                             <span class="reset-color">{{ borrowerFirstName}}</span>
                                         </p>
                                         <!--borrowed on-->
-                                        {{#ifEqual borrowedStatus 2}}   
+                                        {{#ifEqual borrowedStatus 2}}
                                             <p class=" item-descr borrow-decl">
                                                 <span>Borrowed On:</span>
                                                 <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
@@ -274,10 +274,10 @@ items member has borrowed in the past
                             <!--remove item-->
                             <div class="row centered">
                                 {{#ifEqual canBorrow 1}}
-                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
                                 {{/ifEqual}}
                                 {{#ifEqual canBorrow 0}}
-                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                    <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
                                 {{/ifEqual}}
                             </div>
                         </div>
@@ -292,14 +292,14 @@ items member has borrowed in the past
                                 <p class="item-descr">Status:
                                     <span class="reset-color">{{ borrowedStatusText}}</span>
                                 </p>
-                            
+
                                 <!-- Pending Approval is -1 -->
                                 {{#ifEqual borrowedStatus 1}}
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 centered">
                                        <!-- These class names are used in the javascript, please do not change them-->
-                                            <a class="borrowCompl" id = '{{borrowedItemsId}}, {{id}}' href="#">Mark Borrowed</a><!--mark borrowed-->
-                                            <a class="cancelReq" id = '{{borrowedItemsId}}, {{id}}' href="#">Cancel Request</a><!--cancel request-->
+                                            <a class="borrowCompl" id = '{{borrowedItemsId}}, {{id}}'>Mark Borrowed</a><!--mark borrowed-->
+                                            <a class="cancelReq" id = '{{borrowedItemsId}}, {{id}}'>Cancel Request</a><!--cancel request-->
                                         </div>
                                     </div>
                                 {{/ifEqual}}
@@ -319,7 +319,7 @@ items member has borrowed in the past
                                     <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
                                 <!--borrowed on-->
-                                {{#ifEqual borrowedStatus 2}}   
+                                {{#ifEqual borrowedStatus 2}}
                                     <p class=" item-descr borrow-decl">
                                         <span>Borrowed On:</span>
                                         <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
@@ -400,10 +400,10 @@ items member has borrowed in the past
                                 <!--remove item-->
                                 <div class="row centered">
                                     {{#ifEqual canBorrow 1}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
                                     {{/ifEqual}}
                                     {{#ifEqual canBorrow 0}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                        <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
                                     {{/ifEqual}}
                                 </div>
                             </div>
@@ -418,7 +418,7 @@ items member has borrowed in the past
                                     <p class="item-descr">Status:
                                         <span class="reset-color">{{ borrowedStatusText}}</span>
                                     </p>
-                                
+
                                     <hr>
 
                                     <!--borrower-->
@@ -427,7 +427,7 @@ items member has borrowed in the past
                                         <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on-->
-                                    {{#ifEqual borrowedStatus 2}}   
+                                    {{#ifEqual borrowedStatus 2}}
                                         <p class=" item-descr borrow-decl">
                                             <span>Borrowed On:</span>
                                             <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
@@ -515,10 +515,10 @@ items member has borrowed in the past
                                 <!--remove item-->
                                 <div class="row centered">
                                     {{#ifEqual canBorrow 1}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                        <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
                                     {{/ifEqual}}
                                     {{#ifEqual canBorrow 0}}
-                                        <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                        <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
                                     {{/ifEqual}}
                                 </div>
                             </div>
@@ -559,7 +559,7 @@ items member has borrowed in the past
                                         <span class="reset-color">{{ borrowerFirstName}}</span>
                                     </p>
                                     <!--borrowed on-->
-                                    {{#ifEqual borrowedStatus 2}}   
+                                    {{#ifEqual borrowedStatus 2}}
                                         <p class=" item-descr borrow-decl">
                                             <span>Borrowed On:</span>
                                             <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>
@@ -640,10 +640,10 @@ items member has borrowed in the past
                             <!--remove item-->
                             <div class="row centered">
                                 {{#ifEqual canBorrow 1}}
-                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
+                                    <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">No Longer Allow Others to Borrow This Item</a>
                                 {{/ifEqual}}
                                 {{#ifEqual canBorrow 0}}
-                                    <a class="removeItem" id = '{{id}}' href="/disableBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
+                                    <a class="removeItem" id = '{{id}}' href="/toggleBorrowing?id={{id}}">Allow Others to Borrow This Item</a>
                                 {{/ifEqual}}
                             </div>
                         </div>
@@ -683,7 +683,7 @@ items member has borrowed in the past
                                     <span class="reset-color">{{ borrowerFirstName}}</span>
                                 </p>
                                 <!--borrowed on-->
-                                {{#ifEqual borrowedStatus 2}}   
+                                {{#ifEqual borrowedStatus 2}}
                                     <p class=" item-descr borrow-decl">
                                         <span>Borrowed On:</span>
                                         <span class="reset-color">{{dateFormat borrowDate "dddd, MMMM Do YYYY"}}</span>

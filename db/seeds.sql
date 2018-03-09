@@ -13,7 +13,9 @@ INSERT INTO members (firstName, lastName, email, password, zipCode) VALUES
 INSERT INTO categories (categoryName, id, parentId) values
 ("Cleaning Supplies",300, 0),
 ("Brooms",301, 300),
-("Vaccum Cleaners", 302, 300),
+("Mops", 302, 300),
+("Sprays and Wipes", 303, 300),
+("Vacuum Cleaners", 304, 300),
 ("Other", 399, 300),
 
 ("Cooking Equipment", 600, 0),
@@ -63,11 +65,11 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 
 ("iRobot Roomba Vacuum Cleaner", "iRobot Roomba 690 Wi-Fi® Connected Vacuuming Robot"
 , "https://target.scene7.com/is/image/Target/52360762?wid=1400"
-, 318, 302, (Select id from Members where email="fa@a.com")),
+, 318, 304, (Select id from Members where email="fa@a.com")),
 
 ("Upright Vacuum Cleaner", "Dirt Devil Pro Power™ Bagless Upright Vacuum- UD70172"
 , "https://target.scene7.com/is/image/Target/11301939?wid=1400"
-, 53.99, 302, (Select id from Members where email="fa@a.com")),
+, 53.99, 304, (Select id from Members where email="fa@a.com")),
 
 ("Wood Handle Shovel", "48 in. Wood Handle Round Point Shovel"
 , "https://images.homedepot-static.com/productImages/f6245d72-0c10-4793-8d75-ebe57dfdcdea/svn/ames-shovels-2535600-64_1000.jpg", 15, 1001, (Select id from Members where email="fa@a.com")),
@@ -136,7 +138,35 @@ INSERT INTO memberItems (name, description, picture, value, categoryId, ownerId 
 
 ("Resident Evil 7 Biohazard Gold Edition for PS4", "Resident Evil®7 biohazard sets a new course for the Resident Evil series as it leverages its roots and opens the door to a truly terrifying horror experience."
 , "https://www.gamestop.com/common/images/lbox/155491b.jpg"
-, 60, 904, (Select id from Members where email="jw@c.com"));
+, 60, 904, (Select id from Members where email="jw@c.com")),
+
+("Resident Evil 7 Biohazard Gold Edition for PS4", "Resident Evil®7 biohazard sets a new course for the Resident Evil series as it leverages its roots and opens the door to a truly terrifying horror experience."
+, "https://www.gamestop.com/common/images/lbox/155491b.jpg"
+, 60, 904, (Select id from Members where email="vs@a.com")),
+
+("Spin Mop and Bucket", "O-Cedar EasyWring Microfiber Floor Cleaning System"
+, "https://images-na.ssl-images-amazon.com/images/I/71%2BHFuZzTyL._SL1500_.jpg"
+, 29.97, 302, (Select id from Members where email="vs@a.com")),
+
+("Swiffer Dry Sweeping Pad Refills", "Swiffer Sweeper Dry Sweeping Pad Refills for Floor Mop, Refill Cloth with Febreze Lavender Vanilla & Comfort Scent"
+, "https://images-na.ssl-images-amazon.com/images/I/81tVCCW-7xL._SL1500_.jpg"
+, 0, 303, (Select id from Members where email="vs@a.com")),
+
+("Clorox Disinfecting Wipes", "Clorox Disinfecting Wipes"
+, "https://images-na.ssl-images-amazon.com/images/I/81SdtHjcwyL._SL1300_.jpg"
+, 0, 303, (Select id from Members where email="vs@a.com")),
+
+("Resuable Lint Roller", "iLifeTech Resuable Lint Roller Cat Dog Hair Remover Tool Pet Shedding Brush Cleans your Suit/Sofa "
+, "https://images-na.ssl-images-amazon.com/images/I/61dvi3jgVOL._SL1500_.jpg"
+, 10.99, 399, (Select id from Members where email="vs@a.com")),
+
+("Magic Lint Brush Pet Hair Remover Clothing with Swivel", "Measures approximately 11in long, Swivel head to reverse direction for lint and hair removal, Deep Cleaning Brush Removes Fuzz and Pilling,   Quickly and effectively removes lint, dust, dandruff and pet hair from clothing, bedding and upholstery"
+, "https://images-na.ssl-images-amazon.com/images/I/61j8sBnem1L._SL1000_.jpg"
+, 6.99, 399, (Select id from Members where email="vs@a.com"))
+
+
+
+;
 
 
 
