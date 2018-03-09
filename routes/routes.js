@@ -128,7 +128,7 @@ module.exports = function(app, passport) {
   //borrow request post route
   app.post("/api/borrowRequest", function(req, res){
     if(req.session.passport == null){
-      res.render("login", {message: "Please Log In", layout: "init"});
+      res.render("login", {message: "Please Log In", layout: "log-sign"});
     } else {
         var userId = req.session.passport.user;
         var queryString = "INSERT INTO borroweditems (borrowedStatus, borrowedDate, dueDate, returnDate, itemId, borrowerId) "
@@ -149,7 +149,7 @@ module.exports = function(app, passport) {
   //add an item to be borrowed
   app.post("/api/postit", function(req, res) {
     if(req.session.passport == null){
-      res.render("login", {message: "Please Log In", layout: "init"});
+      res.render("login", {message: "Please Log In", layout: "log-sign"});
     } else {
         var userId = req.session.passport.user;
         var canBorrow = (req.body.canBorrow==='true') ? 1 : 0;
@@ -173,7 +173,7 @@ module.exports = function(app, passport) {
   //search for items
   app.get("/api/search", function(req, res) {
     if(req.session.passport == null){
-      res.render("login", {message: "Please Log In", layout: "init"});
+      res.render("login", {message: "Please Log In", layout: "log-sign"});
     } else {
         var userId = req.session.passport.user;
         var zipcode = req.query.zipcode;
@@ -253,18 +253,19 @@ module.exports = function(app, passport) {
               }
               getUserItems(userId, function(items){
               //  getBorrowedItems(userId, borrowedItems)
+              userAndInfo = {user:user, items:items};
                 res.render('memberp', {userAndInfo:userAndInfo, helpers:{ json:function(context){return JSON.stringify(context); } }});
               });
 
             } //close if results!=0
           });
     } else {
-      res.render("login", {message: "Please Log In", layout: "init"});
+      res.render("login", {message: "Please Log In", layout: "log-sign"});
     }
   });
   //index route
   app.get("/", function(req, res) {
-    res.render("index", {layout: "init"});
+    res.render("index", {layout: "log-sign"});
   });
   //search route
   app.get("/search", function(req, res) {
@@ -280,7 +281,7 @@ module.exports = function(app, passport) {
             res.render("search", {categories:req.session.categories, catString:catString});
           }
     } else { // not logged in
-        res.render("login", {message: "Please Log In", layout: "init"});
+        res.render("login", {message: "Please Log In", layout: "log-sign"});
     }
   });
   //disable borrowing
@@ -298,7 +299,7 @@ module.exports = function(app, passport) {
             res.redirect("/memberp");
           });
     } else { // not logged in
-        res.render("login", {message: "Please Log In", layout: "init"});
+        res.render("login", {message: "Please Log In", layout: "log-sign"});
     }
   });
   //post item route
@@ -316,7 +317,7 @@ module.exports = function(app, passport) {
             res.render("postit", {categories:req.session.categories, message:message, catString:catString});
           }
     } else { // not logged in
-        res.render("login", {message: "Please Log In", layout: "init"});
+        res.render("login", {message: "Please Log In", layout: "log-sign"});
     }
   });
   //update item route
