@@ -59,6 +59,7 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
+    console.log("getting auth information");
     db.sequelize
         .query(
                 "Select * from Members where email = ? and password = ?;"
@@ -68,6 +69,7 @@ passport.use(new LocalStrategy(
           if(results.length==0){
             return done(null, false, { message: 'Incorrect Login Information.' });
           } else {
+            console.log("logged in");
             return done(null, results[0]);
           } //close else
         });
