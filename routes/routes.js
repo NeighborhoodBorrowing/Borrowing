@@ -115,13 +115,10 @@ module.exports = function(app, passport) {
  //-----login post route
  //http://toon.io/understanding-passportjs-authentication-flow/
   app.post('/api/login', function(req, res, next) {
-    console.log("HERE1");
     passport.authenticate('local', function(err, user, info) {
-      console.log("HERE2");
       if (err) { return next(err); }
       if (!user) { return res.redirect('/login'); }
       req.logIn(user, function(err) {
-        console.log("HERE3");
         if (err) {console.log("ERROR**************",err); return next(err); }
         res.status(200).send("Logged In");
         res.end();
@@ -185,7 +182,7 @@ module.exports = function(app, passport) {
         var subCategory = req.query.subCategory;
 
         var queryString = "SELECT MI.id as MIid, MI.name, MI.description, MI.picture, "
-                          + " MI.value, MI.categoryId, c.categoryName, M.firstName as ownername "
+                          + " MI.value, MI.categoryId, C.categoryName, M.firstName as ownername "
                           +" FROM MemberItems as MI JOIN Categories as C ON C.id = MI.categoryId "
                           +" JOIN Members as M ON M.id = MI.ownerId "
                           +" WHERE MI.canBorrow = true AND MI.id NOT IN "
@@ -297,7 +294,6 @@ module.exports = function(app, passport) {
                   , { replacements: [req.query.id, userId], type: db.sequelize.QueryTypes.UPDATE}
                 )
           .then(function(results){
-            console.log(results);
             res.redirect("/memberp");
           });
     } else { // not logged in
