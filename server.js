@@ -59,7 +59,7 @@ app.use(passport.session());
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    console.log("getting auth information", username, password);
+    console.log("getting auth information username: "+username+" pass: "+password);
     db.sequelize
         .query(
                 "Select * from Members where email = ? and password = ?;"
