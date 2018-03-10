@@ -66,7 +66,9 @@ passport.use(new LocalStrategy(
                 , { replacements: [username, password], type: db.sequelize.QueryTypes.SELECT}
               )
         .then(function(results){
+          console.log("back from DB");
           if(results.length==0){
+            console.log("not logged in");
             return done(null, false, { message: 'Incorrect Login Information.' });
           } else {
             console.log("logged in");
