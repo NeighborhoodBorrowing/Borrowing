@@ -115,10 +115,13 @@ module.exports = function(app, passport) {
  //-----login post route
  //http://toon.io/understanding-passportjs-authentication-flow/
   app.post('/api/login', function(req, res, next) {
+    console.log("HERE1");
     passport.authenticate('local', function(err, user, info) {
+      console.log("HERE2");
       if (err) { return next(err); }
       if (!user) { return res.redirect('/login'); }
       req.logIn(user, function(err) {
+        console.log("HERE3");
         if (err) {console.log("ERROR**************",err); return next(err); }
         res.status(200).send("Logged In");
         res.end();
