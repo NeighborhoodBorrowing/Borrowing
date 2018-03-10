@@ -185,8 +185,8 @@ module.exports = function(app, passport) {
         var subCategory = req.query.subCategory;
 
         var queryString = "SELECT MI.id as MIid, MI.name, MI.description, MI.picture, "
-                          + " MI.value, MI.categoryId, c.categoryname, M.firstName as ownername "
-                          +" FROM MemberItems as MI JOIN Categories as C ON C.id = MI.categoryID "
+                          + " MI.value, MI.categoryId, c.categoryName, M.firstName as ownername "
+                          +" FROM MemberItems as MI JOIN Categories as C ON C.id = MI.categoryId "
                           +" JOIN Members as M ON M.id = MI.ownerId "
                           +" WHERE MI.canBorrow = true AND MI.id NOT IN "
                           +" (SELECT BI.itemId FROM BorrowedItems as BI WHERE BI.borrowedStatus IN (1,2)) ";
@@ -358,7 +358,7 @@ module.exports = function(app, passport) {
     db.sequelize
         .query(
                 " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
-                +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
+                +" MI.value, MI.categoryId, c.categoryName, MI.ownerId, "
                 +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
                 +" M.firstName as borrowerFirstName, M.id as borrowerId, "
                 +" BI.id as borrowedItemsId, MI.canBorrow "
@@ -378,7 +378,7 @@ module.exports = function(app, passport) {
                         picture:setBlankIfNull(results[i].picture),
                         value: results[i].value,
                         categoryId: results[i].categoryId,
-                        categoryname: results[i].categoryname,
+                        categoryname: results[i].categoryName,
                         canBorrow:results[i].canBorrow,
                         borrowedStatus: results[i].borrowedStatus,
                         borrowedStatusText : getBorrowedStatusText(results[i].borrowedStatus),
@@ -398,7 +398,7 @@ module.exports = function(app, passport) {
         db.sequelize
             .query(
                     " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
-                    +" MI.value, MI.categoryId, c.categoryname, MI.ownerId, "
+                    +" MI.value, MI.categoryId, c.categoryName, MI.ownerId, "
                     +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
                     +" M.firstName as borrowerFirstName, M.id as borrowerId, "
                     +" BI.id as borrowedItemsId, MI.canBorrow "
@@ -418,7 +418,7 @@ module.exports = function(app, passport) {
                             picture:setBlankIfNull(results[i].picture),
                             value: results[i].value,
                             categoryId: results[i].categoryId,
-                            categoryname: results[i].categoryname,
+                            categoryname: results[i].categoryName,
                             canBorrow:results[i].canBorrow,
                             borrowedStatus: results[i].borrowedStatus,
                             borrowedStatusText : getBorrowedStatusText(results[i].borrowedStatus),
