@@ -255,9 +255,8 @@ module.exports = function(app, passport) {
                 joinDate: results[0].joinDate
               }
               getUserItems(userId, function(items){
-              //  getBorrowedItems(userId, borrowedItems)
-              userAndInfo = {user:user, items:items};
-                res.render('memberp', {userAndInfo:userAndInfo, helpers:{ json:function(context){return JSON.stringify(context); } }});
+                  userAndInfo = {user:user, items:items};
+                  res.render('memberp', {userAndInfo:userAndInfo});
               });
 
             } //close if results!=0
@@ -358,7 +357,7 @@ module.exports = function(app, passport) {
     db.sequelize
         .query(
                 " Select MI.id as MIid, MI.name, MI.description, MI.picture, "
-                +" MI.value, MI.categoryId, c.categoryName, MI.ownerId, "
+                +" MI.value, MI.categoryId, C.categoryName, MI.ownerId, "
                 +" BI.borrowedStatus, BI.borrowedDate, BI.dueDate, "
                 +" M.firstName as borrowerFirstName, M.id as borrowerId, "
                 +" BI.id as borrowedItemsId, MI.canBorrow "
