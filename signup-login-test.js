@@ -1,23 +1,18 @@
 var Nightmare = require('nightmare');
-var nightmare = Nightmare({ show:true });
+var nightmare = new Nightmare({ show:true });
 
-nightmare 
-    .goto("localhost:8080")
-    .type("#firstName", "Testy McTester")
-    .goto("localhost:8080")
-    .type("#lastName", "Testy McTester")
-    .goto("localhost:8080")
-    .type("#email", "Testy McTester")
-    .goto("localhost:8080")
-    .type("#psw", "Testy McTester")
-    .goto("localhost:8080")
-    .type("#psw-repeat", "Testy McTester")
-    .goto("localhost:8080")
-    .type("#zipCode", "Testy McTester")
-    .click("signupSubmitBtn")
+nightmare
+    .goto("https://gentle-lowlands-66055.herokuapp.com/signup")
+    .type("#firstName", "Testy")
+    .type("#lastName", "McTester")
+    .type("#email", "testy@test.com")
+    .type("#psw", "12345")
+    .type("#psw-repeat", "12345")
+    .type("#zipCode", "75206")
+    .click("#signupSubmitBtn")
     .wait("#user-name")
     .evaluate(function() {
-        return document.querySelector("user-name")
+        return document.querySelector("#user-name")
     })
 .end()
 .then(function(result) {
